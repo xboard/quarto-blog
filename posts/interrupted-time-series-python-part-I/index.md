@@ -10,12 +10,8 @@ categories: [data-science]
 comments: false
 ---
 
-{% capture baseimages %}{{ site.baseurl }}/images/posts/its{% endcapture %}
-{% capture basedata %}{{ site.baseurl }}/assets/data/its{% endcapture %}
-
 <picture>
-    <source type="image/webp" data-srcset="{{ baseimages }}/its-card.webp" class="lazyload" alt="Interrupted Time Series Analysis example" width="100%">
-    <img src="{{ baseimages }}/its-card.png" alt="Interrupted Time Series Analysis example" width="100%">
+    <img src="its-card.png" alt="Interrupted Time Series Analysis example" width="100%">
 </picture>
 
 
@@ -48,8 +44,7 @@ However, sometimes it's just not possible to set up an A/B test:
 ## Quasi Experiments
 
 <picture>
-    <source type="image/webp" data-srcset="{{ baseimages }}/the-gold-standard-meme.webp" class="lazyload" alt="gold standard meme" width="67%">
-    <img data-src="{{ baseimages }}/the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%">
+    <img src="the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%">
 </picture>
 
 
@@ -64,8 +59,7 @@ There are some scenarios, like some described in the previous section, where hav
 Interrupted time series (ITS) is a method of statistical analysis involving tracking a period before and after a intervention at a known point in time to assess the intervention's effects _within a single group/population_. The time series refers to the data over the period, while the interruption is the intervention, which is a controlled external influence or set of influences. Effects of the intervention are evaluated by changes in the level and slope of the time series and statistical significance of the intervention parameters <a name="ref-2" href="https://en.wikipedia.org/wiki/Interrupted_time_series" target="blank" rel="noopener">[2]</a>. The more observations you have before and after the intervention, the more robust your model will be (typically). Because the evaluation is based on observing a single population over time, the ITS design is free from problems due to between-group difference but are susceptible to time-varying confounders like other interventions occurring around the time of the intervention that may also affect the outcome <a name="ref-3" href="https://scholar.google.com/scholar_lookup?title=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research&author=DT%20Campbell&author=JC%20Stanley&publication_year=1963&book=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research" target="blank" rel="noopener">[3]</a>.
 
 <picture>
-    <source type="image/webp" data-srcset="{{ baseimages }}/its1.webp" class="lazyload" alt="Interrupted Time Series analysis example" width="100%" style="box-shadow: 5px 5px 10px grey;">
-    <img data-src="{{ baseimages }}/its1.jpg" class="lazyload" alt="Interrupted Time Series analysis example" width="100%" style="box-shadow: 5px 5px 10px grey;">
+    <img src="its1.jpg" class="lazyload" alt="Interrupted Time Series analysis example" width="100%" style="box-shadow: 5px 5px 10px grey;">
 </picture>
 
 
@@ -108,8 +102,7 @@ With $\epsilon$ representing a zero centered gaussian random error.
 ### Counterfactual
 
 <picture>
-    <source type="image/webp" data-srcset="{{ baseimages }}/matrix-red-blue-pill.webp" class="lazyload" alt="matrix blue/red pill choice of reality" width="100%">
-    <img data-src="{{ baseimages }}/matrix-red-blue-pill.png" class="lazyload" alt="matrix blue/red pill choice of reality" width="100%">
+    <img src="matrix-red-blue-pill.png" class="lazyload" alt="matrix blue/red pill choice of reality" width="100%">
 </picture>
 <figcaption><i>What would have happened had Neo chosen the blue pill?</i></figcaption>
 
@@ -133,7 +126,7 @@ Bob provides us with [💾 24 weeks of data]({{ basedata }}/raw_data.csv) before
 
 <p align="center">
     <picture>
-        <img data-src="{{ baseimages }}/data_viz1.svg" class="lazyload" alt="ploting data collected" width="100%" style="box-shadow: 5px 5px 10px grey;">
+        <img src="data_viz1.svg" class="lazyload" alt="ploting data collected" width="100%" style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
@@ -258,8 +251,7 @@ plt.ylabel("Bounce rate (%)");
 
 <p align="center">
     <picture>
-        <source type="image/webp" data-srcset="{{ baseimages }}/data_trends1.webp" class="lazyload" alt="Interrupted Time Series using OLS with counterfactual and pos-intervention plots" width="100%" style="box-shadow: 5px 5px 10px grey;">
-        <img data-src="{{ baseimages }}/data_trends1.png" class="lazyload" alt="Interrupted Time Series using OLS with counterfactual and pos-intervention plots" width="100%" style="box-shadow: 5px 5px 10px grey;">
+        <img src="data_trends1.png" class="lazyload" alt="Interrupted Time Series using OLS with counterfactual and pos-intervention plots" width="100%" style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
@@ -267,8 +259,7 @@ plt.ylabel("Bounce rate (%)");
 
 <p align="center">
     <picture>
-        <source type="image/webp" data-srcset="{{ baseimages }}/autocorrelation_future_meme.webp" class="lazyload" alt="predicts the future forgets temporal autocorrelation meme" width="67%">
-        <img data-src="{{ baseimages }}/autocorrelation_future_meme.jpg" class="lazyload" alt="predicts the future forgets temporal autocorrelation meme" width="67%">
+        <img src="autocorrelation_future_meme.jpg" class="lazyload" alt="predicts the future forgets temporal autocorrelation meme" width="67%">
     </picture>
 </p>
 
@@ -290,8 +281,7 @@ hypothesis ($H_0$).
 
 <p align="center">
     <picture>
-        <source type="image/webp" data-srcset="{{ baseimages }}/ols_res_kde.webp" class="lazyload" alt="ols residual distribution plot" width="80%" style="box-shadow: 5px 5px 10px grey;">
-        <img data-src="{{ baseimages }}/ols_res_kde.jpg" class="lazyload" alt="ols residual distribution plot" width="80%" style="box-shadow: 5px 5px 10px grey;">
+        <img src="ols_res_kde.png" class="lazyload" alt="ols residual distribution plot" width="80%" style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
@@ -331,7 +321,7 @@ rules + residual_plot
 
 <p align="center">
     <picture>
-        <img data-src="{{ baseimages }}/data_viz_residuals.svg" class="lazyload" alt="ols visualization of residuals" width="100%"  style="box-shadow: 5px 5px 10px grey;">
+        <img src="data_viz_residuals.svg" class="lazyload" alt="ols visualization of residuals" width="100%"  style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
@@ -379,8 +369,7 @@ plt.show()
 
 <p align="center">
     <picture>
-        <source type="image/webp" data-srcset="{{ baseimages }}/autocorrelation.webp" class="lazyload" alt="autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;">
-        <img data-src="{{ baseimages }}/autocorrelation.png" class="lazyload" alt="autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;">
+        <img src="autocorrelation.png" class="lazyload" alt="autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
@@ -398,9 +387,7 @@ plt.show()
 
 <p align="center">
     <picture>
-        <source type="image/webp" data-srcset="{{ baseimages }}/partial_autocorrelation.webp" class="lazyload" alt="partial autocorrelation plot" width="100%"
-        style="box-shadow: 5px 5px 10px grey;">
-        <img data-src="{{ baseimages }}/partial_autocorrelation.png" class="lazyload" alt="partial autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;">
+        <img src="partial_autocorrelation.png" class="lazyload" alt="partial autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
@@ -505,8 +492,7 @@ plt.ylabel("Bounce rate (%)");
 
 <p align="center">
     <picture>
-        <source type="image/webp" data-srcset="{{ baseimages }}/data_trends2.webp" class="lazyload" alt="arima pre and post intervention modeling with counterfactual" width="100%" style="box-shadow: 5px 5px 10px grey;">
-        <img data-src="{{ baseimages }}/data_trends2.png" class="lazyload" alt="arima pre and post intervention modeling with counterfactual" width="100%" style="box-shadow: 5px 5px 10px grey;">
+        <img src="data_trends2.png" class="lazyload" alt="arima pre and post intervention modeling with counterfactual" width="100%" style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
@@ -540,8 +526,7 @@ plt.show();
 
 <p align="center">
     <picture>
-        <source type="image/webp" data-srcset="{{ baseimages }}/qqplot-sidebyside.webp" class="lazyload" alt="qqplots" width="80%" style="box-shadow: 5px 5px 10px grey;">
-        <img data-src="{{ baseimages }}/qqplot-sidebyside.jpg" class="lazyload" alt="qqplots" width="80%" style="box-shadow: 5px 5px 10px grey;">
+        <img src="qqplot-sidebyside.png" class="lazyload" alt="qqplots" width="80%" style="box-shadow: 5px 5px 10px grey;">
     </picture>
 </p>
 
