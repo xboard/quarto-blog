@@ -1,19 +1,19 @@
 ---
 title: "About"
-image: profile.jpg
+image: eu-nit6.png
 about:
   template: jolla
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://twitter.com/xboard_
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://linkedin.com/in/flavioarruda
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/xboard
 
 ---
 
-About this blog
+Hey 👋, I am Flavio Regis de Arruda.
