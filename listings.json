@@ -2,8 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html"
+      "/posts/2023-07-30-scrapy_tutorial.html",
+      "/posts/2021-12-17-interrupted-time-series-python-part-I.html"
     ]
   }
 ]
