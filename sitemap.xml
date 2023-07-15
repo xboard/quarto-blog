@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://xboard.github.io/quarto-blog/about.html</loc>
-    <lastmod>2023-07-15T18:17:57.200Z</lastmod>
+    <loc>https://xboard.dev/about.html</loc>
+    <lastmod>2023-07-15T20:07:30.157Z</lastmod>
   </url>
   <url>
-    <loc>https://xboard.github.io/quarto-blog/posts/interrupted-time-series-python-part-I/index.html</loc>
-    <lastmod>2023-07-15T18:17:56.576Z</lastmod>
+    <loc>https://xboard.dev/posts/interrupted-time-series-python-part-I/index.html</loc>
+    <lastmod>2023-07-15T20:07:29.513Z</lastmod>
   </url>
   <url>
-    <loc>https://xboard.github.io/quarto-blog/index.html</loc>
-    <lastmod>2023-07-15T18:17:55.076Z</lastmod>
+    <loc>https://xboard.dev/index.html</loc>
+    <lastmod>2023-07-15T20:07:27.933Z</lastmod>
   </url>
   <url>
-    <loc>https://xboard.github.io/quarto-blog/posts/2023-07-30-scrapy_tutorial.html</loc>
-    <lastmod>2023-07-15T18:17:56.884Z</lastmod>
+    <loc>https://xboard.dev/posts/2023-07-30-scrapy_tutorial.html</loc>
+    <lastmod>2023-07-15T20:07:29.857Z</lastmod>
   </url>
 </urlset>

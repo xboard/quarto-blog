@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>xboard.dev</title>
+<link>https://xboard.dev/index.html</link>
+<atom:link href="https://xboard.dev/index.xml" rel="self" type="application/rss+xml"/>
+<description>Everything data and programming.</description>
+<generator>quarto-1.3.433</generator>
+<lastBuildDate>Sat, 01 Jan 2022 09:00:00 GMT</lastBuildDate>
+<item>
+  <title>Interrupted Time Series (ITS) in Python</title>
+  <link>https://xboard.dev/posts/interrupted-time-series-python-part-I/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><picture> <source type="image/webp" srcset="its-card.webp"> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/its-card.png" alt="Interrupted Time Series Analysis example" width="100%"> </picture></p>
+<section id="when-ab-test-is-not-an-option" class="level2">
+<h2 class="anchored" data-anchor-id="when-ab-test-is-not-an-option">When A/B test is not an option</h2>
+<p>The gold standard for statistically asserting the effectiveness of an intervention is the randomized controlled experiment and its simplified online variant: the A/B test.</p>
+<hr>
+<p>📝 During an A/B test there are two almost identical versions of a product, simultaneously running, that only differ by the hypothesis you want to test ( i.e can a red call to action button convert more than a blue one? ). Users are <strong>randomly</strong> chosen to experience one (and only one) of the two versions while the experiment is active.</p>
+<hr>
+<p>They are easy to understand, easy to setup (great free <a href="https://optimize.google.com/optimize/home/">tools</a> easily available) and when correctly designed they rule out any covariate differences between the groups.</p>
+<p>However, sometimes it’s just not possible to set up an A/B test:</p>
+<ul>
+<li><p>Technical difficulties. Sometimes a change is so widespread and complex that it would be technically impossible to keep two different versions running simultaneously.</p></li>
+<li><p>Business strategy. A new feature rollout will be available first to some countries and later for others.</p></li>
+<li><p>Ethical concerns. Having a subset of customers having access to a feature or bug fix that gives them a competitive advantage over others that don’t.</p></li>
+<li><p>Legal or regulatory requirements. A change in regulations becomes mandatory ( i.e.&nbsp;GPDR compliance ) and should be applied to all your customers of a given country at the same time.</p></li>
+<li><p>Temporal infeasibility. You want to analyze an event that has already happened ( i.e.&nbsp;How last <a href="https://moz.com/google-algorithm-change">Google’s search algorithm update</a> impacted your sales funnel? ).</p></li>
+</ul>
+</section>
+<section id="quasi-experiments" class="level2">
+<h2 class="anchored" data-anchor-id="quasi-experiments">Quasi Experiments</h2>
+<p><picture> <source type="image/webp" srcset="the-gold-standard-meme.webp"> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%"> </picture></p>
+<p>If you can’t do an A/B test then the second to best alternative are quasi experiments <a name="ref-1" href="https://shopify.engineering/using-quasi-experiments-counterfactuals" target="blank" rel="noopener">[1]</a>.</p>
+<p>In a quasi experiment, your treatment and control group are not divided by a completely random process but by a natural process (i.e.&nbsp;time, location, etc) therefore there is a much larger chance for imbalance due to skewness and heterogeneous differences. The results of a quasi-experiment won’t be as precise as an A/B, but if carefully conducted could be considered close enough to compute estimates.</p>
+<p>There are some scenarios, like some described in the previous section, where having a control group in parallel to a test group is just not possible, and this is when Interrupted Times Series comes in very handy.</p>
+</section>
+<section id="interrupted-time-series-its" class="level2">
+<h2 class="anchored" data-anchor-id="interrupted-time-series-its">Interrupted Time Series (ITS)</h2>
+<p>Interrupted time series (ITS) is a method of statistical analysis involving tracking a period before and after a intervention at a known point in time to assess the intervention’s effects <em>within a single group/population</em>. The time series refers to the data over the period, while the interruption is the intervention, which is a controlled external influence or set of influences. Effects of the intervention are evaluated by changes in the level and slope of the time series and statistical significance of the intervention parameters <a name="ref-2" href="https://en.wikipedia.org/wiki/Interrupted_time_series" target="blank" rel="noopener">[2]</a>. The more observations you have before and after the intervention, the more robust your model will be (typically). Because the evaluation is based on observing a single population over time, the ITS design is free from problems due to between-group difference but are susceptible to time-varying confounders like other interventions occurring around the time of the intervention that may also affect the outcome <a name="ref-3" href="https://scholar.google.com/scholar_lookup?title=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research&amp;author=DT%20Campbell&amp;author=JC%20Stanley&amp;publication_year=1963&amp;book=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research" target="blank" rel="noopener">[3]</a>.</p>
+<p><picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/its1.jpg" class="lazyload" alt="Interrupted Time Series analysis example" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture></p>
+<hr>
+<p>👍 <span style="text-decoration: underline">Strengths of Interrupted Time Series</span> include the ability to control for secular trends in the data (unlike a 2-period before-and-after <img src="https://latex.codecogs.com/png.latex?t">-test), ability to evaluate outcomes using population-level data, clear graphical presentation of results, ease of conducting stratified analyses, and ability to evaluate both intended and unintended consequences of interventions.</p>
+<p>👎 <span style="text-decoration: underline">Limitations of Interrupted Time Series</span> include the need for a minimum of 8 time periods before and 8 after an intervention to evaluate changes statistically, difficulty in analyzing the independent impact of separate components of a program that are implemented close together in time, and existence of a suitable control population.</p>
+<hr>
+<p>In mathematical terms, it means that the time series equation <img src="https://latex.codecogs.com/png.latex?(1)"> includes four key coefficients:</p>
+<p><span style="display: table; margin: 0 auto;"> <img src="https://latex.codecogs.com/png.latex?Y%20=%20b_0%20+%20b_1T%20+%20b_2D%20+%20b_3P%20+%20%5Cepsilon"> </span></p>
+<p>Where:</p>
+<p><img src="https://latex.codecogs.com/png.latex?Y"> is the outcome variable;</p>
+<p><img src="https://latex.codecogs.com/png.latex?T"> is a continuous variable which indicates the time passed from start of the observational period;<br></p>
+<p><img src="https://latex.codecogs.com/png.latex?D"> is a dummy variable indicating observation collected before (<img src="https://latex.codecogs.com/png.latex?D=0">) or after (<img src="https://latex.codecogs.com/png.latex?D=1">) the intervention;<br></p>
+<p><img src="https://latex.codecogs.com/png.latex?P"> is a continuous variable indicating time passed since the intervention has occurred (before intervention has occurred <img src="https://latex.codecogs.com/png.latex?P">is equal to <img src="https://latex.codecogs.com/png.latex?0">);<br></p>
+<p>With <img src="https://latex.codecogs.com/png.latex?%5Cepsilon"> representing a zero centered gaussian random error.</p>
+<section id="counterfactual" class="level3">
+<h3 class="anchored" data-anchor-id="counterfactual">Counterfactual</h3>
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/matrix-red-blue-pill.png" class="lazyload" alt="matrix blue/red pill choice of reality" width="100%"> </picture>
+<figcaption>
+<i>What would have happened had Neo chosen the blue pill?</i>
+</figcaption>
+<p>In an ITS it is important to understand the counterfactual. The counterfactual refers to what it would have occurred to Y, had the policy intervention not happened.</p>
+<hr>
+<p>📝Counterfactuals are simply ways of comparing what happens given a change, versus what should have happened had some change not occurred in the first place.</p>
+<hr>
+<p>In a randomized trial or A/B test we know the counterfactual average outcome because the experiment withheld the intervention from the control group (which by randomization is somewhat the same as the intervention group). A critical assumption in ITS is that the outcome of interest trend would remain unchanged in the absence of intervention.</p>
+</section>
+</section>
+<section id="a-practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-practical-example">A practical example</h2>
+<p>Bob runs a large and successful blog on personal finance. During a webinar he learns that making his web content load faster could reduce its <a href="https://en.wikipedia.org/wiki/Bounce_rate">bounce rate</a> and therefore decides to sign up for a <a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a> service. It’s been 6 months since he added a CDN to his blog and he wants to know if the investiment he did reduced the bounce rate.</p>
+<section id="dataset" class="level3">
+<h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
+<p>Bob provides us with <a href="raw_data.csv">💾 24 weeks of data</a> before adding the CDN and 24 weeks after it (intervention). Therefore, weeks 1 to 24 have a bouncing rate before intervention and weeks 25 to 48 after it.</p>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_viz1.svg" class="lazyload" alt="ploting data collected" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+<p>Visually, it looks like after enabling the CDN the bounce rate decreased, but by how much, and does it have statistical significance? To answer this question using interrupted time series analysis, we first need to prepare our data.</p>
+</section>
+<section id="dataset-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-preparation">Dataset preparation</h3>
+<p>Using equation (1) notation we <a href="enriched_data.csv">💾 enrich this data</a> with values for columns <img src="https://latex.codecogs.com/png.latex?D"> (<img src="https://latex.codecogs.com/png.latex?0"> = before intervention, <img src="https://latex.codecogs.com/png.latex?1"> after) and <img src="https://latex.codecogs.com/png.latex?P"> (number of weeks since intervention started):</p>
+<table class="table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Bouncing rate<br>(Y)</th>
+<th style="text-align: center;">Week <br>(T)</th>
+<th style="text-align: center;">Intervention<br>(D)</th>
+<th style="text-align: center;">Intervention week<br>(P)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">12.92</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">13.03</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">13.06</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">13.17</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">12.04</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12.45</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">12.74</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12.57</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">24</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="naive-solution" class="level2">
+<h2 class="anchored" data-anchor-id="naive-solution">Naive solution</h2>
+<p>Let’s implement an ordinary least squares (OLS) regression using <code>statsmodels</code> to measure the impact of our intervention:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> statsmodels.api <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> sm</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> statsmodels.formula.api <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> smf</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"enriched_data.csv"</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> smf.ols(formula<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Y ~ T + D + P'</span>, data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>df)</span>
+<span id="cb1-8">res <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model.fit()</span>
+<span id="cb1-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(res.summary())</span></code></pre></div>
+<p><span id="ols-output">With output:</span></p>
+<pre>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.666
+Model:                            OLS   Adj. R-squared:                  0.643
+Method:                 Least Squares   F-statistic:                     29.18
+Date:                Tue, 28 Dec 2021   Prob (F-statistic):           1.52e-10
+Time:                        14:33:50   Log-Likelihood:                 4.8860
+No. Observations:                  48   AIC:                            -1.772
+Df Residuals:                      44   BIC:                             5.713
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     12.9100      0.096    134.225      0.000      12.716      13.104
+T              0.0129      0.007      1.920      0.061      -0.001       0.026
+D             -0.5202      0.132     -3.942      0.000      -0.786      -0.254
+P             -0.0297      0.010     -3.115      0.003      -0.049      -0.010
+==============================================================================
+Omnibus:                        3.137   Durbin-Watson:                   0.665
+Prob(Omnibus):                  0.208   Jarque-Bera (JB):                1.995
+Skew:                           0.279   Prob(JB):                        0.369
+Kurtosis:                       2.172   Cond. No.                         125.
+==============================================================================
+
+</pre>
+<p>The model estimates that the bounce rate decreased 🔻 0.52% and this effect is statistically significant (<img src="https://latex.codecogs.com/png.latex?P%3E%7Ct%7C"> is virtually zero).</p>
+<p>It is also noteworth that the model estimates a small (on average 🔻 0.0297%) but with statistical significance trend of a decrease in bounce rate each week after intervention, which is unexpected since the CDN serves the whole website just a few hours after activation.</p>
+<p>The figure below depicts how the model fits before and after intervention and how it project a counterfactual would be:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"></span>
+<span id="cb2-2">start <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span></span>
+<span id="cb2-3">end <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">48</span></span>
+<span id="cb2-4">beta <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> res.params</span>
+<span id="cb2-5"></span>
+<span id="cb2-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Get model predictions and 95% confidence interval</span></span>
+<span id="cb2-7">predictions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> res.get_prediction(df)</span>
+<span id="cb2-8">summary <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> predictions.summary_frame(alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span>)</span>
+<span id="cb2-9"></span>
+<span id="cb2-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># mean predictions</span></span>
+<span id="cb2-11">y_pred <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> predictions.predicted_mean</span>
+<span id="cb2-12"></span>
+<span id="cb2-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># countefactual assumes no interventions</span></span>
+<span id="cb2-14">cf_df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df.copy()</span>
+<span id="cb2-15">cf_df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"D"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span></span>
+<span id="cb2-16">cf_df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"P"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span></span>
+<span id="cb2-17"></span>
+<span id="cb2-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># counter-factual predictions</span></span>
+<span id="cb2-19">cf <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> res.get_prediction(cf_df).summary_frame(alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span>)</span>
+<span id="cb2-20"></span>
+<span id="cb2-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plotting</span></span>
+<span id="cb2-22">plt.style.use(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'seaborn-whitegrid'</span>)</span>
+<span id="cb2-23">fig, ax <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> plt.subplots(figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>))</span>
+<span id="cb2-24"></span>
+<span id="cb2-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot bounce rate data</span></span>
+<span id="cb2-26">ax.scatter(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>], df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y"</span>], facecolors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'none'</span>, edgecolors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'steelblue'</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bounce rate data"</span>, linewidths<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb2-27"></span>
+<span id="cb2-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot model mean bounce rate prediction</span></span>
+<span id="cb2-29">ax.plot(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][:start], y_pred[:start], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'b-'</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"model prediction"</span>)</span>
+<span id="cb2-30">ax.plot(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][start:], y_pred[start:], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'b-'</span>)</span>
+<span id="cb2-31"></span>
+<span id="cb2-32"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot counterfactual mean bounce rate with 95% confidence interval</span></span>
+<span id="cb2-33">ax.plot(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][start:], cf[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mean'</span>][start:], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'k.'</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"counterfactual"</span>)</span>
+<span id="cb2-34">ax.fill_between(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][start:], cf[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mean_ci_lower'</span>][start:], cf[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mean_ci_upper'</span>][start:], color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'k'</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"counterfactual 95% CI"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-35"></span>
+<span id="cb2-36"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot line marking intervention moment</span></span>
+<span id="cb2-37">ax.axvline(x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.5</span>, color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'r'</span>, label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'intervention'</span>)</span>
+<span id="cb2-38"></span>
+<span id="cb2-39">ax.legend(loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'best'</span>)</span>
+<span id="cb2-40">plt.ylim([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>])</span>
+<span id="cb2-41">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Weeks"</span>)</span>
+<span id="cb2-42">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bounce rate (%)"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_trends1.png" class="lazyload" alt="Interrupted Time Series using OLS with counterfactual and pos-intervention plots" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+<section id="problems-with-naive-approach" class="level3">
+<h3 class="anchored" data-anchor-id="problems-with-naive-approach">Problems with naive approach</h3>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/autocorrelation_future_meme.jpg" class="lazyload" alt="predicts the future forgets temporal autocorrelation meme" width="67%"> </picture>
+</p>
+<p>OLS (Ordinary Least Squares) regression has <a href="https://www.datasciencecentral.com/profiles/blogs/7-classical-assumptions-of-ordinary-least-squares-ols-linear">seven main assumptions</a> but for brevity in this article we will focus on two only:</p>
+<ul>
+<li>Individual observations are <em>independent</em>.</li>
+<li>Residuals follow a normal distribution.</li>
+</ul>
+<section id="lets-first-check-for-the-normality-of-residuals" class="level4">
+<h4 class="anchored" data-anchor-id="lets-first-check-for-the-normality-of-residuals">Let’s first check for the normality of residuals:</h4>
+<p>We can apply the <a href="https://en.wikipedia.org/wiki/Jarque%E2%80%93Bera_test">Jarque-Bera test</a> on residuals to checks whether their skewness and kurtosis match a normal distribution (<img src="https://latex.codecogs.com/png.latex?H_0">: residual distribution follows a normal distribution). Our <code>statsmodels</code> OLS summary output shows a <code>Prob(JB): 0.369</code> which for a standard <img src="https://latex.codecogs.com/png.latex?%5Calpha"> level of 0.05 doesn’t allow us discard null hypothesis (<img src="https://latex.codecogs.com/png.latex?H_0">).</p>
+<p><span id="ols-residuals-kde">Let’s plot the distribution of residuals:</span></p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">    res.resid.plot(kind<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"kde"</span>)</span></code></pre></div>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/ols_res_kde.png" class="lazyload" alt="ols residual distribution plot" width="80%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+<p>Which for a small dataset (less than 50 points) looks sufficiently gaussian.</p>
+<p>Overall, the assumption of normality of residuals can’t be convincingly refuted. ✅</p>
+</section>
+<section id="checking-independence-of-observations" class="level4">
+<h4 class="anchored" data-anchor-id="checking-independence-of-observations">Checking independence of observations:</h4>
+<p>The <a href="https://en.wikipedia.org/wiki/Durbin%E2%80%93Watson_statistic">Durbin-Watson statistic</a> test if the residuals are correlated with its immediate predecessor, that is, if they have an autocorrelation at lag 1 or <img src="https://latex.codecogs.com/png.latex?AR(1)">. Its value ranges from 0 to 4 and values smaller than 1.5 indicate a positive autocorrelation, while values greater than 2.5 signal a negative autocorrelation.</p>
+<p>If we take a look again at our OLS summary output we will observe that the Durbin-Watson statistic has a value of 0.665 which signals a strong positive <img src="https://latex.codecogs.com/png.latex?AR(1)">.</p>
+<p><span id="ols-residuals-plot">Let’s plot the residuals to see if we can observe this autocorrelation:</span></p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> altair <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> alt</span>
+<span id="cb4-2"></span>
+<span id="cb4-3">rules <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> alt.Chart(pd.DataFrame({</span>
+<span id="cb4-4">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'residuals'</span>: [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>],</span>
+<span id="cb4-5">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'color'</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>]</span>
+<span id="cb4-6">})).mark_rule().encode(</span>
+<span id="cb4-7">  y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'residuals'</span>,</span>
+<span id="cb4-8">  color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>alt.Color(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'color:N'</span>, scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>)</span>
+<span id="cb4-9">)</span>
+<span id="cb4-10"></span>
+<span id="cb4-11">residual_plot <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> alt.Chart(res_df).mark_point().encode(</span>
+<span id="cb4-12">    x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>alt.X(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Weeks'</span>),</span>
+<span id="cb4-13">    y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>alt.Y(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'residuals'</span>)</span>
+<span id="cb4-14">)</span>
+<span id="cb4-15"></span>
+<span id="cb4-16">rules <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> residual_plot </span></code></pre></div>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_viz_residuals.svg" class="lazyload" alt="ols visualization of residuals" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+<p>Notice how residuals above/below zero have most points temporally close to it also above/below zero as well, which goes against the independence of observations assumption of OLS ❌.</p>
+<hr>
+<p>📝In practice when analyzing time series data the presence of autocorrelation is the rule instead of the exception since in general the factors that contributed to a given observation tend to persist for a while.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="autoregressive-model-solution" class="level2">
+<h2 class="anchored" data-anchor-id="autoregressive-model-solution">Autoregressive model solution</h2>
+<p>The autoregressive model specifies that each observation depends linearly on previous observations.</p>
+<p>Thus, an autoregressive model of order <img src="https://latex.codecogs.com/png.latex?p"> (<img src="https://latex.codecogs.com/png.latex?AR(p)">) can be written as</p>
+<p><span style="display: table; margin: 0 auto;"> <img src="https://latex.codecogs.com/png.latex?y_t%20=%20c%20+%20%5Cphi_1%20y_%7Bt-1%7D+%20%5Cdots%20+%20%5Cphi_p%20y_%7Bt-p%7D%20+%20%5Cepsilon_t"> </span></p>
+<p>Where:</p>
+<p><img src="https://latex.codecogs.com/png.latex?y_t">: observation at time <img src="https://latex.codecogs.com/png.latex?t">,</p>
+<p><img src="https://latex.codecogs.com/png.latex?y_%7Bt-i%7D">: observation at time <img src="https://latex.codecogs.com/png.latex?t%20-%20i">,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cphi_i">: coefficient of how much observation <img src="https://latex.codecogs.com/png.latex?y_%7Bt%20-%20i%7D"> correlates to <img src="https://latex.codecogs.com/png.latex?y_t">,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cepsilon_t">: white noise ( <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(0,%20%5Csigma%C2%B2)"> ) at time <img src="https://latex.codecogs.com/png.latex?t">.</p>
+<section id="autocorrelation" class="level4">
+<h4 class="anchored" data-anchor-id="autocorrelation">Autocorrelation</h4>
+<p>To assess how much an observation correlates with past observations it is useful to do an autocorrelation plot as shown below:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">sm.graphics.tsa.plot_acf(res.resid, lags<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb5-2">plt.show()</span></code></pre></div>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/autocorrelation.png" class="lazyload" alt="autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+</section>
+<section id="partial-autocorrelation" class="level4">
+<h4 class="anchored" data-anchor-id="partial-autocorrelation">Partial Autocorrelation</h4>
+<p>The partial autocorrelation at lag <img src="https://latex.codecogs.com/png.latex?p"> is the correlation that results after removing the effect of any correlations due to the terms at shorter lags.</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">sm.graphics.tsa.plot_pacf(res.resid, lags<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb6-2">plt.show()   </span></code></pre></div>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/partial_autocorrelation.png" class="lazyload" alt="partial autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+</section>
+<section id="model-selection" class="level3">
+<h3 class="anchored" data-anchor-id="model-selection">Model selection</h3>
+<p>The theory states that in an autoregressive model its autocorrelation plot should depict an exponential decay and the number of lags <img src="https://latex.codecogs.com/png.latex?p"> should be taken from the partial autocorrelation chart using its <img src="https://latex.codecogs.com/png.latex?p"> most relevant lags. Applying the theory to our plots above, we conclude that our model is autoregressive of lag 1 also known as AR(1).</p>
+</section>
+<section id="arima" class="level3">
+<h3 class="anchored" data-anchor-id="arima">ARIMA</h3>
+<p>In statistics <a href="https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average">ARIMA</a> stands for <strong>autoregressive integrated moving average</strong> model and as can be inferred by the name AR models are as especial case of ARIMA therefore AR(1) is equivalent to ARIMA(1,0,0).</p>
+<p>We can model an AR(1) process to our dataset using <code>statsmodels</code> ARIMA as below:</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> statsmodels.tsa.arima.model <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> ARIMA</span>
+<span id="cb7-2"></span>
+<span id="cb7-3">arima_results <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ARIMA(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y"</span>], df[[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"D"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"P"</span>]], order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)).fit()</span>
+<span id="cb7-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(arima_results.summary())</span></code></pre></div>
+<p>Output:</p>
+<pre><code>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:                      Y   No. Observations:                   48
+Model:                 ARIMA(1, 0, 0)   Log Likelihood                  18.574
+Date:                Thu, 30 Dec 2021   AIC                            -25.148
+Time:                        01:51:46   BIC                            -13.921
+Sample:                             0   HQIC                           -20.905
+                                 - 48                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         12.9172      0.279     46.245      0.000      12.370      13.465
+T              0.0121      0.016      0.767      0.443      -0.019       0.043
+D             -0.5510      0.273     -2.018      0.044      -1.086      -0.016
+P             -0.0238      0.021     -1.155      0.248      -0.064       0.017
+ar.L1          0.6635      0.138      4.803      0.000       0.393       0.934
+sigma2         0.0267      0.006      4.771      0.000       0.016       0.038
+===================================================================================
+Ljung-Box (L1) (Q):                   1.00   Jarque-Bera (JB):                 0.15
+Prob(Q):                              0.32   Prob(JB):                         0.93
+Heteroskedasticity (H):               1.44   Skew:                            -0.05
+Prob(H) (two-sided):                  0.47   Kurtosis:                         3.25
+===================================================================================</code></pre>
+<p>The autoregressive model estimates that the bounce rate decreased 🔻 0.55% on average and this effect is statistically significant ($P&gt;|t| = 4.4\% $, less than our $= 5\% $).</p>
+<p>However, unlike the previous OLS model, the autoregressive model does not estimate a statistical significance trend of a decrease in bounce rate each week after intervention, which is in line with our expectations.</p>
+<p>The models estimates (with counterfactual projections) can be seen in the chart below:</p>
+<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"></span>
+<span id="cb9-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> statsmodels.tsa.arima.model <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> ARIMA</span>
+<span id="cb9-3"></span>
+<span id="cb9-4">start <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span></span>
+<span id="cb9-5">end <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">48</span></span>
+<span id="cb9-6"></span>
+<span id="cb9-7">predictions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> arima_results.get_prediction(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, end<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb9-8">summary <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> predictions.summary_frame(alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span>)</span>
+<span id="cb9-9"></span>
+<span id="cb9-10">arima_cf <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ARIMA(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y"</span>][:start], df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][:start], order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)).fit()</span>
+<span id="cb9-11"></span>
+<span id="cb9-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Model predictions means</span></span>
+<span id="cb9-13">y_pred <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> predictions.predicted_mean</span>
+<span id="cb9-14"></span>
+<span id="cb9-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Counterfactual mean and 95% confidence interval</span></span>
+<span id="cb9-16">y_cf <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> arima_cf.get_forecast(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span>, exog<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][start:]).summary_frame(alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span>)</span>
+<span id="cb9-17"></span>
+<span id="cb9-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot section</span></span>
+<span id="cb9-19">plt.style.use(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'seaborn-whitegrid'</span>)</span>
+<span id="cb9-20">fig, ax <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> plt.subplots(figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>))</span>
+<span id="cb9-21"></span>
+<span id="cb9-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot bounce rate data</span></span>
+<span id="cb9-23">ax.scatter(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>], df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y"</span>], facecolors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'none'</span>, edgecolors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'steelblue'</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bounce rate data"</span>, linewidths<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb9-24"></span>
+<span id="cb9-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot model mean bounce prediction</span></span>
+<span id="cb9-26">ax.plot(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][:start], y_pred[:start], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'b-'</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"model prediction"</span>)</span>
+<span id="cb9-27">ax.plot(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][start:], y_pred[start:], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'b-'</span>)</span>
+<span id="cb9-28"></span>
+<span id="cb9-29"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot counterfactual mean bounce rate with 95% confidence interval</span></span>
+<span id="cb9-30">ax.plot(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][start:], y_cf[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mean"</span>], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'k.'</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"counterfactual"</span>)</span>
+<span id="cb9-31">ax.fill_between(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T"</span>][start:], y_cf[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mean_ci_lower'</span>], y_cf[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mean_ci_upper'</span>], color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'k'</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"counterfactual 95% CI"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb9-32"></span>
+<span id="cb9-33"></span>
+<span id="cb9-34"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot line marking intervention moment</span></span>
+<span id="cb9-35">ax.axvline(x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.5</span>, color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'r'</span>, label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'intervention'</span>)</span>
+<span id="cb9-36"></span>
+<span id="cb9-37">ax.legend(loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'best'</span>)</span>
+<span id="cb9-38">plt.ylim([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>])</span>
+<span id="cb9-39">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Weeks"</span>)</span>
+<span id="cb9-40">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bounce rate (%)"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_trends2.png" class="lazyload" alt="arima pre and post intervention modeling with counterfactual" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+<p>We can clearly see that the ARIMA(1, 0, 0) model fits our dataset better than the OLS model.</p>
+</section>
+<section id="arima-residual-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="arima-residual-analysis">ARIMA residual analysis</h3>
+<p>The summary of our autoregressive model shows a <code>Prob(JB): 0.93</code> which is compatible with the null-hypothesis of normaly distributed residuals. ✅</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Ljung%E2%80%93Box_test">Ljung-Box Q test</a> verifies whether the residuals are independently distributed (they exhibit no serial autocorrelation) as <img src="https://latex.codecogs.com/png.latex?H_0"> (null-hypothesis). As the <code>Prob(Q): 0.32</code> is way above the standard <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%200.05"> there is no evidence of serial autocorrelation in the ARIMA residuals. ✅</p>
+<p>Let’s now take a look at residuals <a href="https://data.library.virginia.edu/understanding-q-q-plots/">qqplot</a> to check if they follow a normal distribution:</p>
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"></span>
+<span id="cb10-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> scipy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> sp</span>
+<span id="cb10-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> statsmodels.graphics.gofplots <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> qqplot</span>
+<span id="cb10-4"></span>
+<span id="cb10-5">fig, (ax1, ax2) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> plt.subplots(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>))</span>
+<span id="cb10-6">sm.qqplot(res.resid, sp.stats.t, fit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>, line<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"45"</span>, ax<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>ax1)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-7">ax1.set_title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"OLS qqplot"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-8"></span>
+<span id="cb10-9">sm.qqplot(arima_results.resid, sp.stats.t, fit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>, line<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"45"</span>, ax<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>ax2)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-10">ax2.set_title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ARIMA qqplot"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-11">plt.show()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<p align="center">
+<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/qqplot-sidebyside.png" class="lazyload" alt="qqplots" width="80%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+</p>
+<p>We may observe that the ARIMA(1,0,0) model residuals not only are in general normally distributed as they fit better than the OLS model the theoretical quantiles. ✅</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>A/B tests are a the most powerful and trustworthy method to do measure the impact of modifications/changes even before they are fully implemented, which is why they are so widely used.</p>
+<p>However, there are some scenarios where A/B tests are not feasible and this is when the knowledge of quasi-experiments becomes valuable to get statistically sound measurements of change impact.</p>
+<p>In this post we have shown why an ordinary least square (OLS) linear regression is not a good modeling approach for time series data since they usualy present non-negligible autocorrelation that violates some assumptions of OLS.</p>
+<p>We demonstrated with an example how to use python (<code>statsmodels</code>, <code>matplotlib</code>, <code>altair</code> and <code>pandas</code>) to visualize residuals and plot autocorrelation and partial autocorrelations charts to figure out the lag of an autoregressive model and then implemented a ARIMA model using <code>statsmodels</code> to observed a more accurate and precise analysis and how to interpret <code>statsmodels</code> model output for OLS and ARIMA.</p>
+<p>We also showed how to plot in a single chart the models estimates (mean and 95% confidence interval) for the time periods before and after intervention and its respective counterfactual.</p>
+<p><span id="chegou-no-fim"></span></p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p><a name="ref-1" href="https://shopify.engineering/using-quasi-experiments-counterfactuals" target="blank" rel="noopener">[1] Shopify Engineering: How to Use Quasi-experiments and Counterfactuals to Build Great Products.</a></p>
+<p><a name="ref-2" href="https://en.wikipedia.org/wiki/Interrupted_time_series" target="blank" rel="noopener">[2] Wikipedia: Interrupted Time Series.</a></p>
+<p><a name="ref-3" href="https://scholar.google.com/scholar_lookup?title=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research&amp;author=DT%20Campbell&amp;author=JC%20Stanley&amp;publication_year=1963&amp;book=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research" target="blank" rel="noopener">[3] Campbell DT, Stanley JC. Experimental and Quasi-experimental Designs for Research. Boston, MA: Houghton Mifflin, 1963.</a></p>
+
+
+</section>
+
+ ]]></description>
+  <category>data-science</category>
+  <guid>https://xboard.dev/posts/interrupted-time-series-python-part-I/index.html</guid>
+  <pubDate>Sat, 01 Jan 2022 09:00:00 GMT</pubDate>
+  <media:content url="https://www.xboard.dev/images/posts/its/its-card2.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Scrapy tutorial</title>
+  <link>https://xboard.dev/posts/2023-07-30-scrapy_tutorial.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<blockquote class="blockquote">
+<p>Learn python <code>scrapy</code> scraping Pokémon cards.</p>
+</blockquote>
+<ul>
+<li>toc: true</li>
+<li>date: 2023-07-30</li>
+<li>badges: true</li>
+<li>comments: true</li>
+<li>categories: [jupyter]</li>
+<li>hide: false</li>
+<li>search_exclude: true</li>
+</ul>
+<section id="about" class="level1">
+<h1>About</h1>
+<p>This notebook is a demonstration of some of capabilities of <a href="https://github.com/fastai/fastpages">fastpages</a> with notebooks.</p>
+<p>With <code>fastpages</code> you can save your jupyter notebooks into the <code>_notebooks</code> folder at the root of your repository, and they will be automatically be converted to Jekyll compliant blog posts!</p>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://xboard.dev/posts/2023-07-30-scrapy_tutorial.html</guid>
+  <pubDate>Sat, 15 Jul 2023 20:07:27 GMT</pubDate>
+</item>
+</channel>
+</rss>
