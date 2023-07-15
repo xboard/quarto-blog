@@ -3,6 +3,7 @@ project:
 
 website:
   title: "xboard.dev"
+  google-analytics: "G-5FL5R0TTQ6"
   twitter-card: true
   open-graph: true
   navbar:
