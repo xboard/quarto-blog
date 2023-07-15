@@ -3,6 +3,8 @@ project:
 
 website:
   title: "xboard.dev"
+  twitter-card: true
+  open-graph: true
   navbar:
     right:
       - about.qmd
@@ -10,10 +12,15 @@ website:
         href: https://github.com/xboard
       - icon: twitter
         href: https://twitter.com/xboard_
+
 format:
   html:
-    theme: cosmo
+    theme: 
+      light: cosmo
+      dark: darkly
     css: styles.css
 
 
-
+theme:
+  light: flatly
+  dark: darkly

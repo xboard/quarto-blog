@@ -8,9 +8,12 @@ description: "Interrupted Time Series (ITS) analysis using Python and statsmodel
 image: https://www.xboard.dev/images/posts/its/its-card2.jpg
 categories: [data-science]
 comments: false
+resources: 
+    - "*.webp"
 ---
 
 <picture>
+    <source type="image/webp" srcset="its-card.webp">
     <img src="its-card.png" alt="Interrupted Time Series Analysis example" width="100%">
 </picture>
 
@@ -44,6 +47,7 @@ However, sometimes it's just not possible to set up an A/B test:
 ## Quasi Experiments
 
 <picture>
+    <source type="image/webp" srcset="the-gold-standard-meme.webp">
     <img src="the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%">
 </picture>
 
@@ -122,7 +126,7 @@ Bob runs a large and successful blog on personal finance. During a webinar he le
 
 ### Dataset
 
-Bob provides us with [💾 24 weeks of data]({{ basedata }}/raw_data.csv) before adding the CDN and 24 weeks after it (intervention). Therefore, weeks 1 to 24 have a bouncing rate before intervention and weeks 25 to 48 after it. 
+Bob provides us with [💾 24 weeks of data](raw_data.csv) before adding the CDN and 24 weeks after it (intervention). Therefore, weeks 1 to 24 have a bouncing rate before intervention and weeks 25 to 48 after it. 
 
 <p align="center">
     <picture>
@@ -134,7 +138,7 @@ Visually, it looks like after enabling the CDN the bounce rate decreased, but by
 
 ### Dataset preparation
 
-Using equation (1) notation we [💾 enrich this data]({{ basedata }}/enriched_data.csv) with values for columns $D$ ($0$ = before intervention, $1$ after) and $P$ (number of weeks since intervention started):
+Using equation (1) notation we [💾 enrich this data](enriched_data.csv) with values for columns $D$ ($0$ = before intervention, $1$ after) and $P$ (number of weeks since intervention started):
 
 | Bouncing rate<br/>(Y) | Week <br/>(T) | Intervention<br/>(D) | Intervention week<br/>(P) |
 | :-------------------: | :-----------: | :------------------: | :-----------------: |
