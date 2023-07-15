@@ -3,6 +3,8 @@ project:
 
 website:
   title: "xboard.dev"
+  site-url: https://xboard.dev
+  description: "Everything data and programming."
   google-analytics: "G-5FL5R0TTQ6"
   twitter-card: true
   open-graph: true
@@ -13,6 +15,8 @@ website:
         href: https://github.com/xboard
       - icon: twitter
         href: https://twitter.com/xboard_
+      - icon: rss
+        href: index.xml
 
 format:
   html:
