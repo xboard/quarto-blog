@@ -71,10 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,6 +102,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="xboard.dev - Interrupted Time Series (ITS) in Python">
+<meta property="og:description" content="Interrupted Time Series (ITS) analysis using Python and statsmodels">
+<meta property="og:image" content="https://www.xboard.dev/images/posts/its/its-card2.jpg">
+<meta property="og:site-name" content="xboard.dev">
+<meta name="twitter:title" content="xboard.dev - Interrupted Time Series (ITS) in Python">
+<meta name="twitter:description" content="Interrupted Time Series (ITS) analysis using Python and statsmodels">
+<meta name="twitter:image" content="https://www.xboard.dev/images/posts/its/its-card2.jpg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -135,6 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -181,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p><picture> <img src="its-card.png" alt="Interrupted Time Series Analysis example" width="100%"> </picture></p>
+<p><picture> <source type="image/webp" srcset="its-card.webp"> <img src="its-card.png" alt="Interrupted Time Series Analysis example" width="100%"> </picture></p>
 <section id="when-ab-test-is-not-an-option" class="level2">
 <h2 class="anchored" data-anchor-id="when-ab-test-is-not-an-option">When A/B test is not an option</h2>
 <p>The gold standard for statistically asserting the effectiveness of an intervention is the randomized controlled experiment and its simplified online variant: the A/B test.</p>
@@ -200,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="quasi-experiments" class="level2">
 <h2 class="anchored" data-anchor-id="quasi-experiments">Quasi Experiments</h2>
-<p><picture> <img src="the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%"> </picture></p>
+<p><picture> <source type="image/webp" srcset="the-gold-standard-meme.webp"> <img src="the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%"> </picture></p>
 <p>If you can’t do an A/B test then the second to best alternative are quasi experiments <a name="ref-1" href="https://shopify.engineering/using-quasi-experiments-counterfactuals" target="blank" rel="noopener">[1]</a>.</p>
 <p>In a quasi experiment, your treatment and control group are not divided by a completely random process but by a natural process (i.e.&nbsp;time, location, etc) therefore there is a much larger chance for imbalance due to skewness and heterogeneous differences. The results of a quasi-experiment won’t be as precise as an A/B, but if carefully conducted could be considered close enough to compute estimates.</p>
 <p>There are some scenarios, like some described in the previous section, where having a control group in parallel to a test group is just not possible, and this is when Interrupted Times Series comes in very handy.</p>
@@ -239,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Bob runs a large and successful blog on personal finance. During a webinar he learns that making his web content load faster could reduce its <a href="https://en.wikipedia.org/wiki/Bounce_rate">bounce rate</a> and therefore decides to sign up for a <a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a> service. It’s been 6 months since he added a CDN to his blog and he wants to know if the investiment he did reduced the bounce rate.</p>
 <section id="dataset" class="level3">
 <h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
-<p>Bob provides us with <a href="{{ basedata }}/raw_data.csv">💾 24 weeks of data</a> before adding the CDN and 24 weeks after it (intervention). Therefore, weeks 1 to 24 have a bouncing rate before intervention and weeks 25 to 48 after it.</p>
+<p>Bob provides us with <a href="raw_data.csv">💾 24 weeks of data</a> before adding the CDN and 24 weeks after it (intervention). Therefore, weeks 1 to 24 have a bouncing rate before intervention and weeks 25 to 48 after it.</p>
 <p align="center">
 <picture> <img src="data_viz1.svg" class="lazyload" alt="ploting data collected" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
@@ -247,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="dataset-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="dataset-preparation">Dataset preparation</h3>
-<p>Using equation (1) notation we <a href="{{ basedata }}/enriched_data.csv">💾 enrich this data</a> with values for columns <span class="math inline">\(D\)</span> (<span class="math inline">\(0\)</span> = before intervention, <span class="math inline">\(1\)</span> after) and <span class="math inline">\(P\)</span> (number of weeks since intervention started):</p>
+<p>Using equation (1) notation we <a href="enriched_data.csv">💾 enrich this data</a> with values for columns <span class="math inline">\(D\)</span> (<span class="math inline">\(0\)</span> = before intervention, <span class="math inline">\(1\)</span> after) and <span class="math inline">\(P\)</span> (number of weeks since intervention started):</p>
 <table class="table">
 <colgroup>
 <col style="width: 28%">
@@ -635,6 +646,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
