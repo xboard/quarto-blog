@@ -1,5 +1,4 @@
 ---
-title: "xboard.dev"
 listing:
   contents: posts
   sort: "date desc"
