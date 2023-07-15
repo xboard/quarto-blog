@@ -2,7 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/2023-07-30-scrapy_tutorial.html",
+      "/posts/scrapy_tutorial/index.html",
       "/posts/interrupted-time-series-python-part-I/index.html"
     ]
   }

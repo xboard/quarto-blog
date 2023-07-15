@@ -7,6 +7,20 @@
     "text": "Hey 👋, I am Flavio Regis de Arruda."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "xboard.dev",
+    "section": "",
+    "text": "Scrapy tutorial\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata-science\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels\n\n\n\n\n\n\nJan 1, 2022\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/scrapy_tutorial/index.html",
+    "href": "posts/scrapy_tutorial/index.html",
+    "title": "Scrapy tutorial",
+    "section": "",
+    "text": "Learn python scrapy scraping Pokémon cards.\n\n\ntoc: true\ndate: 2023-07-30\nbadges: true\ncomments: true\ncategories: [jupyter]\nhide: false\nsearch_exclude: true\n\n\nAbout\nThis notebook is a demonstration of some of capabilities of fastpages with notebooks.\nWith fastpages you can save your jupyter notebooks into the _notebooks folder at the root of your repository, and they will be automatically be converted to Jekyll compliant blog posts!"
+  },
+  {
     "objectID": "posts/interrupted-time-series-python-part-I/index.html#when-ab-test-is-not-an-option",
     "href": "posts/interrupted-time-series-python-part-I/index.html#when-ab-test-is-not-an-option",
     "title": "Interrupted Time Series (ITS) in Python",
@@ -61,19 +75,5 @@
     "title": "Interrupted Time Series (ITS) in Python",
     "section": "References",
     "text": "References\n[1] Shopify Engineering: How to Use Quasi-experiments and Counterfactuals to Build Great Products.\n[2] Wikipedia: Interrupted Time Series.\n[3] Campbell DT, Stanley JC. Experimental and Quasi-experimental Designs for Research. Boston, MA: Houghton Mifflin, 1963."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "xboard.dev",
-    "section": "",
-    "text": "Scrapy tutorial\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata-science\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels\n\n\n\n\n\n\nJan 1, 2022\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/2023-07-30-scrapy_tutorial.html",
-    "href": "posts/2023-07-30-scrapy_tutorial.html",
-    "title": "Scrapy tutorial",
-    "section": "",
-    "text": "Learn python scrapy scraping Pokémon cards.\n\n\ntoc: true\ndate: 2023-07-30\nbadges: true\ncomments: true\ncategories: [jupyter]\nhide: false\nsearch_exclude: true\n\n\nAbout\nThis notebook is a demonstration of some of capabilities of fastpages with notebooks.\nWith fastpages you can save your jupyter notebooks into the _notebooks folder at the root of your repository, and they will be automatically be converted to Jekyll compliant blog posts!"
   }
 ]
