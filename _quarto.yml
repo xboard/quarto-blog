@@ -3,6 +3,7 @@ project:
 
 website:
   title: "xboard.dev"
+  favicon: favicon.ico
   site-url: https://xboard.dev
   description: "Everything data and programming."
   google-analytics: "G-5FL5R0TTQ6"
