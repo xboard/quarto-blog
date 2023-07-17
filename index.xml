@@ -65,6 +65,9 @@ Important
 <section id="migrating-fastpagess-posts-to-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</h2>
 </section>
+<section id="setup-favicon" class="level2">
+<h2 class="anchored" data-anchor-id="setup-favicon">Setup <code>favicon</code></h2>
+</section>
 <section id="gitgithub" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="gitgithub">Git/Github</h2>
 <p>before</p>
