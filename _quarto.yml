@@ -6,7 +6,9 @@ website:
   site-url: https://xboard.dev
   description: "Everything data and programming."
   google-analytics: "G-5FL5R0TTQ6"
-  twitter-card: true
+  twitter-card:
+    creator: "@xboard_"
+    card-style: summary_large_image
   open-graph: true
   navbar:
     right:
@@ -25,9 +27,8 @@ format:
   html:
     theme: 
       light: litera
-      dark: darkly
+      dark: superhero
     css: styles.css
-
 
 theme:
   light: flatly
