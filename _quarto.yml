@@ -17,6 +17,9 @@ website:
         href: https://twitter.com/xboard_
       - icon: rss
         href: index.xml
+  page-footer:
+    center: |
+      Powered by [Quarto](https://quarto.org)
 
 format:
   html:
@@ -29,3 +32,4 @@ format:
 theme:
   light: flatly
   dark: darkly
+
