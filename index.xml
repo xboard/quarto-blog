@@ -107,13 +107,13 @@ Important
 <item>
   <title>Interrupted Time Series (ITS) in Python</title>
   <dc:creator>Flavio Regis de Arruda</dc:creator>
-  <link>https://xboard.dev/posts/interrupted-time-series-python-part-I/index.html</link>
+  <link>https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/index.html</link>
   <description><![CDATA[ 
 
 
 
 
-<p><picture> <source type="image/webp" srcset="its-card.webp"> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/its-card.png" alt="Interrupted Time Series Analysis example" width="100%"> </picture></p>
+<p><picture> <source type="image/webp" srcset="its-card.webp"> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/its-card.png" alt="Interrupted Time Series Analysis example" width="100%"> </picture></p>
 <section id="when-ab-test-is-not-an-option" class="level2">
 <h2 class="anchored" data-anchor-id="when-ab-test-is-not-an-option">When A/B test is not an option</h2>
 <p>The gold standard for statistically asserting the effectiveness of an intervention is the randomized controlled experiment and its simplified online variant: the A/B test.</p>
@@ -132,7 +132,7 @@ Important
 </section>
 <section id="quasi-experiments" class="level2">
 <h2 class="anchored" data-anchor-id="quasi-experiments">Quasi Experiments</h2>
-<p><picture> <source type="image/webp" srcset="the-gold-standard-meme.webp"> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%"> </picture></p>
+<p><picture> <source type="image/webp" srcset="the-gold-standard-meme.webp"> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/the-gold-standard-meme.jpg" class="lazyload" alt="gold standard meme" width="67%"> </picture></p>
 <p>If you can’t do an A/B test then the second to best alternative are quasi experiments <a name="ref-1" href="https://shopify.engineering/using-quasi-experiments-counterfactuals" target="blank" rel="noopener">[1]</a>.</p>
 <p>In a quasi experiment, your treatment and control group are not divided by a completely random process but by a natural process (i.e.&nbsp;time, location, etc) therefore there is a much larger chance for imbalance due to skewness and heterogeneous differences. The results of a quasi-experiment won’t be as precise as an A/B, but if carefully conducted could be considered close enough to compute estimates.</p>
 <p>There are some scenarios, like some described in the previous section, where having a control group in parallel to a test group is just not possible, and this is when Interrupted Times Series comes in very handy.</p>
@@ -140,7 +140,7 @@ Important
 <section id="interrupted-time-series-its" class="level2">
 <h2 class="anchored" data-anchor-id="interrupted-time-series-its">Interrupted Time Series (ITS)</h2>
 <p>Interrupted time series (ITS) is a method of statistical analysis involving tracking a period before and after a intervention at a known point in time to assess the intervention’s effects <em>within a single group/population</em>. The time series refers to the data over the period, while the interruption is the intervention, which is a controlled external influence or set of influences. Effects of the intervention are evaluated by changes in the level and slope of the time series and statistical significance of the intervention parameters <a name="ref-2" href="https://en.wikipedia.org/wiki/Interrupted_time_series" target="blank" rel="noopener">[2]</a>. The more observations you have before and after the intervention, the more robust your model will be (typically). Because the evaluation is based on observing a single population over time, the ITS design is free from problems due to between-group difference but are susceptible to time-varying confounders like other interventions occurring around the time of the intervention that may also affect the outcome <a name="ref-3" href="https://scholar.google.com/scholar_lookup?title=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research&amp;author=DT%20Campbell&amp;author=JC%20Stanley&amp;publication_year=1963&amp;book=Experimental%20and%20Quasi-experimental%20Designs%20for%20Research" target="blank" rel="noopener">[3]</a>.</p>
-<p><picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/its1.jpg" class="lazyload" alt="Interrupted Time Series analysis example" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture></p>
+<p><picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/its1.jpg" class="lazyload" alt="Interrupted Time Series analysis example" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture></p>
 <hr>
 <p>👍 <span style="text-decoration: underline">Strengths of Interrupted Time Series</span> include the ability to control for secular trends in the data (unlike a 2-period before-and-after <img src="https://latex.codecogs.com/png.latex?t">-test), ability to evaluate outcomes using population-level data, clear graphical presentation of results, ease of conducting stratified analyses, and ability to evaluate both intended and unintended consequences of interventions.</p>
 <p>👎 <span style="text-decoration: underline">Limitations of Interrupted Time Series</span> include the need for a minimum of 8 time periods before and 8 after an intervention to evaluate changes statistically, difficulty in analyzing the independent impact of separate components of a program that are implemented close together in time, and existence of a suitable control population.</p>
@@ -155,7 +155,7 @@ Important
 <p>With <img src="https://latex.codecogs.com/png.latex?%5Cepsilon"> representing a zero centered gaussian random error.</p>
 <section id="counterfactual" class="level3">
 <h3 class="anchored" data-anchor-id="counterfactual">Counterfactual</h3>
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/matrix-red-blue-pill.png" class="lazyload" alt="matrix blue/red pill choice of reality" width="100%"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/matrix-red-blue-pill.png" class="lazyload" alt="matrix blue/red pill choice of reality" width="100%"> </picture>
 <figcaption>
 <i>What would have happened had Neo chosen the blue pill?</i>
 </figcaption>
@@ -173,7 +173,7 @@ Important
 <h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
 <p>Bob provides us with <a href="raw_data.csv">💾 24 weeks of data</a> before adding the CDN and 24 weeks after it (intervention). Therefore, weeks 1 to 24 have a bouncing rate before intervention and weeks 25 to 48 after it.</p>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_viz1.svg" class="lazyload" alt="ploting data collected" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/data_viz1.svg" class="lazyload" alt="ploting data collected" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 <p>Visually, it looks like after enabling the CDN the bounce rate decreased, but by how much, and does it have statistical significance? To answer this question using interrupted time series analysis, we first need to prepare our data.</p>
 </section>
@@ -523,12 +523,12 @@ font-style: inherit;">"Bounce rate (%)"</span>)<span class="op" style="color: #5
 background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_trends1.png" class="lazyload" alt="Interrupted Time Series using OLS with counterfactual and pos-intervention plots" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/data_trends1.png" class="lazyload" alt="Interrupted Time Series using OLS with counterfactual and pos-intervention plots" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 <section id="problems-with-naive-approach" class="level3">
 <h3 class="anchored" data-anchor-id="problems-with-naive-approach">Problems with naive approach</h3>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/autocorrelation_future_meme.jpg" class="lazyload" alt="predicts the future forgets temporal autocorrelation meme" width="67%"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/autocorrelation_future_meme.jpg" class="lazyload" alt="predicts the future forgets temporal autocorrelation meme" width="67%"> </picture>
 </p>
 <p>OLS (Ordinary Least Squares) regression has <a href="https://www.datasciencecentral.com/profiles/blogs/7-classical-assumptions-of-ordinary-least-squares-ols-linear">seven main assumptions</a> but for brevity in this article we will focus on two only:</p>
 <ul>
@@ -545,7 +545,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"kde"</span>)</span></code></pre></div>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/ols_res_kde.png" class="lazyload" alt="ols residual distribution plot" width="80%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/ols_res_kde.png" class="lazyload" alt="ols residual distribution plot" width="80%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 <p>Which for a small dataset (less than 50 points) looks sufficiently gaussian.</p>
 <p>Overall, the assumption of normality of residuals can’t be convincingly refuted. ✅</p>
@@ -610,7 +610,7 @@ font-style: inherit;">'residuals'</span>)</span>
 background-color: null;
 font-style: inherit;">+</span> residual_plot </span></code></pre></div>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_viz_residuals.svg" class="lazyload" alt="ols visualization of residuals" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/data_viz_residuals.svg" class="lazyload" alt="ols visualization of residuals" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 <p>Notice how residuals above/below zero have most points temporally close to it also above/below zero as well, which goes against the independence of observations assumption of OLS ❌.</p>
 <hr>
@@ -639,7 +639,7 @@ background-color: null;
 font-style: inherit;">10</span>)</span>
 <span id="cb5-2">plt.show()</span></code></pre></div>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/autocorrelation.png" class="lazyload" alt="autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/autocorrelation.png" class="lazyload" alt="autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 </section>
 <section id="partial-autocorrelation" class="level4">
@@ -652,7 +652,7 @@ background-color: null;
 font-style: inherit;">10</span>)</span>
 <span id="cb6-2">plt.show()   </span></code></pre></div>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/partial_autocorrelation.png" class="lazyload" alt="partial autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/partial_autocorrelation.png" class="lazyload" alt="partial autocorrelation plot" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 </section>
 <section id="model-selection" class="level3">
@@ -926,7 +926,7 @@ font-style: inherit;">"Bounce rate (%)"</span>)<span class="op" style="color: #5
 background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/data_trends2.png" class="lazyload" alt="arima pre and post intervention modeling with counterfactual" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/data_trends2.png" class="lazyload" alt="arima pre and post intervention modeling with counterfactual" width="100%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 <p>We can clearly see that the ARIMA(1, 0, 0) model fits our dataset better than the OLS model.</p>
 </section>
@@ -1001,7 +1001,7 @@ font-style: inherit;">;</span></span>
 background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 <p align="center">
-<picture> <img src="https://xboard.dev/posts/interrupted-time-series-python-part-I/qqplot-sidebyside.png" class="lazyload" alt="qqplots" width="80%" style="box-shadow: 5px 5px 10px grey;"> </picture>
+<picture> <img src="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/qqplot-sidebyside.png" class="lazyload" alt="qqplots" width="80%" style="box-shadow: 5px 5px 10px grey;"> </picture>
 </p>
 <p>We may observe that the ARIMA(1,0,0) model residuals not only are in general normally distributed as they fit better than the OLS model the theoretical quantiles. ✅</p>
 </section>
@@ -1026,7 +1026,7 @@ font-style: inherit;">;</span></span></code></pre></div>
 
  ]]></description>
   <category>data-science</category>
-  <guid>https://xboard.dev/posts/interrupted-time-series-python-part-I/index.html</guid>
+  <guid>https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/index.html</guid>
   <pubDate>Sat, 01 Jan 2022 09:00:00 GMT</pubDate>
   <media:content url="https://www.xboard.dev/images/posts/its/its-card2.jpg" medium="image" type="image/jpeg"/>
 </item>
