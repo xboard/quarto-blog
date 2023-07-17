@@ -1,6 +1,9 @@
 ---
 toc: false
-layout: post
+format:
+    html:
+        page-layout: article
+
 permalink: /:title
 date: 2022-01-01 06:00:00
 title: "Interrupted Time Series (ITS) in Python"
