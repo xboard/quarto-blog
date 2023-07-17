@@ -21,7 +21,10 @@ website:
         href: index.xml
   page-footer:
     center: |
-      Powered by [Quarto](https://quarto.org)
+      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+  comments:
+    utterances:
+      repo: xboard/quarto-blog
 
 format:
   html:
