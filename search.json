@@ -32,7 +32,7 @@
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
     "title": "Migrating my blog from fastpages to Quarto",
     "section": "Git/Github",
-    "text": "Git/Github"
+    "text": "Git/Github\nbefore\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter"
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#creating-condas-environment",

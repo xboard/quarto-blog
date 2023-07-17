@@ -65,8 +65,13 @@ Important
 <section id="migrating-fastpagess-posts-to-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</h2>
 </section>
-<section id="gitgithub" class="level2">
+<section id="gitgithub" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="gitgithub">Git/Github</h2>
+<p>before</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>This is a side comment/text/note and can support any markdown syntax!</p>
+</div></div><p>after</p>
 </section>
 <section id="creating-condas-environment" class="level2">
 <h2 class="anchored" data-anchor-id="creating-condas-environment">Creating Conda’s environment</h2>
@@ -89,11 +94,12 @@ Important
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section></div> ]]></description>
+ ]]></description>
   <category>meta</category>
   <category>quarto</category>
   <guid>https://xboard.dev/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html</guid>
   <pubDate>Mon, 17 Jul 2023 03:00:00 GMT</pubDate>
+  <media:content url="https://source.unsplash.com/npxXWgQ33ZQ" medium="image"/>
 </item>
 <item>
   <title>Interrupted Time Series (ITS) in Python</title>
@@ -1015,7 +1021,7 @@ font-style: inherit;">;</span></span></code></pre></div>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section></div> ]]></description>
+ ]]></description>
   <category>data-science</category>
   <guid>https://xboard.dev/posts/interrupted-time-series-python-part-I/index.html</guid>
   <pubDate>Sat, 01 Jan 2022 09:00:00 GMT</pubDate>
