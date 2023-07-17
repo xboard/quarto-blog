@@ -5,6 +5,7 @@ toc: true
 categories: [meta, quarto]
 format: html
 draft: false
+image: "https://source.unsplash.com/npxXWgQ33ZQ"
 ---
 
 ## Why move from fastpages to quarto?
@@ -45,6 +46,13 @@ TODO: Add screenshot to preview here
 
 ## Git/Github
 
+before
+
+:::{.column-margin}
+This is a side comment/text/note and can support any markdown syntax!
+:::
+
+after
 
 ## Creating Conda's environment
 
