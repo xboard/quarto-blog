@@ -43,6 +43,7 @@ TODO: Add screenshot to preview here
 
 ## Migrating fastpages's posts to Quarto
 
+## Setup `favicon`
 
 ## Git/Github
 
