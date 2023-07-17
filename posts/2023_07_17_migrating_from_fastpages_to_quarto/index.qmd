@@ -1,0 +1,62 @@
+---
+title: "Migrating my blog from `fastpages` to `Quarto`"
+date: 2023-07-17
+toc: true
+categories: [meta, quarto]
+format: html
+draft: false
+---
+
+## Why move from fastpages to quarto?
+
+
+## What is quarto?
+
+Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc.
+
+## Installing Quarto
+
+Go to the [get started](https://quarto.org/docs/get-started/) page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:
+
+```bash
+sudo dpkg -i quarto-1.3.433-linux-amd64.deb
+
+```
+
+Create my blog project, called `quarto-blog`:
+
+```bash
+quarto create-project quarto-blog --type website:blog
+
+```
+then enter the project and preview it:
+
+```bash
+cd quarto-blog/
+quarto preview quarto-blog
+```
+
+::: {.callout-important}
+TODO: Add screenshot to preview here
+:::
+
+## Migrating fastpages's posts to Quarto
+
+
+## Git/Github
+
+
+## Creating Conda's environment
+
+
+## Setup `posts/_metadata.yml`
+
+## Adding dark mode 
+
+
+## Adding google anaytics and RSS
+
+
+## Setup footer
+
+## Setup
