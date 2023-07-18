@@ -1,11 +1,10 @@
 ---
 toc: true
-permalink: /:title
 date: 2022-01-01 06:00:00
 title: "Interrupted Time Series (ITS) in Python"
 description: "Interrupted Time Series (ITS) analysis using Python and statsmodels"
 description-meta: "Interrupted Time Series (ITS) analysis using Python and statsmodels"
-image: https://www.xboard.dev/images/posts/its/its-card2.jpg
+image: its-card2.jpg
 categories: [data-science]
 resources: 
     - "*.webp"
