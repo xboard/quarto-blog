@@ -2,7 +2,10 @@
 toc: false
 format:
     html:
-        page-layout: article
+        grid:
+            sidebar-width: 100px
+            body-width: 1000px
+            margin-width: 100px
 
 permalink: /:title
 date: 2022-01-01 06:00:00
