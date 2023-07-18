@@ -58,6 +58,12 @@ This is a side comment/text/note and can support any markdown syntax!
 
 after
 
+### Add custom domain to Github pages
+
+First remove the domain in repository [fastpages-blog](https://github.com/xboard/fastpages-blog)
+
+then add domain to [quarto-blog] repository.
+
 ## Creating Conda's environment
 
 
