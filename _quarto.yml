@@ -24,9 +24,11 @@ website:
     center: |
       Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
   comments:
-    utterances:
+    giscus:
       repo: xboard/quarto-blog
-      label: blog_post_comment
+      repo-id: R_kgDOJ7r2SQ
+      category: Announcements
+      category-id: DIC_kwDOJ7r2Sc4CX95f
 
 format:
   html:
