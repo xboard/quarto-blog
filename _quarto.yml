@@ -30,6 +30,7 @@ website:
 
 format:
   html:
+    smooth-scroll: true
     theme: 
       light: litera
       dark: superhero
