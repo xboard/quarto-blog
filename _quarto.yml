@@ -26,6 +26,7 @@ website:
   comments:
     utterances:
       repo: xboard/quarto-blog
+      label: "Post Comments ✨💬✨"
 
 format:
   html:
