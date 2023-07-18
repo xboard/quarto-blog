@@ -9,8 +9,9 @@ title-block-banner: true
 
 # Default for table of contents
 toc: true
-toc-title: Table of contents
+toc-title: Contents
 toc-location: left
+toc-expand: 2
 
 # Default author
 author:
