@@ -6,7 +6,6 @@ title: "Interrupted Time Series (ITS) in Python"
 description: "Interrupted Time Series (ITS) analysis using Python and statsmodels"
 image: https://www.xboard.dev/images/posts/its/its-card2.jpg
 categories: [data-science]
-comments: false
 resources: 
     - "*.webp"
 ---
@@ -443,7 +442,7 @@ Prob(H) (two-sided):                  0.47   Kurtosis:                         3
 ```
 
 The autoregressive model estimates that the bounce rate decreased 🔻 0.55% on average and this effect
-is statistically significant ($P>|t| = 4.4\\% $, less than our $\alpha = 5\\% $).
+is statistically significant ($P>|t| = 4.4\%$, less than our $\alpha = 5\%$).
 
 However, unlike the previous OLS model, the autoregressive model does not estimate a statistical significance trend of a decrease in bounce rate each week after intervention, which is in line with our expectations. 
 
