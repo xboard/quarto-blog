@@ -1,5 +1,6 @@
 ---
 title: "Migrating my blog from `fastpages` to `Quarto`"
+description-meta: "Migrating my blog from `fastpages` to `Quarto`"
 date: 2023-07-17
 toc: true
 categories: [meta, quarto]
