@@ -60,6 +60,9 @@ after
 
 ## Setup `posts/_metadata.yml`
 
+### Setup (giscus)[https://giscus.app/] comments
+
+
 ## Adding dark mode 
 
 
@@ -68,4 +71,4 @@ after
 
 ## Setup footer
 
-## Setup
+## 
