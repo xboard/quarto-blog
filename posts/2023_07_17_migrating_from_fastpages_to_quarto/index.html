@@ -8,6 +8,7 @@
 
 <meta name="author" content="Flavio Regis de Arruda">
 <meta name="dcterms.date" content="2023-07-17">
+<meta name="description" content="Migrating my blog from <code>fastpages</code> to <code>Quarto</code>">
 
 <title>xboard.dev - Migrating my blog from fastpages to Quarto</title>
 <style>
@@ -120,6 +121,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <meta name="twitter:image" content="https://source.unsplash.com/npxXWgQ33ZQ">
 <meta name="twitter:creator" content="@xboard_">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://xboard.dev/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html" />
 </head>
 
 <body class="floating nav-fixed slimcontent">
@@ -206,18 +208,24 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#why-move-from-fastpages-to-quarto" id="toc-why-move-from-fastpages-to-quarto" class="nav-link active" data-scroll-target="#why-move-from-fastpages-to-quarto">Why move from fastpages to quarto?</a></li>
+  <li><a href="#why" id="toc-why" class="nav-link active" data-scroll-target="#why">Why?</a>
+  <ul class="collapse">
   <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link" data-scroll-target="#what-is-quarto">What is quarto?</a></li>
+  </ul></li>
   <li><a href="#installing-quarto" id="toc-installing-quarto" class="nav-link" data-scroll-target="#installing-quarto">Installing Quarto</a></li>
   <li><a href="#migrating-fastpagess-posts-to-quarto" id="toc-migrating-fastpagess-posts-to-quarto" class="nav-link" data-scroll-target="#migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</a></li>
   <li><a href="#setup-favicon" id="toc-setup-favicon" class="nav-link" data-scroll-target="#setup-favicon">Setup <code>favicon</code></a></li>
+  <li><a href="#adding-canonical-tag-into-the-head-section" id="toc-adding-canonical-tag-into-the-head-section" class="nav-link" data-scroll-target="#adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</a></li>
   <li><a href="#gitgithub" id="toc-gitgithub" class="nav-link" data-scroll-target="#gitgithub">Git/Github</a></li>
   <li><a href="#creating-condas-environment" id="toc-creating-condas-environment" class="nav-link" data-scroll-target="#creating-condas-environment">Creating Conda’s environment</a></li>
-  <li><a href="#setup-posts_metadata.yml" id="toc-setup-posts_metadata.yml" class="nav-link" data-scroll-target="#setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></a></li>
+  <li><a href="#setup-posts_metadata.yml" id="toc-setup-posts_metadata.yml" class="nav-link" data-scroll-target="#setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></a>
+  <ul class="collapse">
+  <li><a href="#setup-giscushttpsgiscus.app-comments" id="toc-setup-giscushttpsgiscus.app-comments" class="nav-link" data-scroll-target="#setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</a></li>
+  </ul></li>
   <li><a href="#adding-dark-mode" id="toc-adding-dark-mode" class="nav-link" data-scroll-target="#adding-dark-mode">Adding dark mode</a></li>
   <li><a href="#adding-google-anaytics-and-rss" id="toc-adding-google-anaytics-and-rss" class="nav-link" data-scroll-target="#adding-google-anaytics-and-rss">Adding google anaytics and RSS</a></li>
   <li><a href="#setup-footer" id="toc-setup-footer" class="nav-link" data-scroll-target="#setup-footer">Setup footer</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
 </nav>
@@ -231,12 +239,12 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 
 
 
-<section id="why-move-from-fastpages-to-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="why-move-from-fastpages-to-quarto">Why move from fastpages to quarto?</h2>
-</section>
-<section id="what-is-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-quarto">What is quarto?</h2>
+<section id="why" class="level2">
+<h2 class="anchored" data-anchor-id="why">Why?</h2>
+<section id="what-is-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-quarto">What is quarto?</h3>
 <p>Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc.</p>
+</section>
 </section>
 <section id="installing-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="installing-quarto">Installing Quarto</h2>
@@ -267,6 +275,9 @@ Important
 <section id="setup-favicon" class="level2">
 <h2 class="anchored" data-anchor-id="setup-favicon">Setup <code>favicon</code></h2>
 </section>
+<section id="adding-canonical-tag-into-the-head-section" class="level2">
+<h2 class="anchored" data-anchor-id="adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</h2>
+</section>
 <section id="gitgithub" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="gitgithub">Git/Github</h2>
 <p>before</p>
@@ -280,6 +291,9 @@ Important
 </section>
 <section id="setup-posts_metadata.yml" class="level2">
 <h2 class="anchored" data-anchor-id="setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></h2>
+<section id="setup-giscushttpsgiscus.app-comments" class="level3">
+<h3 class="anchored" data-anchor-id="setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</h3>
+</section>
 </section>
 <section id="adding-dark-mode" class="level2">
 <h2 class="anchored" data-anchor-id="adding-dark-mode">Adding dark mode</h2>
@@ -290,8 +304,8 @@ Important
 <section id="setup-footer" class="level2">
 <h2 class="anchored" data-anchor-id="setup-footer">Setup footer</h2>
 </section>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 
 
 </section>

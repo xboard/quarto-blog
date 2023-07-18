@@ -70,11 +70,18 @@
     "text": "References\n[1] Shopify Engineering: How to Use Quasi-experiments and Counterfactuals to Build Great Products.\n[2] Wikipedia: Interrupted Time Series.\n[3] Campbell DT, Stanley JC. Experimental and Quasi-experimental Designs for Research. Boston, MA: Houghton Mifflin, 1963."
   },
   {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-quarto",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-quarto",
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
     "title": "Migrating my blog from fastpages to Quarto",
-    "section": "What is quarto?",
-    "text": "What is quarto?\nQuarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc."
+    "section": "",
+    "text": "Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "",
+    "text": "Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc."
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#installing-quarto",
@@ -98,6 +105,13 @@
     "text": "Setup favicon"
   },
   {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-canonical-tag-into-the-head-section",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-canonical-tag-into-the-head-section",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Adding canonical tag into the <head> section",
+    "text": "Adding canonical tag into the &lt;head&gt; section"
+  },
+  {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
     "title": "Migrating my blog from fastpages to Quarto",
@@ -116,7 +130,7 @@
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-posts_metadata.yml",
     "title": "Migrating my blog from fastpages to Quarto",
     "section": "Setup posts/_metadata.yml",
-    "text": "Setup posts/_metadata.yml"
+    "text": "Setup posts/_metadata.yml\n\nSetup (giscus)[https://giscus.app/] comments"
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-dark-mode",
@@ -138,12 +152,5 @@
     "title": "Migrating my blog from fastpages to Quarto",
     "section": "Setup footer",
     "text": "Setup footer"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Setup",
-    "text": "Setup"
   }
 ]
