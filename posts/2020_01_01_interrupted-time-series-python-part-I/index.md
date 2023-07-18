@@ -1,12 +1,5 @@
 ---
-toc: false
-format:
-    html:
-        grid:
-            sidebar-width: 100px
-            body-width: 1000px
-            margin-width: 100px
-
+toc: true
 permalink: /:title
 date: 2022-01-01 06:00:00
 title: "Interrupted Time Series (ITS) in Python"
