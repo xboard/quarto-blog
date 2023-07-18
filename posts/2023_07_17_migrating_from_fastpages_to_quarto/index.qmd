@@ -9,10 +9,10 @@ draft: false
 image: "https://source.unsplash.com/npxXWgQ33ZQ"
 ---
 
-## Why move from fastpages to quarto?
+## Why?
 
 
-## What is quarto?
+### What is quarto?
 
 Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc.
 
@@ -45,6 +45,8 @@ TODO: Add screenshot to preview here
 ## Migrating fastpages's posts to Quarto
 
 ## Setup `favicon`
+
+## Adding `canonical` tag into the `<head>` section
 
 ## Git/Github
 

@@ -1,5 +1,7 @@
 project:
   type: website
+  post-render:
+    - "python add-canonicals.py"
 
 website:
   title: "xboard.dev"
