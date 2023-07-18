@@ -716,7 +716,7 @@ Prob(Q):                              0.32   Prob(JB):                         0
 Heteroskedasticity (H):               1.44   Skew:                            -0.05
 Prob(H) (two-sided):                  0.47   Kurtosis:                         3.25
 ===================================================================================</code></pre>
-<p>The autoregressive model estimates that the bounce rate decreased 🔻 0.55% on average and this effect is statistically significant ($P&gt;|t| = 4.4\% $, less than our $= 5\% $).</p>
+<p>The autoregressive model estimates that the bounce rate decreased 🔻 0.55% on average and this effect is statistically significant (<img src="https://latex.codecogs.com/png.latex?P%3E%7Ct%7C%20=%204.4%5C%25">, less than our <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%205%5C%25">).</p>
 <p>However, unlike the previous OLS model, the autoregressive model does not estimate a statistical significance trend of a decrease in bounce rate each week after intervention, which is in line with our expectations.</p>
 <p>The models estimates (with counterfactual projections) can be seen in the chart below:</p>
 <div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"></span>
