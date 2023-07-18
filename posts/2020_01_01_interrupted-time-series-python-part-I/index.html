@@ -124,7 +124,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -208,11 +208,40 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#when-ab-test-is-not-an-option" id="toc-when-ab-test-is-not-an-option" class="nav-link active" data-scroll-target="#when-ab-test-is-not-an-option">When A/B test is not an option</a></li>
+  <li><a href="#quasi-experiments" id="toc-quasi-experiments" class="nav-link" data-scroll-target="#quasi-experiments">Quasi Experiments</a></li>
+  <li><a href="#interrupted-time-series-its" id="toc-interrupted-time-series-its" class="nav-link" data-scroll-target="#interrupted-time-series-its">Interrupted Time Series (ITS)</a>
+  <ul class="collapse">
+  <li><a href="#counterfactual" id="toc-counterfactual" class="nav-link" data-scroll-target="#counterfactual">Counterfactual</a></li>
+  </ul></li>
+  <li><a href="#a-practical-example" id="toc-a-practical-example" class="nav-link" data-scroll-target="#a-practical-example">A practical example</a>
+  <ul class="collapse">
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#dataset-preparation" id="toc-dataset-preparation" class="nav-link" data-scroll-target="#dataset-preparation">Dataset preparation</a></li>
+  </ul></li>
+  <li><a href="#naive-solution" id="toc-naive-solution" class="nav-link" data-scroll-target="#naive-solution">Naive solution</a>
+  <ul class="collapse">
+  <li><a href="#problems-with-naive-approach" id="toc-problems-with-naive-approach" class="nav-link" data-scroll-target="#problems-with-naive-approach">Problems with naive approach</a></li>
+  </ul></li>
+  <li><a href="#autoregressive-model-solution" id="toc-autoregressive-model-solution" class="nav-link" data-scroll-target="#autoregressive-model-solution">Autoregressive model solution</a>
+  <ul class="collapse">
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a></li>
+  <li><a href="#arima" id="toc-arima" class="nav-link" data-scroll-target="#arima">ARIMA</a></li>
+  <li><a href="#arima-residual-analysis" id="toc-arima-residual-analysis" class="nav-link" data-scroll-target="#arima-residual-analysis">ARIMA residual analysis</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
