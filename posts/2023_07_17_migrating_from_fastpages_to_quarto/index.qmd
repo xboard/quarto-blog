@@ -80,4 +80,11 @@ then add domain to [quarto-blog] repository.
 
 ## Setup footer
 
-## 
+## VSCode
+
+### Adding Quarto extesion
+
+### Adding snippet
+
+### Enabling inline suggestion
+Set `Snippet suggestions` to `inline` as recommended [here](https://stackoverflow.com/a/74339599/483157).
