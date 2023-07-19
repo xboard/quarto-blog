@@ -77,9 +77,10 @@ Important
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>This is a side comment/text/note and can support any markdown syntax!</p>
-</div></div><p>after</p>
+</div></div><p>after ### Setup github pages</p>
+<p><a href="https://quarto.org/docs/publishing/github-pages.html">Follow this</a>.</p>
 <section id="add-custom-domain-to-github-pages" class="level3">
-<h3 class="anchored" data-anchor-id="add-custom-domain-to-github-pages">Add custom domain to Github pages</h3>
+<h3 class="anchored" data-anchor-id="add-custom-domain-to-github-pages">Add custom domain to github pages</h3>
 <p>First remove the domain in repository <a href="https://github.com/xboard/fastpages-blog">fastpages-blog</a></p>
 <p>then add domain to [quarto-blog] repository.</p>
 </section>

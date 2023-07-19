@@ -46,7 +46,7 @@
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
     "title": "Migrating my blog from fastpages to Quarto",
     "section": "Git/Github",
-    "text": "Git/Github\nbefore\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter\n\nAdd custom domain to Github pages\nFirst remove the domain in repository fastpages-blog\nthen add domain to [quarto-blog] repository."
+    "text": "Git/Github\nbefore\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter ### Setup github pages\nFollow this.\n\nAdd custom domain to github pages\nFirst remove the domain in repository fastpages-blog\nthen add domain to [quarto-blog] repository."
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#creating-condas-environment",
