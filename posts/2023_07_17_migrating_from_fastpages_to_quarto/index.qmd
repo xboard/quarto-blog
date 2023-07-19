@@ -57,8 +57,11 @@ This is a side comment/text/note and can support any markdown syntax!
 :::
 
 after
+### Setup github pages
 
-### Add custom domain to Github pages
+[Follow this](https://quarto.org/docs/publishing/github-pages.html).
+
+### Add custom domain to github pages
 
 First remove the domain in repository [fastpages-blog](https://github.com/xboard/fastpages-blog)
 
