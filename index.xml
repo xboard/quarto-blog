@@ -102,10 +102,20 @@ Important
 <section id="setup-footer" class="level2">
 <h2 class="anchored" data-anchor-id="setup-footer">Setup footer</h2>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="vscode" class="level2">
+<h2 class="anchored" data-anchor-id="vscode">VSCode</h2>
+<section id="adding-quarto-extesion" class="level3">
+<h3 class="anchored" data-anchor-id="adding-quarto-extesion">Adding Quarto extesion</h3>
+</section>
+<section id="adding-snippet" class="level3">
+<h3 class="anchored" data-anchor-id="adding-snippet">Adding snippet</h3>
+</section>
+<section id="enabling-inline-suggestion" class="level3">
+<h3 class="anchored" data-anchor-id="enabling-inline-suggestion">Enabling inline suggestion</h3>
+<p>Set <code>Snippet suggestions</code> to <code>inline</code> as recommended <a href="https://stackoverflow.com/a/74339599/483157">here</a>.</p>
 
 
+</section>
 </section>
 
  ]]></description>

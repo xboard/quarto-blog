@@ -84,6 +84,13 @@
     "text": "Setup footer"
   },
   {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "VSCode",
+    "text": "VSCode\n\nAdding Quarto extesion\n\n\nAdding snippet\n\n\nEnabling inline suggestion\nSet Snippet suggestions to inline as recommended here."
+  },
+  {
     "objectID": "posts/2020_01_01_interrupted-time-series-python-part-I/index.html#when-ab-test-is-not-an-option",
     "href": "posts/2020_01_01_interrupted-time-series-python-part-I/index.html#when-ab-test-is-not-an-option",
     "title": "Interrupted Time Series (ITS) in Python",
