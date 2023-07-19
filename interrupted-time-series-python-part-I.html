@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Flavio Regis de Arruda">
-<meta name="dcterms.date" content="2023-07-17">
-<meta name="description" content="Migrating my blog from <code>fastpages</code> to <code>Quarto</code>">
 
-<title>xboard.dev - Migrating my blog from fastpages to Quarto</title>
+<title>xboard.dev – interrupted-time-series-python-part-i</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,62 +20,28 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../favicon.ico" rel="icon">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.ico" rel="icon">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,27 +74,18 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="xboard.dev - Migrating my blog from fastpages to Quarto">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://source.unsplash.com/npxXWgQ33ZQ">
-<meta property="og:site-name" content="xboard.dev">
-<meta name="twitter:title" content="xboard.dev - Migrating my blog from fastpages to Quarto">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://source.unsplash.com/npxXWgQ33ZQ">
-<meta name="twitter:creator" content="@xboard_">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://xboard.dev/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html" />
+<link rel="stylesheet" href="styles.css">
+<link rel="canonical" href="https://xboard.dev/interrupted-time-series-python-part-I.html" />
 </head>
 
-<body class="floating nav-fixed slimcontent">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">xboard.dev</span>
     </a>
   </div>
@@ -142,7 +96,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -156,7 +110,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../index.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="./index.xml" rel="" target=""><i class="bi bi-rss" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -169,154 +123,20 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Migrating my blog from <code>fastpages</code> to <code>Quarto</code></h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">meta</div>
-                <div class="quarto-category">quarto</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p><a href="https://xboard.dev">Flavio Regis de Arruda</a> </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">July 17, 2023</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul>
-  <li><a href="#why" id="toc-why" class="nav-link active" data-scroll-target="#why">Why?</a>
-  <ul class="collapse">
-  <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link" data-scroll-target="#what-is-quarto">What is quarto?</a></li>
-  </ul></li>
-  <li><a href="#installing-quarto" id="toc-installing-quarto" class="nav-link" data-scroll-target="#installing-quarto">Installing Quarto</a></li>
-  <li><a href="#migrating-fastpagess-posts-to-quarto" id="toc-migrating-fastpagess-posts-to-quarto" class="nav-link" data-scroll-target="#migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</a></li>
-  <li><a href="#setup-favicon" id="toc-setup-favicon" class="nav-link" data-scroll-target="#setup-favicon">Setup <code>favicon</code></a></li>
-  <li><a href="#adding-canonical-tag-into-the-head-section" id="toc-adding-canonical-tag-into-the-head-section" class="nav-link" data-scroll-target="#adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</a></li>
-  <li><a href="#gitgithub" id="toc-gitgithub" class="nav-link" data-scroll-target="#gitgithub">Git/Github</a>
-  <ul class="collapse">
-  <li><a href="#add-custom-domain-to-github-pages" id="toc-add-custom-domain-to-github-pages" class="nav-link" data-scroll-target="#add-custom-domain-to-github-pages">Add custom domain to Github pages</a></li>
-  </ul></li>
-  <li><a href="#creating-condas-environment" id="toc-creating-condas-environment" class="nav-link" data-scroll-target="#creating-condas-environment">Creating Conda’s environment</a></li>
-  <li><a href="#setup-posts_metadata.yml" id="toc-setup-posts_metadata.yml" class="nav-link" data-scroll-target="#setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></a>
-  <ul class="collapse">
-  <li><a href="#setup-giscushttpsgiscus.app-comments" id="toc-setup-giscushttpsgiscus.app-comments" class="nav-link" data-scroll-target="#setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</a></li>
-  </ul></li>
-  <li><a href="#adding-dark-mode" id="toc-adding-dark-mode" class="nav-link" data-scroll-target="#adding-dark-mode">Adding dark mode</a></li>
-  <li><a href="#adding-google-anaytics-and-rss" id="toc-adding-google-anaytics-and-rss" class="nav-link" data-scroll-target="#adding-google-anaytics-and-rss">Adding google anaytics and RSS</a></li>
-  <li><a href="#setup-footer" id="toc-setup-footer" class="nav-link" data-scroll-target="#setup-footer">Setup footer</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    </div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 
-
-<section id="why" class="level2">
-<h2 class="anchored" data-anchor-id="why">Why?</h2>
-<section id="what-is-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-quarto">What is quarto?</h3>
-<p>Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc.</p>
-</section>
-</section>
-<section id="installing-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="installing-quarto">Installing Quarto</h2>
-<p>Go to the <a href="https://quarto.org/docs/get-started/">get started</a> page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto-1.3.433-linux-amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Create my blog project, called <code>quarto-blog</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create-project quarto-blog <span class="at">--type</span> website:blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>then enter the project and preview it:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quarto-blog/</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview quarto-blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>TODO: Add screenshot to preview here</p>
-</div>
-</div>
-</section>
-<section id="migrating-fastpagess-posts-to-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</h2>
-</section>
-<section id="setup-favicon" class="level2">
-<h2 class="anchored" data-anchor-id="setup-favicon">Setup <code>favicon</code></h2>
-</section>
-<section id="adding-canonical-tag-into-the-head-section" class="level2">
-<h2 class="anchored" data-anchor-id="adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</h2>
-</section>
-<section id="gitgithub" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="gitgithub">Git/Github</h2>
-<p>before</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>This is a side comment/text/note and can support any markdown syntax!</p>
-</div></div><p>after</p>
-<section id="add-custom-domain-to-github-pages" class="level3">
-<h3 class="anchored" data-anchor-id="add-custom-domain-to-github-pages">Add custom domain to Github pages</h3>
-<p>First remove the domain in repository <a href="https://github.com/xboard/fastpages-blog">fastpages-blog</a></p>
-<p>then add domain to [quarto-blog] repository.</p>
-</section>
-</section>
-<section id="creating-condas-environment" class="level2">
-<h2 class="anchored" data-anchor-id="creating-condas-environment">Creating Conda’s environment</h2>
-</section>
-<section id="setup-posts_metadata.yml" class="level2">
-<h2 class="anchored" data-anchor-id="setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></h2>
-<section id="setup-giscushttpsgiscus.app-comments" class="level3">
-<h3 class="anchored" data-anchor-id="setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</h3>
-</section>
-</section>
-<section id="adding-dark-mode" class="level2">
-<h2 class="anchored" data-anchor-id="adding-dark-mode">Adding dark mode</h2>
-</section>
-<section id="adding-google-anaytics-and-rss" class="level2">
-<h2 class="anchored" data-anchor-id="adding-google-anaytics-and-rss">Adding google anaytics and RSS</h2>
-</section>
-<section id="setup-footer" class="level2">
-<h2 class="anchored" data-anchor-id="setup-footer">Setup footer</h2>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<script>
+    location.replace('posts/2020_01_01_interrupted-time-series-python-part-I/')
+</script>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -684,5 +504,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
