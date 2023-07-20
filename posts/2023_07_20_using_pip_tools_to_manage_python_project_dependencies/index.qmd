@@ -4,7 +4,7 @@ description: "How to ensure you have a reproducible development environment."
 description-meta: "Using pip-tools to manage project dependencies in Python. How to prevents conflicts between versions of packages and ensure your project dependencies are isolated and you have a reproducible development environment."
 date: 2023-07-20
 toc: true
-categories: [python]
+categories: [software development, tools, python]
 format: html
 draft: false
 image: "https://source.unsplash.com/s8OO2-t-HmQ"
