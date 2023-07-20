@@ -1,11 +1,11 @@
 ---
 title: "Using `pip-tools`to manage python's project dependencies"
 description-meta: "Using pip-tools to manage python's project dependencies`"
-date: 2023-07-17
+date: 2023-07-20
 toc: true
 categories: [python]
 format: html
-draft: true
+draft: false
 image: "https://source.unsplash.com/s8OO2-t-HmQ"
 ---
 
@@ -34,21 +34,21 @@ Simplifying dependency management can minimize errors and save valuable developm
 
 Here are five examples of how developers can use pip-tools to manage the package requirements of their Python projects:
 
-#### Example 1: Basic usage of pip-tools with requirements files
+#### Basic usage of pip-tools with requirements files
 
 Developers can use pip-tools to manage their project dependencies by creating a `requirements.in` file with the required packages and their respective versions. Developers can then run the following command to generate the required `requirements.txt` file:
 
-```
+```bash
 $ pip-compile requirements.in
 ```
 
 This generates a pinned version requirement file with all the packages and their respective dependencies.
 
-#### Example 2: Advanced usage of pip-tools with multiple environments
+#### pip-tools with multiple environments
 
 Developers can define several files with libraries to use in multiple environments, such as development, production, and testing. They can create corresponding `dev-requirements.in`, `prod-requirements.in`, and `test-requirements.in` files and then use the following commands to generate their respective files:
 
-```
+```bash
 $ pip-compile dev-requirements.in
 $ pip-compile prod -requirements.in
 $ pip-compile test-requirements.in
@@ -56,32 +56,32 @@ $ pip-compile test-requirements.in
 
 These commands will generate `dev-requirements.txt`, `prod-requirements.txt`, and `test-requirements.txt` files with the corresponding dependencies.
 
-#### Example 3: Advanced usage of pip-tools with custom package indexes
+#### pip-tools with custom package indexes
 
 Developers can also use pip-tools with package indexes different from the official PyPI index. To do this, they can specify a custom index in their `requirements.in` file, like this:
 
-```
+```bash
 --index-url https://custompackageindex.com/
 django==3.2.5
 ```
 
 Then, running `pip-compile requirements.in` will output a `requirements.txt` file with the packages pinned to versions on the custom package index.
 
-#### Example 4: Advanced usage of pip-tools with transitive dependencies
+#### pip-tools with transitive dependencies
 
 Developers may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:
 
-```
+```bash
 $ pip-compile --generate-hashes requirements.in
 ```
 
 This will add a hash value to each package in the requirements file, including the transitive dependencies.
 
-#### Example 5: Advanced usage of pip-tools to update dependencies
+#### pip-tools to update dependencies
 
 Finally, pip-tools can also help developers manage package updates easily. They can run the following command to generate a `requirements.txt` file with the new versions of the packages:
 
-```
+```bash
 $ pip-compile --upgrade requirements.in 
 ```
 

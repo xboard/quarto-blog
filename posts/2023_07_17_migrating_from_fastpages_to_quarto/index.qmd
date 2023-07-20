@@ -5,7 +5,7 @@ date: 2023-07-17
 toc: true
 categories: [meta, quarto]
 format: html
-draft: false
+draft: true
 image: "https://source.unsplash.com/npxXWgQ33ZQ"
 ---
 
