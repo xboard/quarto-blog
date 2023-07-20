@@ -22,7 +22,7 @@
 
 <section id="simplify-your-python-dependency-management-with-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="simplify-your-python-dependency-management-with-pip-tools">Simplify Your Python Dependency Management with pip-tools</h2>
-<p>As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the <a href="https://pypi.org/project/pip-tools/">pip-tools</a> project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
+<p>As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the <a href="https://pypi.org/project/pip-tools/" target="_blank">pip-tools</a> project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
 </section>
 <section id="what-is-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-pip-tools">What is pip-tools?</h2>
@@ -115,7 +115,7 @@ font-style: inherit;">pip-sync</span></span></code></pre></div>
 </section>
 <section id="alternatives-to-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="alternatives-to-pip-tools">Alternatives to pip-tools</h2>
-<p>While pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as <a href="https://python-poetry.org/">Poetry</a>, <a href="https://pipenv.pypa.io/">Pipenv</a>, <a href="https://docs.conda.io/en/latest/">conda</a>, and <a href="https://setuptools.pypa.io/en/latest/">setuptools</a>. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects.</p>
+<p>While pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as <a href="https://python-poetry.org/" target="_blank">Poetry</a>, <a href="https://pipenv.pypa.io/" target="_blank">Pipenv</a>, <a href="https://docs.conda.io/en/latest/" target="_blank">conda</a>, and <a href="https://setuptools.pypa.io/en/latest/" target="_blank">setuptools</a>. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
