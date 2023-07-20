@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html",
       "/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
       "/posts/2020_01_01_interrupted-time-series-python-part-I/index.html"
     ]

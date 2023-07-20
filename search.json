@@ -4,91 +4,63 @@
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
     "title": "Migrating my blog from fastpages to Quarto",
     "section": "",
-    "text": "Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc."
+    "text": "Are you a Python development blogger searching for an efficient and effective way to publish your blog posts? Look no further than the Quarto project!\n\n\nQuarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more. With an easy-to-use interface and a wide range of customizable features, Quarto makes it simple to publish your Python development blogs.\n\n\n\nDevelopers should use Quarto when searching for a cost-effective and customizable way to publish their blog posts. The Quarto project simplifies the process of organizing, formatting, and publishing scientific documents, with features such as:\n\nCompatibility with a wide range of programming languages, including R, Python, and Julia;\nIntegration with popular web publishing platforms such as GitHub pages and Jekyll;\nSupport for a broad range of document outputs, including LaTeX, PDF, and HTML;\nExtensive customizability with built-in templates and reusable components; and\nBuilt-in support for code snippets and data visualizations.\n\nWith its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging.\n\n\n\nWhile Fastpages was once a popular option for Python development bloggers, development of that platform has officially been discontinued. With its wide-ranging limitations and lack of further support, Fastpages is no longer a viable option for many Python development bloggers.\nAs an alternative, the Quarto project offers a robust platform for scientific document publication that is both customizable and user-friendly. The platform is designed with metadata-driven management and robust document-related capabilities for modern scientists and data professionals.\n\n\n\nGo to the get started page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:\nsudo dpkg -i quarto-1.3.433-linux-amd64.deb\nCreate my blog project, called quarto-blog:\nquarto create-project quarto-blog --type website:blog\nthen enter the project and preview it:\ncd quarto-blog/\nquarto preview quarto-blog\n\n\n\n\n\n\nImportant\n\n\n\nTODO: Add screenshot to preview here\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbefore\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter ### Setup github pages\nFollow this.\n\n\nFirst remove the domain in repository fastpages-blog\nthen add domain to [quarto-blog] repository.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSet Snippet suggestions to inline as recommended here.\n\n\n\n\nIf you’re a Python developer looking for an efficient, cost-effective, and customizable way to publish your Python development blog, the Quarto project is an excellent choice. With integrated features such as metadata"
   },
   {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why",
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-project-quarto",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-project-quarto",
     "title": "Migrating my blog from fastpages to Quarto",
     "section": "",
-    "text": "Quarto offers the promise of being a cross-platform, cross-format, open source publishing tool based on pandoc."
+    "text": "Quarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more. With an easy-to-use interface and a wide range of customizable features, Quarto makes it simple to publish your Python development blogs."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why-and-when-developers-should-use-quarto",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why-and-when-developers-should-use-quarto",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "",
+    "text": "Developers should use Quarto when searching for a cost-effective and customizable way to publish their blog posts. The Quarto project simplifies the process of organizing, formatting, and publishing scientific documents, with features such as:\n\nCompatibility with a wide range of programming languages, including R, Python, and Julia;\nIntegration with popular web publishing platforms such as GitHub pages and Jekyll;\nSupport for a broad range of document outputs, including LaTeX, PDF, and HTML;\nExtensive customizability with built-in templates and reusable components; and\nBuilt-in support for code snippets and data visualizations.\n\nWith its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#quarto-is-the-future-the-discontinuation-of-fastpages",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#quarto-is-the-future-the-discontinuation-of-fastpages",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "",
+    "text": "While Fastpages was once a popular option for Python development bloggers, development of that platform has officially been discontinued. With its wide-ranging limitations and lack of further support, Fastpages is no longer a viable option for many Python development bloggers.\nAs an alternative, the Quarto project offers a robust platform for scientific document publication that is both customizable and user-friendly. The platform is designed with metadata-driven management and robust document-related capabilities for modern scientists and data professionals."
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#installing-quarto",
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#installing-quarto",
     "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Installing Quarto",
-    "text": "Installing Quarto\nGo to the get started page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:\nsudo dpkg -i quarto-1.3.433-linux-amd64.deb\nCreate my blog project, called quarto-blog:\nquarto create-project quarto-blog --type website:blog\nthen enter the project and preview it:\ncd quarto-blog/\nquarto preview quarto-blog\n\n\n\n\n\n\nImportant\n\n\n\nTODO: Add screenshot to preview here"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#migrating-fastpagess-posts-to-quarto",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#migrating-fastpagess-posts-to-quarto",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Migrating fastpages’s posts to Quarto",
-    "text": "Migrating fastpages’s posts to Quarto"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-favicon",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-favicon",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Setup favicon",
-    "text": "Setup favicon"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-canonical-tag-into-the-head-section",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-canonical-tag-into-the-head-section",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Adding canonical tag into the <head> section",
-    "text": "Adding canonical tag into the &lt;head&gt; section"
+    "section": "",
+    "text": "Go to the get started page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:\nsudo dpkg -i quarto-1.3.433-linux-amd64.deb\nCreate my blog project, called quarto-blog:\nquarto create-project quarto-blog --type website:blog\nthen enter the project and preview it:\ncd quarto-blog/\nquarto preview quarto-blog\n\n\n\n\n\n\nImportant\n\n\n\nTODO: Add screenshot to preview here"
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
     "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Git/Github",
-    "text": "Git/Github\nbefore\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter ### Setup github pages\nFollow this.\n\nAdd custom domain to github pages\nFirst remove the domain in repository fastpages-blog\nthen add domain to [quarto-blog] repository."
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#creating-condas-environment",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#creating-condas-environment",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Creating Conda’s environment",
-    "text": "Creating Conda’s environment"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-posts_metadata.yml",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-posts_metadata.yml",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Setup posts/_metadata.yml",
-    "text": "Setup posts/_metadata.yml\n\nSetup (giscus)[https://giscus.app/] comments"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-dark-mode",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-dark-mode",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Adding dark mode",
-    "text": "Adding dark mode"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-google-anaytics-and-rss",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-google-anaytics-and-rss",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Adding google anaytics and RSS",
-    "text": "Adding google anaytics and RSS"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-footer",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-footer",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "Setup footer",
-    "text": "Setup footer"
+    "section": "",
+    "text": "before\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter ### Setup github pages\nFollow this.\n\n\nFirst remove the domain in repository fastpages-blog\nthen add domain to [quarto-blog] repository."
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
     "title": "Migrating my blog from fastpages to Quarto",
-    "section": "VSCode",
-    "text": "VSCode\n\nAdding Quarto extesion\n\n\nAdding snippet\n\n\nEnabling inline suggestion\nSet Snippet suggestions to inline as recommended here."
+    "section": "",
+    "text": "Set Snippet suggestions to inline as recommended here."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#conclusion",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#conclusion",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "",
+    "text": "If you’re a Python developer looking for an efficient, cost-effective, and customizable way to publish your Python development blog, the Quarto project is an excellent choice. With integrated features such as metadata"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "xboard.dev",
+    "section": "",
+    "text": "Using pip-toolsto manage python’s project dependencies\n\n\n\n\n\n\n\npython\n\n\n\n\n\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nMigrating my blog from fastpages to Quarto\n\n\n\n\n\n\n\nmeta\n\n\nquarto\n\n\n\n\n\n\n\n\n\n\n\nJul 17, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata-science\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2020_01_01_interrupted-time-series-python-part-I/index.html#when-ab-test-is-not-an-option",
@@ -147,11 +119,18 @@
     "text": "References\n[1] Shopify Engineering: How to Use Quasi-experiments and Counterfactuals to Build Great Products.\n[2] Wikipedia: Interrupted Time Series.\n[3] Campbell DT, Stanley JC. Experimental and Quasi-experimental Designs for Research. Boston, MA: Houghton Mifflin, 1963."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "xboard.dev",
+    "objectID": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html",
+    "href": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html",
+    "title": "Using pip-toolsto manage python’s project dependencies",
     "section": "",
-    "text": "Migrating my blog from fastpages to Quarto\n\n\n\n\n\n\n\nmeta\n\n\nquarto\n\n\n\n\n\n\n\n\n\n\n\nJul 17, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata-science\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
+    "text": "As a blogger who writes about Python development, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples of advanced usage of pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.\n\n\npip-tools is an open-source project created to simplify the requirements files’ management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.\n\n\n\nDependency management in Python projects can be challenging, especially when dealing with multiple environments and package versions. Developers need a tool that can simplify the generation and maintenance of requirements files, ensure that all packages are pinned to a specific version to avoid version conflicts, and provide an easier way to manage different environments.\n\n\n\nSimplifying dependency management can minimize errors and save valuable development time. Developers should consider using pip-tools in their Python projects because:\n\nIt streamlines the generation and maintenance of requirements files\nIt ensures that all packages are pinned to a specific version to avoid version conflicts\nIt provides an easier way to manage different environments, like production, development, and testing\nIt permits simple package updating and upgrading as new versions become available\n\n\n\n\nHere are five examples of how developers can use pip-tools to manage the package requirements of their Python projects:\n\n\nDevelopers can use pip-tools to manage their project dependencies by creating a requirements.in file with the required packages and their respective versions. Developers can then run the following command to generate the required requirements.txt file:\n$ pip-compile requirements.in\nThis generates a pinned version requirement file with all the packages and their respective dependencies.\n\n\n\nDevelopers can define several files with libraries to use in multiple environments, such as development, production, and testing. They can create corresponding dev-requirements.in, prod-requirements.in, and test-requirements.in files and then use the following commands to generate their respective files:\n$ pip-compile dev-requirements.in\n$ pip-compile prod -requirements.in\n$ pip-compile test-requirements.in\nThese commands will generate dev-requirements.txt, prod-requirements.txt, and test-requirements.txt files with the corresponding dependencies.\n\n\n\nDevelopers can also use pip-tools with package indexes different from the official PyPI index. To do this, they can specify a custom index in their requirements.in file, like this:\n--index-url https://custompackageindex.com/\ndjango==3.2.5\nThen, running pip-compile requirements.in will output a requirements.txt file with the packages pinned to versions on the custom package index.\n\n\n\nDevelopers may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:\n$ pip-compile --generate-hashes requirements.in\nThis will add a hash value to each package in the requirements file, including the transitive dependencies.\n\n\n\nFinally, pip-tools can also help developers manage package updates easily. They can run the following command to generate a requirements.txt file with the new versions of the packages:\n$ pip-compile --upgrade requirements.in \nThis command will identify the available updates and upgrade the packages listed in the requirements file.\n\n\n\n\nWhile pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as Poetry, Pipenv, conda, and setuptools. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects.\n\n\n\npip-tools provides developers with an elegant and straightforward way to manage package dependencies in their Python projects. With its advantages such as generating pinned versions, managing multiple environments, and identifying available package updates, it simplifies the work of maintaining Python projects. By using pip-tools with different commands like pip-compile and pip-sync, developers can effectively solve the problem of managing their project dependencies."
+  },
+  {
+    "objectID": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#simplify-your-python-dependency-management-with-pip-tools",
+    "href": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#simplify-your-python-dependency-management-with-pip-tools",
+    "title": "Using pip-toolsto manage python’s project dependencies",
+    "section": "",
+    "text": "As a blogger who writes about Python development, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples of advanced usage of pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.\n\n\npip-tools is an open-source project created to simplify the requirements files’ management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.\n\n\n\nDependency management in Python projects can be challenging, especially when dealing with multiple environments and package versions. Developers need a tool that can simplify the generation and maintenance of requirements files, ensure that all packages are pinned to a specific version to avoid version conflicts, and provide an easier way to manage different environments.\n\n\n\nSimplifying dependency management can minimize errors and save valuable development time. Developers should consider using pip-tools in their Python projects because:\n\nIt streamlines the generation and maintenance of requirements files\nIt ensures that all packages are pinned to a specific version to avoid version conflicts\nIt provides an easier way to manage different environments, like production, development, and testing\nIt permits simple package updating and upgrading as new versions become available\n\n\n\n\nHere are five examples of how developers can use pip-tools to manage the package requirements of their Python projects:\n\n\nDevelopers can use pip-tools to manage their project dependencies by creating a requirements.in file with the required packages and their respective versions. Developers can then run the following command to generate the required requirements.txt file:\n$ pip-compile requirements.in\nThis generates a pinned version requirement file with all the packages and their respective dependencies.\n\n\n\nDevelopers can define several files with libraries to use in multiple environments, such as development, production, and testing. They can create corresponding dev-requirements.in, prod-requirements.in, and test-requirements.in files and then use the following commands to generate their respective files:\n$ pip-compile dev-requirements.in\n$ pip-compile prod -requirements.in\n$ pip-compile test-requirements.in\nThese commands will generate dev-requirements.txt, prod-requirements.txt, and test-requirements.txt files with the corresponding dependencies.\n\n\n\nDevelopers can also use pip-tools with package indexes different from the official PyPI index. To do this, they can specify a custom index in their requirements.in file, like this:\n--index-url https://custompackageindex.com/\ndjango==3.2.5\nThen, running pip-compile requirements.in will output a requirements.txt file with the packages pinned to versions on the custom package index.\n\n\n\nDevelopers may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:\n$ pip-compile --generate-hashes requirements.in\nThis will add a hash value to each package in the requirements file, including the transitive dependencies.\n\n\n\nFinally, pip-tools can also help developers manage package updates easily. They can run the following command to generate a requirements.txt file with the new versions of the packages:\n$ pip-compile --upgrade requirements.in \nThis command will identify the available updates and upgrade the packages listed in the requirements file.\n\n\n\n\nWhile pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as Poetry, Pipenv, conda, and setuptools. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects.\n\n\n\npip-tools provides developers with an elegant and straightforward way to manage package dependencies in their Python projects. With its advantages such as generating pinned versions, managing multiple environments, and identifying available package updates, it simplifies the work of maintaining Python projects. By using pip-tools with different commands like pip-compile and pip-sync, developers can effectively solve the problem of managing their project dependencies."
   },
   {
     "objectID": "about.html",

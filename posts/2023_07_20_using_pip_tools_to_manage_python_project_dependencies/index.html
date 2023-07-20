@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Flavio Regis de Arruda">
-<meta name="dcterms.date" content="2023-07-17">
-<meta name="description" content="Migrating my blog from <code>fastpages</code> to Quarto">
+<meta name="dcterms.date" content="2023-07-20">
+<meta name="description" content="Using pip-tools to manage python’s project dependencies`">
 
-<title>xboard.dev - Migrating my blog from fastpages to Quarto</title>
+<title>xboard.dev - Using pip-toolsto manage python’s project dependencies</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,19 +112,19 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="xboard.dev - Migrating my blog from fastpages to Quarto">
+<meta property="og:title" content="xboard.dev - Using pip-toolsto manage python’s project dependencies">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://source.unsplash.com/npxXWgQ33ZQ">
+<meta property="og:image" content="https://source.unsplash.com/s8OO2-t-HmQ">
 <meta property="og:site-name" content="xboard.dev">
-<meta name="twitter:title" content="xboard.dev - Migrating my blog from fastpages to Quarto">
+<meta name="twitter:title" content="xboard.dev - Using pip-toolsto manage python’s project dependencies">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://source.unsplash.com/npxXWgQ33ZQ">
+<meta name="twitter:image" content="https://source.unsplash.com/s8OO2-t-HmQ">
 <meta name="twitter:creator" content="@xboard_">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://xboard.dev/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html" />
+<link rel="canonical" href="https://xboard.dev/posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html" />
 </head>
 
-<body class="floating nav-fixed slimcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -172,10 +172,9 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Migrating my blog from <code>fastpages</code> to <code>Quarto</code></h1>
+      <h1 class="title">Using <code>pip-tools</code>to manage python’s project dependencies</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">meta</div>
-                <div class="quarto-category">quarto</div>
+                <div class="quarto-category">python</div>
               </div>
                   </div>
   </div>
@@ -193,7 +192,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 17, 2023</p>
+        <p class="date">July 20, 2023</p>
       </div>
     </div>
     
@@ -208,33 +207,13 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#the-benefits-of-project-quarto-for-python-development-bloggers" id="toc-the-benefits-of-project-quarto-for-python-development-bloggers" class="nav-link active" data-scroll-target="#the-benefits-of-project-quarto-for-python-development-bloggers">The Benefits of Project Quarto for Python Development Bloggers</a>
+  <li><a href="#simplify-your-python-dependency-management-with-pip-tools" id="toc-simplify-your-python-dependency-management-with-pip-tools" class="nav-link active" data-scroll-target="#simplify-your-python-dependency-management-with-pip-tools">Simplify Your Python Dependency Management with pip-tools</a>
   <ul class="collapse">
-  <li><a href="#what-is-project-quarto" id="toc-what-is-project-quarto" class="nav-link" data-scroll-target="#what-is-project-quarto">What is Project Quarto?</a></li>
-  <li><a href="#why-and-when-developers-should-use-quarto" id="toc-why-and-when-developers-should-use-quarto" class="nav-link" data-scroll-target="#why-and-when-developers-should-use-quarto">Why and When Developers Should Use Quarto?</a></li>
-  <li><a href="#quarto-is-the-future-the-discontinuation-of-fastpages" id="toc-quarto-is-the-future-the-discontinuation-of-fastpages" class="nav-link" data-scroll-target="#quarto-is-the-future-the-discontinuation-of-fastpages">Quarto is the Future: The Discontinuation of Fastpages</a></li>
-  <li><a href="#installing-quarto" id="toc-installing-quarto" class="nav-link" data-scroll-target="#installing-quarto">Installing Quarto</a></li>
-  <li><a href="#migrating-fastpagess-posts-to-quarto" id="toc-migrating-fastpagess-posts-to-quarto" class="nav-link" data-scroll-target="#migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</a></li>
-  <li><a href="#setup-favicon" id="toc-setup-favicon" class="nav-link" data-scroll-target="#setup-favicon">Setup <code>favicon</code></a></li>
-  <li><a href="#adding-canonical-tag-into-the-head-section" id="toc-adding-canonical-tag-into-the-head-section" class="nav-link" data-scroll-target="#adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</a></li>
-  <li><a href="#gitgithub" id="toc-gitgithub" class="nav-link" data-scroll-target="#gitgithub">Git/Github</a>
-  <ul class="collapse">
-  <li><a href="#add-custom-domain-to-github-pages" id="toc-add-custom-domain-to-github-pages" class="nav-link" data-scroll-target="#add-custom-domain-to-github-pages">Add custom domain to github pages</a></li>
-  </ul></li>
-  <li><a href="#creating-condas-environment" id="toc-creating-condas-environment" class="nav-link" data-scroll-target="#creating-condas-environment">Creating Conda’s environment</a></li>
-  <li><a href="#setup-posts_metadata.yml" id="toc-setup-posts_metadata.yml" class="nav-link" data-scroll-target="#setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></a>
-  <ul class="collapse">
-  <li><a href="#setup-giscushttpsgiscus.app-comments" id="toc-setup-giscushttpsgiscus.app-comments" class="nav-link" data-scroll-target="#setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</a></li>
-  </ul></li>
-  <li><a href="#adding-dark-mode" id="toc-adding-dark-mode" class="nav-link" data-scroll-target="#adding-dark-mode">Adding dark mode</a></li>
-  <li><a href="#adding-google-anaytics-and-rss" id="toc-adding-google-anaytics-and-rss" class="nav-link" data-scroll-target="#adding-google-anaytics-and-rss">Adding google anaytics and RSS</a></li>
-  <li><a href="#setup-footer" id="toc-setup-footer" class="nav-link" data-scroll-target="#setup-footer">Setup footer</a></li>
-  <li><a href="#vscode" id="toc-vscode" class="nav-link" data-scroll-target="#vscode">VSCode</a>
-  <ul class="collapse">
-  <li><a href="#adding-quarto-extesion" id="toc-adding-quarto-extesion" class="nav-link" data-scroll-target="#adding-quarto-extesion">Adding Quarto extesion</a></li>
-  <li><a href="#adding-snippet" id="toc-adding-snippet" class="nav-link" data-scroll-target="#adding-snippet">Adding snippet</a></li>
-  <li><a href="#enabling-inline-suggestion" id="toc-enabling-inline-suggestion" class="nav-link" data-scroll-target="#enabling-inline-suggestion">Enabling inline suggestion</a></li>
-  </ul></li>
+  <li><a href="#what-is-pip-tools" id="toc-what-is-pip-tools" class="nav-link" data-scroll-target="#what-is-pip-tools">What is pip-tools?</a></li>
+  <li><a href="#what-problem-does-pip-tools-solve" id="toc-what-problem-does-pip-tools-solve" class="nav-link" data-scroll-target="#what-problem-does-pip-tools-solve">What problem does pip-tools solve?</a></li>
+  <li><a href="#why-and-when-should-developers-use-pip-tools" id="toc-why-and-when-should-developers-use-pip-tools" class="nav-link" data-scroll-target="#why-and-when-should-developers-use-pip-tools">Why and when should developers use pip-tools?</a></li>
+  <li><a href="#example-of-using-pip-tools" id="toc-example-of-using-pip-tools" class="nav-link" data-scroll-target="#example-of-using-pip-tools">Example of using <code>pip-tools</code></a></li>
+  <li><a href="#alternatives-to-pip-tools" id="toc-alternatives-to-pip-tools" class="nav-link" data-scroll-target="#alternatives-to-pip-tools">Alternatives to pip-tools</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
@@ -245,115 +224,76 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<section id="the-benefits-of-project-quarto-for-python-development-bloggers" class="level1 page-columns page-full">
-<h1>The Benefits of Project Quarto for Python Development Bloggers</h1>
-<p>Are you a Python development blogger searching for an efficient and effective way to publish your blog posts? Look no further than the Quarto project!</p>
-<section id="what-is-project-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-project-quarto">What is Project Quarto?</h2>
-<p>Quarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more. With an easy-to-use interface and a wide range of customizable features, Quarto makes it simple to publish your Python development blogs.</p>
+<section id="simplify-your-python-dependency-management-with-pip-tools" class="level2">
+<h2 class="anchored" data-anchor-id="simplify-your-python-dependency-management-with-pip-tools">Simplify Your Python Dependency Management with pip-tools</h2>
+<p>As a blogger who writes about Python development, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples of advanced usage of pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
+<section id="what-is-pip-tools" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-pip-tools">What is pip-tools?</h3>
+<p>pip-tools is an open-source project created to simplify the requirements files’ management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.</p>
 </section>
-<section id="why-and-when-developers-should-use-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="why-and-when-developers-should-use-quarto">Why and When Developers Should Use Quarto?</h2>
-<p>Developers should use Quarto when searching for a cost-effective and customizable way to publish their blog posts. The Quarto project simplifies the process of organizing, formatting, and publishing scientific documents, with features such as:</p>
+<section id="what-problem-does-pip-tools-solve" class="level3">
+<h3 class="anchored" data-anchor-id="what-problem-does-pip-tools-solve">What problem does pip-tools solve?</h3>
+<p>Dependency management in Python projects can be challenging, especially when dealing with multiple environments and package versions. Developers need a tool that can simplify the generation and maintenance of requirements files, ensure that all packages are pinned to a specific version to avoid version conflicts, and provide an easier way to manage different environments.</p>
+</section>
+<section id="why-and-when-should-developers-use-pip-tools" class="level3">
+<h3 class="anchored" data-anchor-id="why-and-when-should-developers-use-pip-tools">Why and when should developers use pip-tools?</h3>
+<p>Simplifying dependency management can minimize errors and save valuable development time. Developers should consider using pip-tools in their Python projects because:</p>
 <ul>
-<li>Compatibility with a wide range of programming languages, including R, Python, and Julia;</li>
-<li>Integration with popular web publishing platforms such as GitHub pages and Jekyll;</li>
-<li>Support for a broad range of document outputs, including LaTeX, PDF, and HTML;</li>
-<li>Extensive customizability with built-in templates and reusable components; and</li>
-<li>Built-in support for code snippets and data visualizations.</li>
+<li>It streamlines the generation and maintenance of requirements files</li>
+<li>It ensures that all packages are pinned to a specific version to avoid version conflicts</li>
+<li>It provides an easier way to manage different environments, like production, development, and testing</li>
+<li>It permits simple package updating and upgrading as new versions become available</li>
 </ul>
-<p>With its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging.</p>
 </section>
-<section id="quarto-is-the-future-the-discontinuation-of-fastpages" class="level2">
-<h2 class="anchored" data-anchor-id="quarto-is-the-future-the-discontinuation-of-fastpages">Quarto is the Future: The Discontinuation of Fastpages</h2>
-<p>While Fastpages was once a popular option for Python development bloggers, development of that platform has officially been discontinued. With its wide-ranging limitations and lack of further support, Fastpages is no longer a viable option for many Python development bloggers.</p>
-<p>As an alternative, the Quarto project offers a robust platform for scientific document publication that is both customizable and user-friendly. The platform is designed with metadata-driven management and robust document-related capabilities for modern scientists and data professionals.</p>
+<section id="example-of-using-pip-tools" class="level3">
+<h3 class="anchored" data-anchor-id="example-of-using-pip-tools">Example of using <code>pip-tools</code></h3>
+<p>Here are five examples of how developers can use pip-tools to manage the package requirements of their Python projects:</p>
+<section id="basic-usage-of-pip-tools-with-requirements-files" class="level4">
+<h4 class="anchored" data-anchor-id="basic-usage-of-pip-tools-with-requirements-files">Basic usage of pip-tools with requirements files</h4>
+<p>Developers can use pip-tools to manage their project dependencies by creating a <code>requirements.in</code> file with the required packages and their respective versions. Developers can then run the following command to generate the required <code>requirements.txt</code> file:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This generates a pinned version requirement file with all the packages and their respective dependencies.</p>
 </section>
-<section id="installing-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="installing-quarto">Installing Quarto</h2>
-<p>Go to the <a href="https://quarto.org/docs/get-started/">get started</a> page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto-1.3.433-linux-amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Create my blog project, called <code>quarto-blog</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create-project quarto-blog <span class="at">--type</span> website:blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>then enter the project and preview it:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quarto-blog/</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview quarto-blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>TODO: Add screenshot to preview here</p>
-</div>
-</div>
+<section id="pip-tools-with-multiple-environments" class="level4">
+<h4 class="anchored" data-anchor-id="pip-tools-with-multiple-environments">pip-tools with multiple environments</h4>
+<p>Developers can define several files with libraries to use in multiple environments, such as development, production, and testing. They can create corresponding <code>dev-requirements.in</code>, <code>prod-requirements.in</code>, and <code>test-requirements.in</code> files and then use the following commands to generate their respective files:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile dev-requirements.in</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile prod <span class="at">-requirements.in</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile test-requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These commands will generate <code>dev-requirements.txt</code>, <code>prod-requirements.txt</code>, and <code>test-requirements.txt</code> files with the corresponding dependencies.</p>
 </section>
-<section id="migrating-fastpagess-posts-to-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</h2>
+<section id="pip-tools-with-custom-package-indexes" class="level4">
+<h4 class="anchored" data-anchor-id="pip-tools-with-custom-package-indexes">pip-tools with custom package indexes</h4>
+<p>Developers can also use pip-tools with package indexes different from the official PyPI index. To do this, they can specify a custom index in their <code>requirements.in</code> file, like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--index-url</span> https://custompackageindex.com/</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">django</span><span class="op">=</span>=3.2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, running <code>pip-compile requirements.in</code> will output a <code>requirements.txt</code> file with the packages pinned to versions on the custom package index.</p>
 </section>
-<section id="setup-favicon" class="level2">
-<h2 class="anchored" data-anchor-id="setup-favicon">Setup <code>favicon</code></h2>
+<section id="pip-tools-with-transitive-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="pip-tools-with-transitive-dependencies">pip-tools with transitive dependencies</h4>
+<p>Developers may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile <span class="at">--generate-hashes</span> requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will add a hash value to each package in the requirements file, including the transitive dependencies.</p>
 </section>
-<section id="adding-canonical-tag-into-the-head-section" class="level2">
-<h2 class="anchored" data-anchor-id="adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</h2>
-</section>
-<section id="gitgithub" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="gitgithub">Git/Github</h2>
-<p>before</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>This is a side comment/text/note and can support any markdown syntax!</p>
-</div></div><p>after ### Setup github pages</p>
-<p><a href="https://quarto.org/docs/publishing/github-pages.html">Follow this</a>.</p>
-<section id="add-custom-domain-to-github-pages" class="level3">
-<h3 class="anchored" data-anchor-id="add-custom-domain-to-github-pages">Add custom domain to github pages</h3>
-<p>First remove the domain in repository <a href="https://github.com/xboard/fastpages-blog">fastpages-blog</a></p>
-<p>then add domain to [quarto-blog] repository.</p>
+<section id="pip-tools-to-update-dependencies" class="level4">
+<h4 class="anchored" data-anchor-id="pip-tools-to-update-dependencies">pip-tools to update dependencies</h4>
+<p>Finally, pip-tools can also help developers manage package updates easily. They can run the following command to generate a <code>requirements.txt</code> file with the new versions of the packages:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile <span class="at">--upgrade</span> requirements.in </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This command will identify the available updates and upgrade the packages listed in the requirements file.</p>
 </section>
 </section>
-<section id="creating-condas-environment" class="level2">
-<h2 class="anchored" data-anchor-id="creating-condas-environment">Creating Conda’s environment</h2>
+<section id="alternatives-to-pip-tools" class="level3">
+<h3 class="anchored" data-anchor-id="alternatives-to-pip-tools">Alternatives to pip-tools</h3>
+<p>While pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as <a href="https://python-poetry.org/">Poetry</a>, <a href="https://pipenv.pypa.io/">Pipenv</a>, <a href="https://docs.conda.io/en/latest/">conda</a>, and <a href="https://setuptools.pypa.io/en/latest/">setuptools</a>. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects.</p>
 </section>
-<section id="setup-posts_metadata.yml" class="level2">
-<h2 class="anchored" data-anchor-id="setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></h2>
-<section id="setup-giscushttpsgiscus.app-comments" class="level3">
-<h3 class="anchored" data-anchor-id="setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</h3>
-</section>
-</section>
-<section id="adding-dark-mode" class="level2">
-<h2 class="anchored" data-anchor-id="adding-dark-mode">Adding dark mode</h2>
-</section>
-<section id="adding-google-anaytics-and-rss" class="level2">
-<h2 class="anchored" data-anchor-id="adding-google-anaytics-and-rss">Adding google anaytics and RSS</h2>
-</section>
-<section id="setup-footer" class="level2">
-<h2 class="anchored" data-anchor-id="setup-footer">Setup footer</h2>
-</section>
-<section id="vscode" class="level2">
-<h2 class="anchored" data-anchor-id="vscode">VSCode</h2>
-<section id="adding-quarto-extesion" class="level3">
-<h3 class="anchored" data-anchor-id="adding-quarto-extesion">Adding Quarto extesion</h3>
-</section>
-<section id="adding-snippet" class="level3">
-<h3 class="anchored" data-anchor-id="adding-snippet">Adding snippet</h3>
-</section>
-<section id="enabling-inline-suggestion" class="level3">
-<h3 class="anchored" data-anchor-id="enabling-inline-suggestion">Enabling inline suggestion</h3>
-<p>Set <code>Snippet suggestions</code> to <code>inline</code> as recommended <a href="https://stackoverflow.com/a/74339599/483157">here</a>.</p>
-</section>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>If you’re a Python developer looking for an efficient, cost-effective, and customizable way to publish your Python development blog, the Quarto project is an excellent choice. With integrated features such as metadata</p>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>pip-tools provides developers with an elegant and straightforward way to manage package dependencies in their Python projects. With its advantages such as generating pinned versions, managing multiple environments, and identifying available package updates, it simplifies the work of maintaining Python projects. By using pip-tools with different commands like <code>pip-compile</code> and <code>pip-sync</code>, developers can effectively solve the problem of managing their project dependencies.</p>
 
 
 </section>
