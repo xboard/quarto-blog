@@ -11,7 +11,7 @@ image: "https://source.unsplash.com/s8OO2-t-HmQ"
 
 ## Simplify Your Python Dependency Management with pip-tools 
 
-As a blogger who writes about Python development, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples of advanced usage of pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.
+As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.
 
 ### What is pip-tools?
 
@@ -50,7 +50,7 @@ Developers can define several files with libraries to use in multiple environmen
 
 ```bash
 $ pip-compile dev-requirements.in
-$ pip-compile prod -requirements.in
+$ pip-compile prod-requirements.in
 $ pip-compile test-requirements.in
 ```
 
