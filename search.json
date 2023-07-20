@@ -81,7 +81,7 @@
     "href": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#what-is-pip-tools",
     "title": "Using pip-tools to manage project dependencies in Python",
     "section": "What is pip-tools?",
-    "text": "What is pip-tools?\npip-tools is an open-source project created to simplify the requirements files’ management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.\nMoreover, pip-tools allows you to easily manage your project dependencies with minimum effort and ensures you have a reproducible development environment. It allows other developers that are working on the same project to have identical dependencies to yours, with no version conflicts.\nThis can help reduce time spent debugging issues related to package conflicts and ensure that code runs consistently across different environments."
+    "text": "What is pip-tools?\npip-tools is an open-source project created to simplify the requirements files management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.\nMoreover, pip-tools allows you to easily manage your project dependencies with minimum effort and ensures you have a reproducible development environment. It allows other developers that are working on the same project to have identical dependencies to yours, with no version conflicts.\nThis can help reduce time spent debugging issues related to package conflicts and ensure that code runs consistently across different environments."
   },
   {
     "objectID": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#what-problem-does-pip-tools-solve",
