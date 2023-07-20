@@ -116,7 +116,7 @@
     "href": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#alternatives-to-pip-tools",
     "title": "Using pip-tools to manage project dependencies in Python",
     "section": "Alternatives to pip-tools",
-    "text": "Alternatives to pip-tools\nWhile pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as Poetry, Pipenv, conda, and setuptools. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects."
+    "text": "Alternatives to pip-tools\nWhile pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as Poetry, Pipenv, conda, and setuptools. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects but pip-tools has the advantage of being simpler and more lightweight while for instance poetry is preferable if you also want a more complete set of features for managing not only package dependencies, but also virtual environments, package building, and publishing."
   },
   {
     "objectID": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#conclusion",

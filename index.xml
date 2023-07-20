@@ -115,7 +115,7 @@ font-style: inherit;">pip-sync</span></span></code></pre></div>
 </section>
 <section id="alternatives-to-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="alternatives-to-pip-tools">Alternatives to pip-tools</h2>
-<p>While pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as <a href="https://python-poetry.org/" target="_blank">Poetry</a>, <a href="https://pipenv.pypa.io/" target="_blank">Pipenv</a>, <a href="https://docs.conda.io/en/latest/" target="_blank">conda</a>, and <a href="https://setuptools.pypa.io/en/latest/" target="_blank">setuptools</a>. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects.</p>
+<p>While pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as <a href="https://python-poetry.org/" target="_blank">Poetry</a>, <a href="https://pipenv.pypa.io/" target="_blank">Pipenv</a>, <a href="https://docs.conda.io/en/latest/" target="_blank">conda</a>, and <a href="https://setuptools.pypa.io/en/latest/" target="_blank">setuptools</a>. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects but <code>pip-tools</code> has the advantage of being simpler and more lightweight while for instance <code>poetry</code> is preferable if you also want a more complete set of features for managing not only package dependencies, but also virtual environments, package building, and publishing.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
