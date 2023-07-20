@@ -17,6 +17,10 @@ As a engineer who loves to solve problems using Python and creates tens of proje
 
 pip-tools is an open-source project created to simplify the requirements files' management used in Python projects. It takes a project's dependencies and recursively generates pinned version requirement files.
 
+Moreover, `pip-tools` allows you to easily manage your project dependencies with minimum effort and ensures you have a reproducible development environment. It allows other developers that are working on the same project to have identical dependencies to yours, with no version conflicts. 
+
+This can help reduce time spent debugging issues related to package conflicts and ensure that code runs consistently across different environments.
+
 ## What problem does pip-tools solve?
 
 Dependency management in Python projects can be challenging, especially when dealing with multiple environments and package versions. Developers need a tool that can simplify the generation and maintenance of requirements files, ensure that all packages are pinned to a specific version to avoid version conflicts, and provide an easier way to manage different environments.
@@ -86,6 +90,22 @@ $ pip-compile --upgrade requirements.in
 ```
 
 This command will identify the available updates and upgrade the packages listed in the requirements file.
+
+## pip-sync
+
+`pip-sync` is a tool provided by `pip-tools` that ensures your virtual environment only contains the packages you have explicitly listed in your `requirements.txt` file. This is useful because it prevents conflicts between versions of packages in your virtual environment and ensures you only install the packages necessary for your project.
+
+Using `pip-sync` is a good practice to ensure your project dependencies are isolated from other projects on your development machine. It prevents conflicts between different versions of packages, making your project more reliable and robust.
+
+
+Once you have your `requirements.txt` file, run the command:
+
+```bash
+pip-sync
+```
+
+This command will install only the packages listed in `requirements.txt` and their dependencies, and remove any packages that are not listed. This ensures that you have an isolated environment with only the packages required by your project.
+
 
 ## Alternatives to pip-tools
 
