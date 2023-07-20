@@ -16,7 +16,7 @@ As a engineer who loves to solve problems using Python and creates tens of proje
 
 ## What is pip-tools?
 
-pip-tools is an open-source project created to simplify the requirements files' management used in Python projects. It takes a project's dependencies and recursively generates pinned version requirement files.
+pip-tools is an open-source project created to simplify the requirements files management used in Python projects. It takes a project's dependencies and recursively generates pinned version requirement files.
 
 Moreover, `pip-tools` allows you to easily manage your project dependencies with minimum effort and ensures you have a reproducible development environment. It allows other developers that are working on the same project to have identical dependencies to yours, with no version conflicts. 
 
