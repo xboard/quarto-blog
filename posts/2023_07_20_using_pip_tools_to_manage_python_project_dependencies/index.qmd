@@ -102,7 +102,7 @@ Using `pip-sync` is a good practice to ensure your project dependencies are isol
 Once you have your `requirements.txt` file, run the command:
 
 ```bash
-pip-sync
+$ pip-sync
 ```
 
 This command will install only the packages listed in `requirements.txt` and their dependencies, and remove any packages that are not listed. This ensures that you have an isolated environment with only the packages required by your project.
