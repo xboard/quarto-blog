@@ -125,6 +125,8 @@ font-style: inherit;">pip-sync</span></span></code></pre></div>
 </section>
 
  ]]></description>
+  <category>software development</category>
+  <category>tools</category>
   <category>python</category>
   <guid>https://xboard.dev/posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html</guid>
   <pubDate>Thu, 20 Jul 2023 03:00:00 GMT</pubDate>
@@ -1051,7 +1053,9 @@ font-style: inherit;">;</span></span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>data-science</category>
+  <category>data science</category>
+  <category>causal inference</category>
+  <category>python</category>
   <guid>https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/index.html</guid>
   <pubDate>Sat, 01 Jan 2022 09:00:00 GMT</pubDate>
   <media:content url="https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/its-card2.jpg" medium="image" type="image/jpeg"/>
