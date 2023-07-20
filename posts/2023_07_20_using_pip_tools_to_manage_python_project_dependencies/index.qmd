@@ -12,7 +12,7 @@ image: "https://source.unsplash.com/s8OO2-t-HmQ"
 
 ## Simplify Your Python Dependency Management with pip-tools 
 
-As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the [pip-tools](https://pypi.org/project/pip-tools/) project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.
+As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the [pip-tools](https://pypi.org/project/pip-tools/){target="_blank"} project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.
 
 ## What is pip-tools?
 
@@ -110,7 +110,7 @@ This command will install only the packages listed in `requirements.txt` and the
 
 ## Alternatives to pip-tools
 
-While pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as [Poetry](https://python-poetry.org/), [Pipenv](https://pipenv.pypa.io/), [conda](https://docs.conda.io/en/latest/), and [setuptools](https://setuptools.pypa.io/en/latest/). These tools all have slightly different approaches to the problem of managing package dependencies in Python projects. 
+While pip-tools is a popular and powerful tool for managing dependencies, developers can also use alternatives such as [Poetry](https://python-poetry.org/){target="_blank"}, [Pipenv](https://pipenv.pypa.io/){target="_blank"}, [conda](https://docs.conda.io/en/latest/){target="_blank"}, and [setuptools](https://setuptools.pypa.io/en/latest/){target="_blank"}. These tools all have slightly different approaches to the problem of managing package dependencies in Python projects. 
 
 ## Conclusion
 
