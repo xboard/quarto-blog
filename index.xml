@@ -22,7 +22,7 @@
 
 <section id="simplify-your-python-dependency-management-with-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="simplify-your-python-dependency-management-with-pip-tools">Simplify Your Python Dependency Management with pip-tools</h2>
-<p>As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
+<p>As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the <a href="https://pypi.org/project/pip-tools/">pip-tools</a> project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
 </section>
 <section id="what-is-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-pip-tools">What is pip-tools?</h2>

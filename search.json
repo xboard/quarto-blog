@@ -67,14 +67,14 @@
     "href": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html",
     "title": "Using pip-tools to manage project dependencies in Python",
     "section": "",
-    "text": "As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools."
+    "text": "As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools."
   },
   {
     "objectID": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#simplify-your-python-dependency-management-with-pip-tools",
     "href": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#simplify-your-python-dependency-management-with-pip-tools",
     "title": "Using pip-tools to manage project dependencies in Python",
     "section": "",
-    "text": "As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools."
+    "text": "As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools."
   },
   {
     "objectID": "posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html#what-is-pip-tools",
