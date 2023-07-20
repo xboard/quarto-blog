@@ -110,7 +110,7 @@ font-style: inherit;">--upgrade</span> requirements.in </span></code></pre></div
 <p>Once you have your <code>requirements.txt</code> file, run the command:</p>
 <div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">pip-sync</span></span></code></pre></div>
+font-style: inherit;">$</span> pip-sync</span></code></pre></div>
 <p>This command will install only the packages listed in <code>requirements.txt</code> and their dependencies, and remove any packages that are not listed. This ensures that you have an isolated environment with only the packages required by your project.</p>
 </section>
 <section id="alternatives-to-pip-tools" class="level2">
