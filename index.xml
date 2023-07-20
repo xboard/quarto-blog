@@ -12,7 +12,7 @@
 <generator>quarto-1.3.433</generator>
 <lastBuildDate>Thu, 20 Jul 2023 03:00:00 GMT</lastBuildDate>
 <item>
-  <title>Using pip-toolsto manage python’s project dependencies</title>
+  <title>Using pip-tools to manage python’s project dependencies</title>
   <dc:creator>Flavio Regis de Arruda</dc:creator>
   <link>https://xboard.dev/posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html</link>
   <description><![CDATA[ 
