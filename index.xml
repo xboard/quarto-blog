@@ -22,7 +22,7 @@
 
 <section id="simplify-your-python-dependency-management-with-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="simplify-your-python-dependency-management-with-pip-tools">Simplify Your Python Dependency Management with pip-tools</h2>
-<p>As a blogger who writes about Python development, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples of advanced usage of pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
+<p>As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. But developers can now use the pip-tools project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves, why and when developers should use it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
 <section id="what-is-pip-tools" class="level3">
 <h3 class="anchored" data-anchor-id="what-is-pip-tools">What is pip-tools?</h3>
 <p>pip-tools is an open-source project created to simplify the requirements files’ management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.</p>
@@ -60,9 +60,7 @@ background-color: null;
 font-style: inherit;">$</span> pip-compile dev-requirements.in</span>
 <span id="cb2-2"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">$</span> pip-compile prod <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-requirements.in</span></span>
+font-style: inherit;">$</span> pip-compile prod-requirements.in</span>
 <span id="cb2-3"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">$</span> pip-compile test-requirements.in</span></code></pre></div>
