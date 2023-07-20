@@ -1,6 +1,6 @@
 ---
-title: "Using `pip-tools` to manage python's project dependencies"
-description-meta: "Using pip-tools to manage python's project dependencies`"
+title: "Using `pip-tools` to manage project dependency management in Python"
+description-meta: "Using pip-tools to manage project dependency management in Python"
 date: 2023-07-20
 toc: true
 categories: [python]
