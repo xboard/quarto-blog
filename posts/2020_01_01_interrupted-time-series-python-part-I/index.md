@@ -2,7 +2,7 @@
 toc: true
 date: 2022-01-01 06:00:00
 title: "Interrupted Time Series (ITS) in Python"
-description: "Interrupted Time Series (ITS) analysis using Python and statsmodels"
+description: "Interrupted Time Series (ITS) analysis using Python and statsmodels."
 description-meta: "Interrupted Time Series (ITS) analysis using Python and statsmodels"
 image: its-card2.jpg
 categories: [data-science]
