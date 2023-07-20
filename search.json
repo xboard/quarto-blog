@@ -1,66 +1,10 @@
 [
   {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "Are you a Python development blogger searching for an efficient and effective way to publish your blog posts? Look no further than the Quarto project!\n\n\nQuarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more. With an easy-to-use interface and a wide range of customizable features, Quarto makes it simple to publish your Python development blogs.\n\n\n\nDevelopers should use Quarto when searching for a cost-effective and customizable way to publish their blog posts. The Quarto project simplifies the process of organizing, formatting, and publishing scientific documents, with features such as:\n\nCompatibility with a wide range of programming languages, including R, Python, and Julia;\nIntegration with popular web publishing platforms such as GitHub pages and Jekyll;\nSupport for a broad range of document outputs, including LaTeX, PDF, and HTML;\nExtensive customizability with built-in templates and reusable components; and\nBuilt-in support for code snippets and data visualizations.\n\nWith its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging.\n\n\n\nWhile Fastpages was once a popular option for Python development bloggers, development of that platform has officially been discontinued. With its wide-ranging limitations and lack of further support, Fastpages is no longer a viable option for many Python development bloggers.\nAs an alternative, the Quarto project offers a robust platform for scientific document publication that is both customizable and user-friendly. The platform is designed with metadata-driven management and robust document-related capabilities for modern scientists and data professionals.\n\n\n\nGo to the get started page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:\nsudo dpkg -i quarto-1.3.433-linux-amd64.deb\nCreate my blog project, called quarto-blog:\nquarto create-project quarto-blog --type website:blog\nthen enter the project and preview it:\ncd quarto-blog/\nquarto preview quarto-blog\n\n\n\n\n\n\nImportant\n\n\n\nTODO: Add screenshot to preview here\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbefore\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter ### Setup github pages\nFollow this.\n\n\nFirst remove the domain in repository fastpages-blog\nthen add domain to [quarto-blog] repository.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSet Snippet suggestions to inline as recommended here.\n\n\n\n\nIf you’re a Python developer looking for an efficient, cost-effective, and customizable way to publish your Python development blog, the Quarto project is an excellent choice. With integrated features such as metadata"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-project-quarto",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-project-quarto",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "Quarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more. With an easy-to-use interface and a wide range of customizable features, Quarto makes it simple to publish your Python development blogs."
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why-and-when-developers-should-use-quarto",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why-and-when-developers-should-use-quarto",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "Developers should use Quarto when searching for a cost-effective and customizable way to publish their blog posts. The Quarto project simplifies the process of organizing, formatting, and publishing scientific documents, with features such as:\n\nCompatibility with a wide range of programming languages, including R, Python, and Julia;\nIntegration with popular web publishing platforms such as GitHub pages and Jekyll;\nSupport for a broad range of document outputs, including LaTeX, PDF, and HTML;\nExtensive customizability with built-in templates and reusable components; and\nBuilt-in support for code snippets and data visualizations.\n\nWith its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging."
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#quarto-is-the-future-the-discontinuation-of-fastpages",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#quarto-is-the-future-the-discontinuation-of-fastpages",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "While Fastpages was once a popular option for Python development bloggers, development of that platform has officially been discontinued. With its wide-ranging limitations and lack of further support, Fastpages is no longer a viable option for many Python development bloggers.\nAs an alternative, the Quarto project offers a robust platform for scientific document publication that is both customizable and user-friendly. The platform is designed with metadata-driven management and robust document-related capabilities for modern scientists and data professionals."
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#installing-quarto",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#installing-quarto",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "Go to the get started page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:\nsudo dpkg -i quarto-1.3.433-linux-amd64.deb\nCreate my blog project, called quarto-blog:\nquarto create-project quarto-blog --type website:blog\nthen enter the project and preview it:\ncd quarto-blog/\nquarto preview quarto-blog\n\n\n\n\n\n\nImportant\n\n\n\nTODO: Add screenshot to preview here"
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "before\n\n\nThis is a side comment/text/note and can support any markdown syntax!\nafter ### Setup github pages\nFollow this.\n\n\nFirst remove the domain in repository fastpages-blog\nthen add domain to [quarto-blog] repository."
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "Set Snippet suggestions to inline as recommended here."
-  },
-  {
-    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#conclusion",
-    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#conclusion",
-    "title": "Migrating my blog from fastpages to Quarto",
-    "section": "",
-    "text": "If you’re a Python developer looking for an efficient, cost-effective, and customizable way to publish your Python development blog, the Quarto project is an excellent choice. With integrated features such as metadata"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "xboard.dev",
     "section": "",
-    "text": "Using pip-toolsto manage python’s project dependencies\n\n\n\n\n\n\n\npython\n\n\n\n\n\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nMigrating my blog from fastpages to Quarto\n\n\n\n\n\n\n\nmeta\n\n\nquarto\n\n\n\n\n\n\n\n\n\n\n\nJul 17, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata-science\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
+    "text": "Using pip-toolsto manage python’s project dependencies\n\n\n\n\n\n\n\npython\n\n\n\n\n\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata-science\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2020_01_01_interrupted-time-series-python-part-I/index.html#when-ab-test-is-not-an-option",

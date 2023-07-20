@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://xboard.dev/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html</loc>
-    <lastmod>2023-07-20T18:15:04.652Z</lastmod>
-  </url>
-  <url>
     <loc>https://xboard.dev/index.html</loc>
-    <lastmod>2023-07-20T18:15:02.284Z</lastmod>
+    <lastmod>2023-07-20T18:16:09.423Z</lastmod>
   </url>
   <url>
     <loc>https://xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/index.html</loc>
-    <lastmod>2023-07-20T18:15:03.296Z</lastmod>
+    <lastmod>2023-07-20T18:16:10.371Z</lastmod>
   </url>
   <url>
     <loc>https://xboard.dev/posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html</loc>
-    <lastmod>2023-07-20T18:15:04.184Z</lastmod>
+    <lastmod>2023-07-20T18:16:11.151Z</lastmod>
   </url>
   <url>
     <loc>https://xboard.dev/about.html</loc>
-    <lastmod>2023-07-20T18:15:05.752Z</lastmod>
+    <lastmod>2023-07-20T18:16:12.643Z</lastmod>
   </url>
 </urlset>
