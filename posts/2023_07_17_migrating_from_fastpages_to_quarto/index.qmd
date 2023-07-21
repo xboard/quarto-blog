@@ -11,8 +11,7 @@ image: "https://source.unsplash.com/npxXWgQ33ZQ"
 
 ## Why
 
-In a [post published on September 3, 2022](https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095), Hamel Husain announced that he has rebuilt nbdev on top of [Quarto](https://quarto.org). In the blog post, he explained that there have been new pieces of technology like [Jupyter Book](https://jupyterbook.org/) and [Quarto](https://quarto.org), which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from JJ Allaire and the rest of the Posit team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of Fastpages. So I decided to migrate my blog to Quarto.  
-
+In a [post published on September 3, 2022](https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095), Hamel Husain announced that he has rebuilt nbdev on top of [Quarto](https://quarto.org). In the blog post, he explained that there have been new pieces of technology like [Jupyter Book](https://jupyterbook.org/) and [Quarto](https://quarto.org), which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from JJ Allaire and the rest of the Posit team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of Fastpages. 
 
 ## What is Quarto?
 
@@ -29,7 +28,6 @@ Developers should use Quarto when searching for a cost-effective and customizabl
 - Built-in support for code snippets and data visualizations.
 
 With its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging.
-
 
 
 ## Installing Quarto
