@@ -1,6 +1,6 @@
 ---
 title: "Tip: set `depends_on_past=True` in Airflow when creating a time series model pipeline"
-description: "Tip: set `depends_on_past=True` in Airflow when creating a time series model pipeline"
+# description: "Tip: set `depends_on_past=True` in Airflow when creating a time series model pipeline"
 description-meta: "When creating time series model pipeline in Airflow set `depends_on_past=True`."
 date: 2023-07-27
 toc: true
@@ -10,7 +10,6 @@ draft: false
 image: "https://source.unsplash.com/Em2hPK55o8g"
 ---
 
-## Tip
 
 ::: {.callout-tip}
 
@@ -18,6 +17,32 @@ When creating time series model pipeline in Airflow set `depends_on_past=True`.
 
 :::
 
+## How?
+
+For a specific task, most probably a sensor:
+
+```python
+task = SomeSensor(
+    task_id='task',
+    depends_on_past=True,
+    # ...
+)
+```
+
+or in your dag `default_args` to enable `depends_on_past` for all your tasks
+
+```python
+default_args = {
+    'depends_on_past': True,
+    # ...
+}
+
+dag = DAG(
+    dag_id="time_series_pipeline",
+    default_args=default_args,
+    # ...
+)
+```
 
 
 ## Why?
