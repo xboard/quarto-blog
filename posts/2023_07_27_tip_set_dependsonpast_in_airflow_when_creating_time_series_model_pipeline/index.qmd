@@ -1,0 +1,8 @@
+---
+title: Tip: set `depends_on_past=True` in Airflow when creating a time series model pipeline
+draft: true
+---
+
+## Tip
+
+## Why?
