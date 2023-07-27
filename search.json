@@ -11,7 +11,7 @@
     "href": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html#how",
     "title": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline",
     "section": "How?",
-    "text": "How?\nFor a specific task, most probably a sensor:\ntask = SomeSensor(\n    task_id='task',\n    depends_on_past=True,\n)\nor in your dag default_args to enable depends_on_past for all your tasks\ndefault_args = {\n    'depends_on_past': True,\n    # other default_args config\n}\n\ndag = DAG(\n    dag_id=\"time_series_pipeline\",\n    default_args=default_args,\n    # other dag config\n)"
+    "text": "How?\nFor a specific task, most probably a sensor:\ntask = SomeSensor(\n    task_id='task',\n    depends_on_past=True,\n    # ...\n)\nor in your dag default_args to enable depends_on_past for all your tasks\ndefault_args = {\n    'depends_on_past': True,\n    # ...\n}\n\ndag = DAG(\n    dag_id=\"time_series_pipeline\",\n    default_args=default_args,\n    # ...\n)"
   },
   {
     "objectID": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html#why",
