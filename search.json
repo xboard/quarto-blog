@@ -1,10 +1,31 @@
 [
   {
+    "objectID": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html",
+    "href": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html",
+    "title": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline",
+    "section": "",
+    "text": "Tip\n\n\n\nWhen creating time series model pipeline in Airflow set depends_on_past=True."
+  },
+  {
+    "objectID": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html#how",
+    "href": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html#how",
+    "title": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline",
+    "section": "How?",
+    "text": "How?\nFor a specific task, most probably a sensor:\ntask = SomeSensor(\n    task_id='task',\n    depends_on_past=True,\n)\nor in your dag default_args to enable depends_on_past for all your tasks\ndefault_args = {\n    'depends_on_past': True,\n    # other default_args config\n}\n\ndag = DAG(\n    dag_id=\"time_series_pipeline\",\n    default_args=default_args,\n    # other dag config\n)"
+  },
+  {
+    "objectID": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html#why",
+    "href": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html#why",
+    "title": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline",
+    "section": "Why?",
+    "text": "Why?\nTime series models help us predict future data based on patterns and trends observed in historical data. These models depend on the order and timing of data, hence any deviation from the expected sequence can affect their accuracy.\nOne way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the depends_on_past argument to True. This argument enables the Directed Acyclic Graph (DAG) for the time series model to run in the order of dependency on past data. By doing so, it ensures that the historical data used to train the models is in correct order and the models receive the correct inputs in the correct order.\nIn other words, with depends_on_past=True, each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced, resulting in better forecasting accuracy and reliability.\nTherefore, enabling depends_on_past for your tasks or whole DAG is an essential practice when creating time series models in Apache Airflow. By doing so, we can create more accurate and reliable time series models that can better predict future data based on past patterns and trends."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "xboard.dev",
     "section": "",
-    "text": "Using pip-tools to manage project dependencies in Python\n\n\n\n\n\n\n\nsoftware development\n\n\ntools\n\n\npython\n\n\n\n\nHow to ensure you have a reproducible development environment.\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata science\n\n\ncausal inference\n\n\npython\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels.\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
+    "text": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline\n\n\n\n\n\n\n\nairflow\n\n\ndata engineering\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nUsing pip-tools to manage project dependencies in Python\n\n\n\n\n\n\n\nsoftware development\n\n\ntools\n\n\npython\n\n\n\n\nHow to ensure you have a reproducible development environment.\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata science\n\n\ncausal inference\n\n\npython\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels.\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2020_01_01_interrupted-time-series-python-part-I/index.html#when-ab-test-is-not-an-option",

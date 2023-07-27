@@ -10,7 +10,93 @@
 <atom:link href="https://xboard.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description>Everything data and programming.</description>
 <generator>quarto-1.3.433</generator>
-<lastBuildDate>Thu, 20 Jul 2023 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 27 Jul 2023 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Tip: set depends_on_past=True in Airflow when creating a time series model pipeline</title>
+  <dc:creator>Flavio Regis de Arruda</dc:creator>
+  <link>https://xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When creating time series model pipeline in Airflow set <code>depends_on_past=True</code>.</p>
+</div>
+</div>
+<section id="how" class="level2">
+<h2 class="anchored" data-anchor-id="how">How?</h2>
+<p>For a specific task, most probably a sensor:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">task <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> SomeSensor(</span>
+<span id="cb1-2">    task_id<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'task'</span>,</span>
+<span id="cb1-3">    depends_on_past<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>,</span>
+<span id="cb1-4">)</span></code></pre></div>
+<p>or in your dag <code>default_args</code> to enable <code>depends_on_past</code> for all your tasks</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">default_args <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb2-2">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'depends_on_past'</span>: <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>,</span>
+<span id="cb2-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># other default_args config</span></span>
+<span id="cb2-4">}</span>
+<span id="cb2-5"></span>
+<span id="cb2-6">dag <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> DAG(</span>
+<span id="cb2-7">    dag_id<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"time_series_pipeline"</span>,</span>
+<span id="cb2-8">    default_args<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>default_args,</span>
+<span id="cb2-9">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># other dag config</span></span>
+<span id="cb2-10">)</span></code></pre></div>
+</section>
+<section id="why" class="level2">
+<h2 class="anchored" data-anchor-id="why">Why?</h2>
+<p>Time series models help us predict future data based on patterns and trends observed in historical data. These models depend on the order and timing of data, hence any deviation from the expected sequence can affect their accuracy.</p>
+<p>One way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the <code>depends_on_past</code> argument to True. This argument enables the Directed Acyclic Graph (DAG) for the time series model to run in the order of dependency on past data. By doing so, it ensures that the historical data used to train the models is in correct order and the models receive the correct inputs in the correct order.</p>
+<p>In other words, with <code>depends_on_past=True</code>, each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced, resulting in better forecasting accuracy and reliability.</p>
+<p>Therefore, enabling <code>depends_on_past</code> for your tasks or whole DAG is an essential practice when creating time series models in Apache Airflow. By doing so, we can create more accurate and reliable time series models that can better predict future data based on past patterns and trends.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>airflow</category>
+  <category>data engineering</category>
+  <guid>https://xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html</guid>
+  <pubDate>Thu, 27 Jul 2023 03:00:00 GMT</pubDate>
+  <media:content url="https://source.unsplash.com/Em2hPK55o8g" medium="image"/>
+</item>
 <item>
   <title>Using pip-tools to manage project dependencies in Python</title>
   <dc:creator>Flavio Regis de Arruda</dc:creator>
