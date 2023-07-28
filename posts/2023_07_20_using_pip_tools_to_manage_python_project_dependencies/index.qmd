@@ -10,25 +10,34 @@ draft: false
 image: "https://source.unsplash.com/s8OO2-t-HmQ"
 ---
 
-## Simplify Your Python Dependency Management with pip-tools 
+## Improve Your Python Dependency Management with pip-tools 
 
-As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the [pip-tools](https://pypi.org/project/pip-tools/){target="_blank"} project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.
+As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. I ofter have to test and deploy my projects in different environments (development/testing/production machines) and on different Cloud or PaaS providers and need to be sure that all of them will use exactly the same Python packages and versions as I’ve used in development, to be sure no problems are introduced by an unexpected package upgrade. 
+
+A naive approach would be to install the packages you need using `pip` and at the end generate a `requirements.txt` file with
+
+```bash
+pip freeze > requirements.txt
+```
+
+to persist all dependencies (with their versions) that got installed.We can later install into an empty virtual environment using that requirements file gets us the same packages and versions.
+
+But this approch is problematic beause is virtually impossible to know which packages are needed by our application and which were pulled in as dependencies:
+
+- suppose I choose to switch from `pandas` to `polars` in my project. In that scenario, the `requirements.txt` file may have many `pandas` dependencies that are superfluous to `polars`. Unfortunately, we are uncertain of who they are.
+
+- if you need to upgrade some of the packages (i.e `Django` version from `3.2` to `4.2`), which `Django` dependencies need to be upgrated and to which version? Which new dependencies the new `Django` version have? 
+
+
+That is why I use the [pip-tools](https://pypi.org/project/pip-tools/){target="_blank"} project to simplify the process of package dependency management. In this blog post, we will discuss what `pip-tools` does, the problem it solves and why developers should consider using it, and provide five examples using `pip-tools` for managing Python project dependencies. Additionally, we will explore some alternatives to `pip-tools`.
 
 ## What is pip-tools?
 
-pip-tools is an open-source project created to simplify the requirements files management used in Python projects. It takes a project's dependencies and recursively generates pinned version requirement files.
+`pip-tools` is an open-source project created to simplify the requirements files management used in Python projects. It takes a project's dependencies and recursively generates pinned version requirement files.
 
 Moreover, `pip-tools` allows you to easily manage your project dependencies with minimum effort and ensures you have a reproducible development environment. It allows other developers that are working on the same project to have identical dependencies to yours, with no version conflicts. 
 
 This can help reduce time spent debugging issues related to package conflicts and ensure that code runs consistently across different environments.
-
-## What problem does pip-tools solve?
-
-Dependency management in Python projects can be challenging, especially when dealing with multiple environments and package versions. Developers need a tool that can simplify the generation and maintenance of requirements files, ensure that all packages are pinned to a specific version to avoid version conflicts, and provide an easier way to manage different environments.
-
-## Why and when should developers use pip-tools?
-
-Simplifying dependency management can minimize errors and save valuable development time. Developers should consider using pip-tools in their Python projects because:
 
 - It streamlines the generation and maintenance of requirements files
 - It ensures that all packages are pinned to a specific version to avoid version conflicts
@@ -37,17 +46,64 @@ Simplifying dependency management can minimize errors and save valuable developm
 
 ## Example of using `pip-tools`
 
-Here are five examples of how developers can use pip-tools to manage the package requirements of their Python projects:
+Here are five examples of how developers can use p`pip-tools` to manage the package requirements of their Python projects:
 
 ### Basic usage of pip-tools with requirements files
 
-Developers can use pip-tools to manage their project dependencies by creating a `requirements.in` file with the required packages and their respective versions. Developers can then run the following command to generate the required `requirements.txt` file:
+Developers can use pip-tools to manage their project dependencies by creating a `requirements.in` file with the required packages and their respective versions. 
+
+```{#lst-requirements.in .txt lst-cap="requirements.in"} 
+pandas>=2.0
+scikit-learn
+xgboost==1.7.6
+```
+
+Developers can then run the following command to generate the required `requirements.txt` file:
 
 ```bash
 $ pip-compile requirements.in
 ```
 
-This generates a pinned version requirement file with all the packages and their respective dependencies.
+This generates a pinned version requirement file with all the packages and their respective dependencies:
+
+```{#lst-requirements.txt .txt lst-cap="Generated requirements.txt"}
+#
+# This file is autogenerated by pip-compile with Python 3.10
+# by the following command:
+#
+#    pip-compile requirements.in
+#
+joblib==1.3.1
+    # via scikit-learn
+numpy==1.25.1
+    # via
+    #   pandas
+    #   scikit-learn
+    #   scipy
+    #   xgboost
+pandas==2.0.3
+    # via -r requirements.in
+python-dateutil==2.8.2
+    # via pandas
+pytz==2023.3
+    # via pandas
+scikit-learn==1.3.0
+    # via -r requirements.in
+scipy==1.11.1
+    # via
+    #   scikit-learn
+    #   xgboost
+six==1.16.0
+    # via python-dateutil
+threadpoolctl==3.2.0
+    # via scikit-learn
+tzdata==2023.3
+    # via pandas
+xgboost==1.7.6
+    # via -r requirements.in
+```
+
+
 
 ### pip-tools with multiple environments
 
@@ -72,15 +128,15 @@ django==3.2.5
 
 Then, running `pip-compile requirements.in` will output a `requirements.txt` file with the packages pinned to versions on the custom package index.
 
-### pip-tools with transitive dependencies
+### pip-tools with hash dependencies
 
-We may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:
+If you want to pin your dependencies to an specific binary wheel compilation hash (and not only to a package-version) you can use following command:
 
 ```bash
 $ pip-compile --generate-hashes requirements.in
 ```
 
-This will add a hash value to each package in the requirements file, including the transitive dependencies.
+This will add a hash value to each package in the requirements file, including the transitive dependencies. This is usefull to increase security as PyPI has “made the [deliberate choice](https://github.com/pypa/packaging-problems/issues/75#issuecomment-347739479){target=_blank} to allow wheel files to be added to old releases”
 
 ### pip-tools to update dependencies
 
@@ -94,7 +150,7 @@ This command will identify the available updates and upgrade the packages listed
 
 ## pip-sync
 
-`pip-sync` is a tool provided by `pip-tools` that ensures your virtual environment only contains the packages you have explicitly listed in your `requirements.txt` file. This is useful because it prevents conflicts between versions of packages in your virtual environment and ensures you only install the packages necessary for your project.
+`pip-sync` is a tool provided by `pip-tools` that ensures your virtual environment only contains the packages you have explicitly listed in your `requirements.txt` file. This is useful because it prevents conflicts between versions of packages in your virtual environment and ensures you only install the packages necessary for your project removing any previously installed packages that are not needed anymore.
 
 Using `pip-sync` is a good practice to ensure your project dependencies are isolated from other projects on your development machine. It prevents conflicts between different versions of packages, making your project more reliable and robust.
 
@@ -107,6 +163,50 @@ $ pip-sync
 
 This command will install only the packages listed in `requirements.txt` and their dependencies, and remove any packages that are not listed. This ensures that you have an isolated environment with only the packages required by your project.
 
+### Example: replacing pandas with polars
+
+If we decide to move from `pandas` to `polars` we update our requirement.in file:
+
+```{#lst-requirements.in.polars .txt lst-cap="requirements.in after replacing pandas with polars"}
+polars
+scikit-learn
+xgboost==1.7.6
+```
+
+and then run:
+
+```bash
+pip-compile
+pip-sync
+```
+
+we will observe `pip-sinc` doing its magic:
+
+```txt
+Found existing installation: pandas 2.0.3
+Uninstalling pandas-2.0.3:
+  Successfully uninstalled pandas-2.0.3
+Found existing installation: python-dateutil 2.8.2
+Uninstalling python-dateutil-2.8.2:
+  Successfully uninstalled python-dateutil-2.8.2
+Found existing installation: pytz 2023.3
+Uninstalling pytz-2023.3:
+  Successfully uninstalled pytz-2023.3
+Found existing installation: six 1.16.0
+Uninstalling six-1.16.0:
+  Successfully uninstalled six-1.16.0
+Found existing installation: tzdata 2023.3
+Uninstalling tzdata-2023.3:
+  Successfully uninstalled tzdata-2023.3
+Collecting polars==0.18.9 (from -r /tmp/tmpwq_lrber (line 1))
+  Obtaining dependency information for polars==0.18.9 from https://files.pythonhosted.org/packages/32/b7/bb1faf1741235f1147408322d1cd845e29d195e2e4dc636a3dea8b4ea119/polars-0.18.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Using cached polars-0.18.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (14 kB)
+Using cached polars-0.18.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.3 MB)
+Installing collected packages: polars
+Successfully installed polars-0.18.9
+```
+
+Notice how it removed all packages required only by `pandas` (see @lst-requirements.txt) and then installed `polars`.
 
 ## Alternatives to pip-tools
 
