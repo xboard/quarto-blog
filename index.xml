@@ -145,7 +145,7 @@ font-style: inherit;">$</span> pip-compile requirements.in</span></code></pre></
 </section>
 <section id="pip-tools-with-multiple-environments" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-multiple-environments">pip-tools with multiple environments</h3>
-<p>Developers can define several files with libraries to use in multiple environments, such as development, production, and testing. They can create corresponding <code>dev-requirements.in</code>, <code>prod-requirements.in</code>, and <code>test-requirements.in</code> files and then use the following commands to generate their respective files:</p>
+<p>We can define several files with libraries to use in multiple environments, such as development, production, and testing. We can create corresponding <code>dev-requirements.in</code>, <code>prod-requirements.in</code>, and <code>test-requirements.in</code> files and then use the following commands to generate their respective files:</p>
 <div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">$</span> pip-compile dev-requirements.in</span>
@@ -159,7 +159,7 @@ font-style: inherit;">$</span> pip-compile test-requirements.in</span></code></p
 </section>
 <section id="pip-tools-with-custom-package-indexes" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-custom-package-indexes">pip-tools with custom package indexes</h3>
-<p>Developers can also use pip-tools with package indexes different from the official PyPI index. To do this, they can specify a custom index in their <code>requirements.in</code> file, like this:</p>
+<p>We can also use pip-tools with package indexes different from the official PyPI index. To do this, we can specify a custom index in their <code>requirements.in</code> file, like this:</p>
 <div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">--index-url</span> https://custompackageindex.com/</span>
@@ -172,7 +172,7 @@ font-style: inherit;">=</span>=3.2.5</span></code></pre></div>
 </section>
 <section id="pip-tools-with-transitive-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-transitive-dependencies">pip-tools with transitive dependencies</h3>
-<p>Developers may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:</p>
+<p>We may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:</p>
 <div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">$</span> pip-compile <span class="at" style="color: #657422;

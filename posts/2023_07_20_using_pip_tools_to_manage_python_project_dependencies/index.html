@@ -277,7 +277,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 </section>
 <section id="pip-tools-with-multiple-environments" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-multiple-environments">pip-tools with multiple environments</h3>
-<p>Developers can define several files with libraries to use in multiple environments, such as development, production, and testing. They can create corresponding <code>dev-requirements.in</code>, <code>prod-requirements.in</code>, and <code>test-requirements.in</code> files and then use the following commands to generate their respective files:</p>
+<p>We can define several files with libraries to use in multiple environments, such as development, production, and testing. We can create corresponding <code>dev-requirements.in</code>, <code>prod-requirements.in</code>, and <code>test-requirements.in</code> files and then use the following commands to generate their respective files:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile dev-requirements.in</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile prod-requirements.in</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile test-requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -285,14 +285,14 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 </section>
 <section id="pip-tools-with-custom-package-indexes" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-custom-package-indexes">pip-tools with custom package indexes</h3>
-<p>Developers can also use pip-tools with package indexes different from the official PyPI index. To do this, they can specify a custom index in their <code>requirements.in</code> file, like this:</p>
+<p>We can also use pip-tools with package indexes different from the official PyPI index. To do this, we can specify a custom index in their <code>requirements.in</code> file, like this:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--index-url</span> https://custompackageindex.com/</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">django</span><span class="op">=</span>=3.2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then, running <code>pip-compile requirements.in</code> will output a <code>requirements.txt</code> file with the packages pinned to versions on the custom package index.</p>
 </section>
 <section id="pip-tools-with-transitive-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-transitive-dependencies">pip-tools with transitive dependencies</h3>
-<p>Developers may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:</p>
+<p>We may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile <span class="at">--generate-hashes</span> requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will add a hash value to each package in the requirements file, including the transitive dependencies.</p>
 </section>
