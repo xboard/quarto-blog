@@ -214,19 +214,20 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#simplify-your-python-dependency-management-with-pip-tools" id="toc-simplify-your-python-dependency-management-with-pip-tools" class="nav-link active" data-scroll-target="#simplify-your-python-dependency-management-with-pip-tools">Simplify Your Python Dependency Management with pip-tools</a></li>
+  <li><a href="#improve-your-python-dependency-management-with-pip-tools" id="toc-improve-your-python-dependency-management-with-pip-tools" class="nav-link active" data-scroll-target="#improve-your-python-dependency-management-with-pip-tools">Improve Your Python Dependency Management with pip-tools</a></li>
   <li><a href="#what-is-pip-tools" id="toc-what-is-pip-tools" class="nav-link" data-scroll-target="#what-is-pip-tools">What is pip-tools?</a></li>
-  <li><a href="#what-problem-does-pip-tools-solve" id="toc-what-problem-does-pip-tools-solve" class="nav-link" data-scroll-target="#what-problem-does-pip-tools-solve">What problem does pip-tools solve?</a></li>
-  <li><a href="#why-and-when-should-developers-use-pip-tools" id="toc-why-and-when-should-developers-use-pip-tools" class="nav-link" data-scroll-target="#why-and-when-should-developers-use-pip-tools">Why and when should developers use pip-tools?</a></li>
   <li><a href="#example-of-using-pip-tools" id="toc-example-of-using-pip-tools" class="nav-link" data-scroll-target="#example-of-using-pip-tools">Example of using <code>pip-tools</code></a>
   <ul class="collapse">
   <li><a href="#basic-usage-of-pip-tools-with-requirements-files" id="toc-basic-usage-of-pip-tools-with-requirements-files" class="nav-link" data-scroll-target="#basic-usage-of-pip-tools-with-requirements-files">Basic usage of pip-tools with requirements files</a></li>
   <li><a href="#pip-tools-with-multiple-environments" id="toc-pip-tools-with-multiple-environments" class="nav-link" data-scroll-target="#pip-tools-with-multiple-environments">pip-tools with multiple environments</a></li>
   <li><a href="#pip-tools-with-custom-package-indexes" id="toc-pip-tools-with-custom-package-indexes" class="nav-link" data-scroll-target="#pip-tools-with-custom-package-indexes">pip-tools with custom package indexes</a></li>
-  <li><a href="#pip-tools-with-transitive-dependencies" id="toc-pip-tools-with-transitive-dependencies" class="nav-link" data-scroll-target="#pip-tools-with-transitive-dependencies">pip-tools with transitive dependencies</a></li>
+  <li><a href="#pip-tools-with-hash-dependencies" id="toc-pip-tools-with-hash-dependencies" class="nav-link" data-scroll-target="#pip-tools-with-hash-dependencies">pip-tools with hash dependencies</a></li>
   <li><a href="#pip-tools-to-update-dependencies" id="toc-pip-tools-to-update-dependencies" class="nav-link" data-scroll-target="#pip-tools-to-update-dependencies">pip-tools to update dependencies</a></li>
   </ul></li>
-  <li><a href="#pip-sync" id="toc-pip-sync" class="nav-link" data-scroll-target="#pip-sync">pip-sync</a></li>
+  <li><a href="#pip-sync" id="toc-pip-sync" class="nav-link" data-scroll-target="#pip-sync">pip-sync</a>
+  <ul class="collapse">
+  <li><a href="#example-replacing-pandas-with-polars" id="toc-example-replacing-pandas-with-polars" class="nav-link" data-scroll-target="#example-replacing-pandas-with-polars">Example: replacing pandas with polars</a></li>
+  </ul></li>
   <li><a href="#alternatives-to-pip-tools" id="toc-alternatives-to-pip-tools" class="nav-link" data-scroll-target="#alternatives-to-pip-tools">Alternatives to pip-tools</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
@@ -242,23 +243,24 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 
 
 
-<section id="simplify-your-python-dependency-management-with-pip-tools" class="level2">
-<h2 class="anchored" data-anchor-id="simplify-your-python-dependency-management-with-pip-tools">Simplify Your Python Dependency Management with pip-tools</h2>
-<p>As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. That is why I use the <a href="https://pypi.org/project/pip-tools/" target="_blank">pip-tools</a> project to simplify the process of package dependency management. In this blog post, we will discuss what pip-tools does, the problem it solves and why developers should consider using it, and provide five examples using pip-tools for managing Python project dependencies. Additionally, we will explore some alternatives to pip-tools.</p>
+<section id="improve-your-python-dependency-management-with-pip-tools" class="level2">
+<h2 class="anchored" data-anchor-id="improve-your-python-dependency-management-with-pip-tools">Improve Your Python Dependency Management with pip-tools</h2>
+<p>As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. I ofter have to test and deploy my projects in different environments (development/testing/production machines) and on different Cloud or PaaS providers and need to be sure that all of them will use exactly the same Python packages and versions as I’ve used in development, to be sure no problems are introduced by an unexpected package upgrade.</p>
+<p>A naive approach would be to install the packages you need using <code>pip</code> and at the end generate a <code>requirements.txt</code> file with</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to persist all dependencies (with their versions) that got installed.We can later install into an empty virtual environment using that requirements file gets us the same packages and versions.</p>
+<p>But this approch is problematic beause is virtually impossible to know which packages are needed by our application and which were pulled in as dependencies:</p>
+<ul>
+<li><p>suppose I choose to switch from <code>pandas</code> to <code>polars</code> in my project. In that scenario, the <code>requirements.txt</code> file may have many <code>pandas</code> dependencies that are superfluous to <code>polars</code>. Unfortunately, we are uncertain of who they are.</p></li>
+<li><p>if you need to upgrade some of the packages (i.e <code>Django</code> version from <code>3.2</code> to <code>4.2</code>), which <code>Django</code> dependencies need to be upgrated and to which version? Which new dependencies the new <code>Django</code> version have?</p></li>
+</ul>
+<p>That is why I use the <a href="https://pypi.org/project/pip-tools/" target="_blank">pip-tools</a> project to simplify the process of package dependency management. In this blog post, we will discuss what <code>pip-tools</code> does, the problem it solves and why developers should consider using it, and provide five examples using <code>pip-tools</code> for managing Python project dependencies. Additionally, we will explore some alternatives to <code>pip-tools</code>.</p>
 </section>
 <section id="what-is-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-pip-tools">What is pip-tools?</h2>
-<p>pip-tools is an open-source project created to simplify the requirements files management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.</p>
+<p><code>pip-tools</code> is an open-source project created to simplify the requirements files management used in Python projects. It takes a project’s dependencies and recursively generates pinned version requirement files.</p>
 <p>Moreover, <code>pip-tools</code> allows you to easily manage your project dependencies with minimum effort and ensures you have a reproducible development environment. It allows other developers that are working on the same project to have identical dependencies to yours, with no version conflicts.</p>
 <p>This can help reduce time spent debugging issues related to package conflicts and ensure that code runs consistently across different environments.</p>
-</section>
-<section id="what-problem-does-pip-tools-solve" class="level2">
-<h2 class="anchored" data-anchor-id="what-problem-does-pip-tools-solve">What problem does pip-tools solve?</h2>
-<p>Dependency management in Python projects can be challenging, especially when dealing with multiple environments and package versions. Developers need a tool that can simplify the generation and maintenance of requirements files, ensure that all packages are pinned to a specific version to avoid version conflicts, and provide an easier way to manage different environments.</p>
-</section>
-<section id="why-and-when-should-developers-use-pip-tools" class="level2">
-<h2 class="anchored" data-anchor-id="why-and-when-should-developers-use-pip-tools">Why and when should developers use pip-tools?</h2>
-<p>Simplifying dependency management can minimize errors and save valuable development time. Developers should consider using pip-tools in their Python projects because:</p>
 <ul>
 <li>It streamlines the generation and maintenance of requirements files</li>
 <li>It ensures that all packages are pinned to a specific version to avoid version conflicts</li>
@@ -268,48 +270,128 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 </section>
 <section id="example-of-using-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="example-of-using-pip-tools">Example of using <code>pip-tools</code></h2>
-<p>Here are five examples of how developers can use pip-tools to manage the package requirements of their Python projects:</p>
+<p>Here are five examples of how developers can use p<code>pip-tools</code> to manage the package requirements of their Python projects:</p>
 <section id="basic-usage-of-pip-tools-with-requirements-files" class="level3">
 <h3 class="anchored" data-anchor-id="basic-usage-of-pip-tools-with-requirements-files">Basic usage of pip-tools with requirements files</h3>
-<p>Developers can use pip-tools to manage their project dependencies by creating a <code>requirements.in</code> file with the required packages and their respective versions. Developers can then run the following command to generate the required <code>requirements.txt</code> file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This generates a pinned version requirement file with all the packages and their respective dependencies.</p>
+<p>Developers can use pip-tools to manage their project dependencies by creating a <code>requirements.in</code> file with the required packages and their respective versions.</p>
+<div id="lst-requirements.in" class="listing">
+<p>Listing&nbsp;1: requirements.in</p>
+<div class="sourceCode" id="lst-requirements.in" data-lst-cap="requirements.in"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="lst-requirements.in-1"><a href="#lst-requirements.in-1" aria-hidden="true" tabindex="-1"></a>pandas&gt;=2.0</span>
+<span id="lst-requirements.in-2"><a href="#lst-requirements.in-2" aria-hidden="true" tabindex="-1"></a>scikit-learn</span>
+<span id="lst-requirements.in-3"><a href="#lst-requirements.in-3" aria-hidden="true" tabindex="-1"></a>xgboost==1.7.6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Developers can then run the following command to generate the required <code>requirements.txt</code> file:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This generates a pinned version requirement file with all the packages and their respective dependencies:</p>
+<div id="lst-requirements.txt" class="listing">
+<p>Listing&nbsp;2: Generated requirements.txt</p>
+<div class="sourceCode" id="lst-requirements.txt" data-lst-cap="Generated requirements.txt"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="lst-requirements.txt-1"><a href="#lst-requirements.txt-1" aria-hidden="true" tabindex="-1"></a>#</span>
+<span id="lst-requirements.txt-2"><a href="#lst-requirements.txt-2" aria-hidden="true" tabindex="-1"></a># This file is autogenerated by pip-compile with Python 3.10</span>
+<span id="lst-requirements.txt-3"><a href="#lst-requirements.txt-3" aria-hidden="true" tabindex="-1"></a># by the following command:</span>
+<span id="lst-requirements.txt-4"><a href="#lst-requirements.txt-4" aria-hidden="true" tabindex="-1"></a>#</span>
+<span id="lst-requirements.txt-5"><a href="#lst-requirements.txt-5" aria-hidden="true" tabindex="-1"></a>#    pip-compile requirements.in</span>
+<span id="lst-requirements.txt-6"><a href="#lst-requirements.txt-6" aria-hidden="true" tabindex="-1"></a>#</span>
+<span id="lst-requirements.txt-7"><a href="#lst-requirements.txt-7" aria-hidden="true" tabindex="-1"></a>joblib==1.3.1</span>
+<span id="lst-requirements.txt-8"><a href="#lst-requirements.txt-8" aria-hidden="true" tabindex="-1"></a>    # via scikit-learn</span>
+<span id="lst-requirements.txt-9"><a href="#lst-requirements.txt-9" aria-hidden="true" tabindex="-1"></a>numpy==1.25.1</span>
+<span id="lst-requirements.txt-10"><a href="#lst-requirements.txt-10" aria-hidden="true" tabindex="-1"></a>    # via</span>
+<span id="lst-requirements.txt-11"><a href="#lst-requirements.txt-11" aria-hidden="true" tabindex="-1"></a>    #   pandas</span>
+<span id="lst-requirements.txt-12"><a href="#lst-requirements.txt-12" aria-hidden="true" tabindex="-1"></a>    #   scikit-learn</span>
+<span id="lst-requirements.txt-13"><a href="#lst-requirements.txt-13" aria-hidden="true" tabindex="-1"></a>    #   scipy</span>
+<span id="lst-requirements.txt-14"><a href="#lst-requirements.txt-14" aria-hidden="true" tabindex="-1"></a>    #   xgboost</span>
+<span id="lst-requirements.txt-15"><a href="#lst-requirements.txt-15" aria-hidden="true" tabindex="-1"></a>pandas==2.0.3</span>
+<span id="lst-requirements.txt-16"><a href="#lst-requirements.txt-16" aria-hidden="true" tabindex="-1"></a>    # via -r requirements.in</span>
+<span id="lst-requirements.txt-17"><a href="#lst-requirements.txt-17" aria-hidden="true" tabindex="-1"></a>python-dateutil==2.8.2</span>
+<span id="lst-requirements.txt-18"><a href="#lst-requirements.txt-18" aria-hidden="true" tabindex="-1"></a>    # via pandas</span>
+<span id="lst-requirements.txt-19"><a href="#lst-requirements.txt-19" aria-hidden="true" tabindex="-1"></a>pytz==2023.3</span>
+<span id="lst-requirements.txt-20"><a href="#lst-requirements.txt-20" aria-hidden="true" tabindex="-1"></a>    # via pandas</span>
+<span id="lst-requirements.txt-21"><a href="#lst-requirements.txt-21" aria-hidden="true" tabindex="-1"></a>scikit-learn==1.3.0</span>
+<span id="lst-requirements.txt-22"><a href="#lst-requirements.txt-22" aria-hidden="true" tabindex="-1"></a>    # via -r requirements.in</span>
+<span id="lst-requirements.txt-23"><a href="#lst-requirements.txt-23" aria-hidden="true" tabindex="-1"></a>scipy==1.11.1</span>
+<span id="lst-requirements.txt-24"><a href="#lst-requirements.txt-24" aria-hidden="true" tabindex="-1"></a>    # via</span>
+<span id="lst-requirements.txt-25"><a href="#lst-requirements.txt-25" aria-hidden="true" tabindex="-1"></a>    #   scikit-learn</span>
+<span id="lst-requirements.txt-26"><a href="#lst-requirements.txt-26" aria-hidden="true" tabindex="-1"></a>    #   xgboost</span>
+<span id="lst-requirements.txt-27"><a href="#lst-requirements.txt-27" aria-hidden="true" tabindex="-1"></a>six==1.16.0</span>
+<span id="lst-requirements.txt-28"><a href="#lst-requirements.txt-28" aria-hidden="true" tabindex="-1"></a>    # via python-dateutil</span>
+<span id="lst-requirements.txt-29"><a href="#lst-requirements.txt-29" aria-hidden="true" tabindex="-1"></a>threadpoolctl==3.2.0</span>
+<span id="lst-requirements.txt-30"><a href="#lst-requirements.txt-30" aria-hidden="true" tabindex="-1"></a>    # via scikit-learn</span>
+<span id="lst-requirements.txt-31"><a href="#lst-requirements.txt-31" aria-hidden="true" tabindex="-1"></a>tzdata==2023.3</span>
+<span id="lst-requirements.txt-32"><a href="#lst-requirements.txt-32" aria-hidden="true" tabindex="-1"></a>    # via pandas</span>
+<span id="lst-requirements.txt-33"><a href="#lst-requirements.txt-33" aria-hidden="true" tabindex="-1"></a>xgboost==1.7.6</span>
+<span id="lst-requirements.txt-34"><a href="#lst-requirements.txt-34" aria-hidden="true" tabindex="-1"></a>    # via -r requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="pip-tools-with-multiple-environments" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-multiple-environments">pip-tools with multiple environments</h3>
 <p>We can define several files with libraries to use in multiple environments, such as development, production, and testing. We can create corresponding <code>dev-requirements.in</code>, <code>prod-requirements.in</code>, and <code>test-requirements.in</code> files and then use the following commands to generate their respective files:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile dev-requirements.in</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile prod-requirements.in</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile test-requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile dev-requirements.in</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile prod-requirements.in</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile test-requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These commands will generate <code>dev-requirements.txt</code>, <code>prod-requirements.txt</code>, and <code>test-requirements.txt</code> files with the corresponding dependencies.</p>
 </section>
 <section id="pip-tools-with-custom-package-indexes" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-with-custom-package-indexes">pip-tools with custom package indexes</h3>
 <p>We can also use pip-tools with package indexes different from the official PyPI index. To do this, we can specify a custom index in their <code>requirements.in</code> file, like this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--index-url</span> https://custompackageindex.com/</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">django</span><span class="op">=</span>=3.2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--index-url</span> https://custompackageindex.com/</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">django</span><span class="op">=</span>=3.2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then, running <code>pip-compile requirements.in</code> will output a <code>requirements.txt</code> file with the packages pinned to versions on the custom package index.</p>
 </section>
-<section id="pip-tools-with-transitive-dependencies" class="level3">
-<h3 class="anchored" data-anchor-id="pip-tools-with-transitive-dependencies">pip-tools with transitive dependencies</h3>
-<p>We may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile <span class="at">--generate-hashes</span> requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will add a hash value to each package in the requirements file, including the transitive dependencies.</p>
+<section id="pip-tools-with-hash-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="pip-tools-with-hash-dependencies">pip-tools with hash dependencies</h3>
+<p>If you want to pin your dependencies to an specific binary wheel compilation hash (and not only to a package-version) you can use following command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile <span class="at">--generate-hashes</span> requirements.in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will add a hash value to each package in the requirements file, including the transitive dependencies. This is usefull to increase security as PyPI has “made the <a href="https://github.com/pypa/packaging-problems/issues/75#issuecomment-347739479" target="_blank">deliberate choice</a> to allow wheel files to be added to old releases”</p>
 </section>
 <section id="pip-tools-to-update-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="pip-tools-to-update-dependencies">pip-tools to update dependencies</h3>
 <p>Finally, pip-tools can also help developers manage package updates easily. They can run the following command to generate a <code>requirements.txt</code> file with the new versions of the packages:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile <span class="at">--upgrade</span> requirements.in </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-compile <span class="at">--upgrade</span> requirements.in </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This command will identify the available updates and upgrade the packages listed in the requirements file.</p>
 </section>
 </section>
 <section id="pip-sync" class="level2">
 <h2 class="anchored" data-anchor-id="pip-sync">pip-sync</h2>
-<p><code>pip-sync</code> is a tool provided by <code>pip-tools</code> that ensures your virtual environment only contains the packages you have explicitly listed in your <code>requirements.txt</code> file. This is useful because it prevents conflicts between versions of packages in your virtual environment and ensures you only install the packages necessary for your project.</p>
+<p><code>pip-sync</code> is a tool provided by <code>pip-tools</code> that ensures your virtual environment only contains the packages you have explicitly listed in your <code>requirements.txt</code> file. This is useful because it prevents conflicts between versions of packages in your virtual environment and ensures you only install the packages necessary for your project removing any previously installed packages that are not needed anymore.</p>
 <p>Using <code>pip-sync</code> is a good practice to ensure your project dependencies are isolated from other projects on your development machine. It prevents conflicts between different versions of packages, making your project more reliable and robust.</p>
 <p>Once you have your <code>requirements.txt</code> file, run the command:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-sync</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip-sync</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This command will install only the packages listed in <code>requirements.txt</code> and their dependencies, and remove any packages that are not listed. This ensures that you have an isolated environment with only the packages required by your project.</p>
+<section id="example-replacing-pandas-with-polars" class="level3">
+<h3 class="anchored" data-anchor-id="example-replacing-pandas-with-polars">Example: replacing pandas with polars</h3>
+<p>If we decide to move from <code>pandas</code> to <code>polars</code> we update our requirement.in file:</p>
+<div id="lst-requirements.in.polars" class="listing">
+<p>Listing&nbsp;3: requirements.in after replacing pandas with polars</p>
+<div class="sourceCode" id="lst-requirements.in.polars" data-lst-cap="requirements.in after replacing pandas with polars"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="lst-requirements.in.polars-1"><a href="#lst-requirements.in.polars-1" aria-hidden="true" tabindex="-1"></a>polars</span>
+<span id="lst-requirements.in.polars-2"><a href="#lst-requirements.in.polars-2" aria-hidden="true" tabindex="-1"></a>scikit-learn</span>
+<span id="lst-requirements.in.polars-3"><a href="#lst-requirements.in.polars-3" aria-hidden="true" tabindex="-1"></a>xgboost==1.7.6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and then run:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip-compile</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip-sync</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>we will observe <code>pip-sinc</code> doing its magic:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Found existing installation: pandas 2.0.3</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Uninstalling pandas-2.0.3:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  Successfully uninstalled pandas-2.0.3</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Found existing installation: python-dateutil 2.8.2</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Uninstalling python-dateutil-2.8.2:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  Successfully uninstalled python-dateutil-2.8.2</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Found existing installation: pytz 2023.3</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Uninstalling pytz-2023.3:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  Successfully uninstalled pytz-2023.3</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>Found existing installation: six 1.16.0</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Uninstalling six-1.16.0:</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  Successfully uninstalled six-1.16.0</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>Found existing installation: tzdata 2023.3</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>Uninstalling tzdata-2023.3:</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  Successfully uninstalled tzdata-2023.3</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>Collecting polars==0.18.9 (from -r /tmp/tmpwq_lrber (line 1))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  Obtaining dependency information for polars==0.18.9 from https://files.pythonhosted.org/packages/32/b7/bb1faf1741235f1147408322d1cd845e29d195e2e4dc636a3dea8b4ea119/polars-0.18.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  Using cached polars-0.18.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (14 kB)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>Using cached polars-0.18.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.3 MB)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>Installing collected packages: polars</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>Successfully installed polars-0.18.9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice how it removed all packages required only by <code>pandas</code> (see <a href="#lst-requirements.txt">Listing&nbsp;2</a>) and then installed <code>polars</code>.</p>
+</section>
 </section>
 <section id="alternatives-to-pip-tools" class="level2">
 <h2 class="anchored" data-anchor-id="alternatives-to-pip-tools">Alternatives to pip-tools</h2>
