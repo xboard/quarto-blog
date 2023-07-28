@@ -51,7 +51,7 @@ This generates a pinned version requirement file with all the packages and their
 
 ### pip-tools with multiple environments
 
-Developers can define several files with libraries to use in multiple environments, such as development, production, and testing. They can create corresponding `dev-requirements.in`, `prod-requirements.in`, and `test-requirements.in` files and then use the following commands to generate their respective files:
+We can define several files with libraries to use in multiple environments, such as development, production, and testing. We can create corresponding `dev-requirements.in`, `prod-requirements.in`, and `test-requirements.in` files and then use the following commands to generate their respective files:
 
 ```bash
 $ pip-compile dev-requirements.in
@@ -63,7 +63,7 @@ These commands will generate `dev-requirements.txt`, `prod-requirements.txt`, an
 
 ### pip-tools with custom package indexes
 
-Developers can also use pip-tools with package indexes different from the official PyPI index. To do this, they can specify a custom index in their `requirements.in` file, like this:
+We can also use pip-tools with package indexes different from the official PyPI index. To do this, we can specify a custom index in their `requirements.in` file, like this:
 
 ```bash
 --index-url https://custompackageindex.com/
@@ -74,7 +74,7 @@ Then, running `pip-compile requirements.in` will output a `requirements.txt` fil
 
 ### pip-tools with transitive dependencies
 
-Developers may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:
+We may also encounter transitive dependencies, which are dependencies from required packages. To manage these dependencies, developers can use pip-tools with the following command:
 
 ```bash
 $ pip-compile --generate-hashes requirements.in
