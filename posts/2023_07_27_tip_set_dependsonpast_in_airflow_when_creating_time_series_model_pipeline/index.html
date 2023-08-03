@@ -208,8 +208,8 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#how" id="toc-how" class="nav-link active" data-scroll-target="#how">How?</a></li>
-  <li><a href="#why" id="toc-why" class="nav-link" data-scroll-target="#why">Why?</a></li>
+  <li><a href="#why" id="toc-why" class="nav-link active" data-scroll-target="#why">Why?</a></li>
+  <li><a href="#how" id="toc-how" class="nav-link" data-scroll-target="#how">How?</a></li>
   </ul>
 </nav>
 </nav>
@@ -236,6 +236,16 @@ Tip
 <p>When creating time series model pipeline in Airflow set <code>depends_on_past=True</code>.</p>
 </div>
 </div>
+<section id="why" class="level2">
+<h2 class="anchored" data-anchor-id="why">Why?</h2>
+<p>Time series models help us predict future data based on patterns and trends observed in historical data. These models surprise, surprise… <strong>depend on past</strong> data, hence any deviation from the expected sequence can affect their accuracy.</p>
+<p>One way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the <code>depends_on_past</code> argument to ‘True’. This way each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced.</p>
+<p>If you don’t set <code>depends_on_past=True</code> and you have a problem with one of the partitions of the data used by your model, one of two things will happen in the following days:</p>
+<ul>
+<li><p>Worst case scenario: your workflow will run without any issues being reported. This is a sign that you forgot to add sensors to test the availability of historical data and, chances are, your features are using incomplete data, to say the least.</p></li>
+<li><p>Alternatively, subsequent executions of your workflow will also fail, bombarding your oncall colleague’s pagerduty with messages. And when the problem is finally fixed, you still have to remember to clear and restart all the previous failed executions.</p></li>
+</ul>
+</section>
 <section id="how" class="level2">
 <h2 class="anchored" data-anchor-id="how">How?</h2>
 <p>For a specific task, most probably a sensor:</p>
@@ -255,12 +265,6 @@ Tip
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    default_args<span class="op">=</span>default_args,</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="why" class="level2">
-<h2 class="anchored" data-anchor-id="why">Why?</h2>
-<p>Time series models help us predict future data based on patterns and trends observed in historical data. These models depend on the order and timing of data, hence any deviation from the expected sequence can affect their accuracy.</p>
-<p>One way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the <code>depends_on_past</code> argument to True. This argument enables the Directed Acyclic Graph (DAG) for the time series model to run in the order of dependency on past data. By doing so, it ensures that the historical data used to train the models is in correct order and the models receive the correct inputs in the correct order.</p>
-<p>In other words, with <code>depends_on_past=True</code>, each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced, resulting in better forecasting accuracy and reliability.</p>
 
 
 </section>
