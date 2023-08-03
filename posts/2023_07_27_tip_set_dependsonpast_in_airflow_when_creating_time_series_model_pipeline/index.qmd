@@ -17,6 +17,19 @@ When creating time series model pipeline in Airflow set `depends_on_past=True`.
 
 :::
 
+
+## Why?
+
+Time series models help us predict future data based on patterns and trends observed in historical data. These models surprise, surprise... **depend on past** data, hence any deviation from the expected sequence can affect their accuracy. 
+
+One way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the `depends_on_past` argument to 'True'. This way each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced.
+
+If you don't set `depends_on_past=True` and you have a problem with one of the partitions of the data used by your model, one of two things will happen in the following days:
+
+- Worst case scenario: your workflow will run without any issues being reported. This is a sign that you forgot to add sensors to test the availability of historical data and, chances are, your features are using incomplete data, to say the least.
+
+- Alternatively, subsequent executions of your workflow will also fail, bombarding your oncall colleague's pagerduty with messages. And when the problem is finally fixed, you still have to remember to clear and restart all the previous failed executions.
+
 ## How?
 
 For a specific task, most probably a sensor:
@@ -43,12 +56,3 @@ dag = DAG(
     # ...
 )
 ```
-
-
-## Why?
-
-Time series models help us predict future data based on patterns and trends observed in historical data. These models depend on the order and timing of data, hence any deviation from the expected sequence can affect their accuracy. 
-
-One way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the `depends_on_past` argument to True. This argument enables the Directed Acyclic Graph (DAG) for the time series model to run in the order of dependency on past data. By doing so, it ensures that the historical data used to train the models is in correct order and the models receive the correct inputs in the correct order.
-
-In other words, with `depends_on_past=True`, each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced, resulting in better forecasting accuracy and reliability.
