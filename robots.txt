@@ -1,1 +1,1 @@
-Sitemap: https://xboard.dev/sitemap.xml
+Sitemap: https://www.xboard.dev/sitemap.xml
