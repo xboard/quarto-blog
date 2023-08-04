@@ -11,23 +11,19 @@ image: "https://source.unsplash.com/npxXWgQ33ZQ"
 
 ## Why
 
-In a [post published on September 3, 2022](https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095), Hamel Husain announced that he has rebuilt nbdev on top of [Quarto](https://quarto.org). In the blog post, he explained that there have been new pieces of technology like [Jupyter Book](https://jupyterbook.org/) and [Quarto](https://quarto.org), which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from JJ Allaire and the rest of the Posit team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of Fastpages. 
+In a [post published on September 3, 2022](https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095){target=_blank}, [Hamel Husain](https://hamel.dev/){target=_blank} announced that he has rebuilt [nbdev](https://nbdev.fast.ai/){target=_blank} on top of [Quarto](https://quarto.org){target=_blank}. In the blog post, he explained that there have been new pieces of technology like [Jupyter Book](https://jupyterbook.org/){target=_blank} and [Quarto](https://quarto.org){target=_blank}, which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from [JJ Allaire](https://www.rstudio.com/authors/j.j.-allaire/){target=_blank} and the rest of the [Posit](https://posit.co/){target=_blank} team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of [Fastpages](https://github.com/fastai/fastpages){target=_blank}. 
 
 ## What is Quarto?
 
-Quarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more. With an easy-to-use interface and a wide range of customizable features, Quarto makes it simple to publish your Python development blogs.
-
-## Why and When Developers Should Use Quarto?
-
-Developers should use Quarto when searching for a cost-effective and customizable way to publish their blog posts. The Quarto project simplifies the process of organizing, formatting, and publishing scientific documents, with features such as:
+[Quarto](https://quarto.org){target=_blank} is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more, with features such as:
 
 - Compatibility with a wide range of programming languages, including R, Python, and Julia;
-- Integration with popular web publishing platforms such as GitHub pages and Jekyll;
+- Integration with popular web publishing platforms such as GitHub pages, Netlify among [others](https://quarto.org/docs/publishing/){target=_blank};
 - Support for a broad range of document outputs, including LaTeX, PDF, and HTML;
 - Extensive customizability with built-in templates and reusable components; and
 - Built-in support for code snippets and data visualizations.
 
-With its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging.
+With its comprehensive range of features and user-friendly interface, IMHO Quarto is an ideal choice for Python and Data developers looking for a streamlined and customizable approach to blogging.
 
 
 ## Installing Quarto
@@ -52,13 +48,99 @@ cd quarto-blog/
 quarto preview quarto-blog
 ```
 
-::: {.callout-important}
-TODO: Add screenshot to preview here
-:::
+
+![Generated quarto blog preview](images/default-quarto-screen.png)
 
 ## Migrating fastpages's posts to Quarto
 
-## Setup `favicon`
+Follow instructions in nbdev's [Migrating from Fastpages](https://nbdev.fast.ai/tutorials/blogging.html#migrating-from-fastpages){target=_blank} tutorial.
+
+In my case:
+
+```bash
+cd quarto-blog
+cp -r ../fastpages-blog/_notebooks/* posts
+cp -r ../fastpages-blog/_posts/* posts
+cp ../fastpages-blog/images/* posts
+cp -r ../fastpages-blog/images/copied_from_nb/* posts
+nbdev_migrate --path posts
+```
+
+### Create `.gitignore` file
+
+Created `.gitignore` file with the following content:
+
+```{.txt filename='.gitignore'} 
+/.quarto/
+/_site/
+/_freeze/
+```
+
+## Setup general blog configuration
+Rename blog title, description and add `favicon`
+
+Edited section website in file `_quarto.yml` updating title and description and then adding site-url, favicon and google analytics configuration:
+
+```{.yaml filename='_quarto.yml'}
+website:
+  title: "xboard.dev"
+  favicon: favicon.ico
+  site-url: https://xboard.dev
+  description: "Everything data and programming."
+  google-analytics: "G-5FL5R0TTQ6"
+```
+
+### Setup navigation menu and footer
+
+Mantained About page and added github, twitter and rss buttons in
+the right section of the navigation bar and centered content license in the footer.
+
+```{.yaml filename='_quarto.yml'}
+website:
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/xboard
+      - icon: twitter
+        href: https://twitter.com/xboard_
+      - icon: rss
+        href: index.xml
+  page-footer:
+    center: |
+      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+
+```
+
+
+### Setup social metadata
+
+To enables richer sharing of links to articles on the web improving the previews of my content when a link to it is pasted into applications like Twitter, Slack, Discord, Facebook, Linkedin, and more.
+
+```{.yaml filename='_quarto.yml'}
+website:
+  twitter-card:
+    creator: "@xboard_"
+    card-style: summary_large_image
+  open-graph: true
+
+```
+
+## Setup themes for light and dark mode 
+
+After playing a bit with some of the default themes available I have choosen litera and superhero for light and dark modes respectively.
+
+```{.yaml filename='_quarto.yml'}
+theme:
+  light: litera
+  dark: superhero
+css: styles.css
+```
+
+![Light mode with litera theme](images/themed-screen-part1.png)
+
+![Dark mode with superhero theme](images/themed-screen-dark_mode.png)
+
 
 ## Adding `canonical` tag into the `<head>` section
 
@@ -88,11 +170,6 @@ then add domain to [quarto-blog] repository.
 
 ### Setup (giscus)[https://giscus.app/] comments
 
-
-## Adding dark mode 
-
-
-## Adding google anaytics and RSS
 
 
 ## Setup footer
