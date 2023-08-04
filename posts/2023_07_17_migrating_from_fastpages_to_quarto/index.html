@@ -108,7 +108,6 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 </script>
-<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -209,10 +208,17 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
   <ul>
   <li><a href="#why" id="toc-why" class="nav-link active" data-scroll-target="#why">Why</a></li>
   <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link" data-scroll-target="#what-is-quarto">What is Quarto?</a></li>
-  <li><a href="#why-and-when-developers-should-use-quarto" id="toc-why-and-when-developers-should-use-quarto" class="nav-link" data-scroll-target="#why-and-when-developers-should-use-quarto">Why and When Developers Should Use Quarto?</a></li>
   <li><a href="#installing-quarto" id="toc-installing-quarto" class="nav-link" data-scroll-target="#installing-quarto">Installing Quarto</a></li>
-  <li><a href="#migrating-fastpagess-posts-to-quarto" id="toc-migrating-fastpagess-posts-to-quarto" class="nav-link" data-scroll-target="#migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</a></li>
-  <li><a href="#setup-favicon" id="toc-setup-favicon" class="nav-link" data-scroll-target="#setup-favicon">Setup <code>favicon</code></a></li>
+  <li><a href="#migrating-fastpagess-posts-to-quarto" id="toc-migrating-fastpagess-posts-to-quarto" class="nav-link" data-scroll-target="#migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</a>
+  <ul class="collapse">
+  <li><a href="#create-.gitignore-file" id="toc-create-.gitignore-file" class="nav-link" data-scroll-target="#create-.gitignore-file">Create <code>.gitignore</code> file</a></li>
+  </ul></li>
+  <li><a href="#setup-general-blog-configuration" id="toc-setup-general-blog-configuration" class="nav-link" data-scroll-target="#setup-general-blog-configuration">Setup general blog configuration</a>
+  <ul class="collapse">
+  <li><a href="#setup-navigation-menu-and-footer" id="toc-setup-navigation-menu-and-footer" class="nav-link" data-scroll-target="#setup-navigation-menu-and-footer">Setup navigation menu and footer</a></li>
+  <li><a href="#setup-social-metadata" id="toc-setup-social-metadata" class="nav-link" data-scroll-target="#setup-social-metadata">Setup social metadata</a></li>
+  </ul></li>
+  <li><a href="#setup-themes-for-light-and-dark-mode" id="toc-setup-themes-for-light-and-dark-mode" class="nav-link" data-scroll-target="#setup-themes-for-light-and-dark-mode">Setup themes for light and dark mode</a></li>
   <li><a href="#adding-canonical-tag-into-the-head-section" id="toc-adding-canonical-tag-into-the-head-section" class="nav-link" data-scroll-target="#adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</a></li>
   <li><a href="#gitgithub" id="toc-gitgithub" class="nav-link" data-scroll-target="#gitgithub">Git/Github</a>
   <ul class="collapse">
@@ -223,8 +229,6 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
   <ul class="collapse">
   <li><a href="#setup-giscushttpsgiscus.app-comments" id="toc-setup-giscushttpsgiscus.app-comments" class="nav-link" data-scroll-target="#setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</a></li>
   </ul></li>
-  <li><a href="#adding-dark-mode" id="toc-adding-dark-mode" class="nav-link" data-scroll-target="#adding-dark-mode">Adding dark mode</a></li>
-  <li><a href="#adding-google-anaytics-and-rss" id="toc-adding-google-anaytics-and-rss" class="nav-link" data-scroll-target="#adding-google-anaytics-and-rss">Adding google anaytics and RSS</a></li>
   <li><a href="#setup-footer" id="toc-setup-footer" class="nav-link" data-scroll-target="#setup-footer">Setup footer</a></li>
   <li><a href="#vscode" id="toc-vscode" class="nav-link" data-scroll-target="#vscode">VSCode</a>
   <ul class="collapse">
@@ -248,23 +252,19 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 
 <section id="why" class="level2">
 <h2 class="anchored" data-anchor-id="why">Why</h2>
-<p>In a <a href="https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095">post published on September 3, 2022</a>, Hamel Husain announced that he has rebuilt nbdev on top of <a href="https://quarto.org">Quarto</a>. In the blog post, he explained that there have been new pieces of technology like <a href="https://jupyterbook.org/">Jupyter Book</a> and <a href="https://quarto.org">Quarto</a>, which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from JJ Allaire and the rest of the Posit team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of Fastpages.</p>
+<p>In a <a href="https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095" target="_blank">post published on September 3, 2022</a>, <a href="https://hamel.dev/" target="_blank">Hamel Husain</a> announced that he has rebuilt <a href="https://nbdev.fast.ai/" target="_blank">nbdev</a> on top of <a href="https://quarto.org" target="_blank">Quarto</a>. In the blog post, he explained that there have been new pieces of technology like <a href="https://jupyterbook.org/" target="_blank">Jupyter Book</a> and <a href="https://quarto.org" target="_blank">Quarto</a>, which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from <a href="https://www.rstudio.com/authors/j.j.-allaire/" target="_blank">JJ Allaire</a> and the rest of the <a href="https://posit.co/" target="_blank">Posit</a> team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of <a href="https://github.com/fastai/fastpages" target="_blank">Fastpages</a>.</p>
 </section>
 <section id="what-is-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-quarto">What is Quarto?</h2>
-<p>Quarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more. With an easy-to-use interface and a wide range of customizable features, Quarto makes it simple to publish your Python development blogs.</p>
-</section>
-<section id="why-and-when-developers-should-use-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="why-and-when-developers-should-use-quarto">Why and When Developers Should Use Quarto?</h2>
-<p>Developers should use Quarto when searching for a cost-effective and customizable way to publish their blog posts. The Quarto project simplifies the process of organizing, formatting, and publishing scientific documents, with features such as:</p>
+<p><a href="https://quarto.org" target="_blank">Quarto</a> is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more, with features such as:</p>
 <ul>
 <li>Compatibility with a wide range of programming languages, including R, Python, and Julia;</li>
-<li>Integration with popular web publishing platforms such as GitHub pages and Jekyll;</li>
+<li>Integration with popular web publishing platforms such as GitHub pages, Netlify among <a href="https://quarto.org/docs/publishing/" target="_blank">others</a>;</li>
 <li>Support for a broad range of document outputs, including LaTeX, PDF, and HTML;</li>
 <li>Extensive customizability with built-in templates and reusable components; and</li>
 <li>Built-in support for code snippets and data visualizations.</li>
 </ul>
-<p>With its comprehensive range of features and user-friendly interface, Quarto is an ideal choice for Python developers looking for a streamlined and customizable approach to blogging.</p>
+<p>With its comprehensive range of features and user-friendly interface, IMHO Quarto is an ideal choice for Python and Data developers looking for a streamlined and customizable approach to blogging.</p>
 </section>
 <section id="installing-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="installing-quarto">Installing Quarto</h2>
@@ -275,25 +275,112 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <p>then enter the project and preview it:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quarto-blog/</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview quarto-blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>TODO: Add screenshot to preview here</p>
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/default-quarto-screen.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Generated quarto blog preview</figcaption>
+</figure>
 </div>
 </section>
 <section id="migrating-fastpagess-posts-to-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="migrating-fastpagess-posts-to-quarto">Migrating fastpages’s posts to Quarto</h2>
+<p>Follow instructions in nbdev’s <a href="https://nbdev.fast.ai/tutorials/blogging.html#migrating-from-fastpages" target="_blank">Migrating from Fastpages</a> tutorial.</p>
+<p>In my case:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quarto-blog</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ../fastpages-blog/_notebooks/<span class="pp">*</span> posts</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ../fastpages-blog/_posts/<span class="pp">*</span> posts</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../fastpages-blog/images/<span class="pp">*</span> posts</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ../fastpages-blog/images/copied_from_nb/<span class="pp">*</span> posts</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">nbdev_migrate</span> <span class="at">--path</span> posts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="create-.gitignore-file" class="level3">
+<h3 class="anchored" data-anchor-id="create-.gitignore-file">Create <code>.gitignore</code> file</h3>
+<p>Created <code>.gitignore</code> file with the following content:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>.gitignore</strong></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>/.quarto/</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>/_site/</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>/_freeze/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="setup-favicon" class="level2">
-<h2 class="anchored" data-anchor-id="setup-favicon">Setup <code>favicon</code></h2>
+</section>
+<section id="setup-general-blog-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="setup-general-blog-configuration">Setup general blog configuration</h2>
+<p>Rename blog title, description and add <code>favicon</code></p>
+<p>Edited section website in file <code>_quarto.yml</code> updating title and description and then adding site-url, favicon and google analytics configuration:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"xboard.dev"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">favicon</span><span class="kw">:</span><span class="at"> favicon.ico</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">site-url</span><span class="kw">:</span><span class="at"> https://xboard.dev</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">"Everything data and programming."</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">google-analytics</span><span class="kw">:</span><span class="at"> </span><span class="st">"G-5FL5R0TTQ6"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="setup-navigation-menu-and-footer" class="level3">
+<h3 class="anchored" data-anchor-id="setup-navigation-menu-and-footer">Setup navigation menu and footer</h3>
+<p>Mantained About page and added github, twitter and rss buttons in the right section of the navigation bar and centered content license in the footer.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> about.qmd</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> github</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://github.com/xboard</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> twitter</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://twitter.com/xboard_</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.xml</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">page-footer</span><span class="kw">:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">    center</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="setup-social-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="setup-social-metadata">Setup social metadata</h3>
+<p>To enables richer sharing of links to articles on the web improving the previews of my content when a link to it is pasted into applications like Twitter, Slack, Discord, Facebook, Linkedin, and more.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">twitter-card</span><span class="kw">:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">creator</span><span class="kw">:</span><span class="at"> </span><span class="st">"@xboard_"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">card-style</span><span class="kw">:</span><span class="at"> summary_large_image</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">open-graph</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="setup-themes-for-light-and-dark-mode" class="level2">
+<h2 class="anchored" data-anchor-id="setup-themes-for-light-and-dark-mode">Setup themes for light and dark mode</h2>
+<p>After playing a bit with some of the default themes available I have choosen litera and superhero for light and dark modes respectively.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">light</span><span class="kw">:</span><span class="at"> litera</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dark</span><span class="kw">:</span><span class="at"> superhero</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/themed-screen-part1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Light mode with litera theme</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/themed-screen-dark_mode.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Dark mode with superhero theme</figcaption>
+</figure>
+</div>
 </section>
 <section id="adding-canonical-tag-into-the-head-section" class="level2">
 <h2 class="anchored" data-anchor-id="adding-canonical-tag-into-the-head-section">Adding <code>canonical</code> tag into the <code>&lt;head&gt;</code> section</h2>
@@ -320,12 +407,6 @@ Important
 <section id="setup-giscushttpsgiscus.app-comments" class="level3">
 <h3 class="anchored" data-anchor-id="setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</h3>
 </section>
-</section>
-<section id="adding-dark-mode" class="level2">
-<h2 class="anchored" data-anchor-id="adding-dark-mode">Adding dark mode</h2>
-</section>
-<section id="adding-google-anaytics-and-rss" class="level2">
-<h2 class="anchored" data-anchor-id="adding-google-anaytics-and-rss">Adding google anaytics and RSS</h2>
 </section>
 <section id="setup-footer" class="level2">
 <h2 class="anchored" data-anchor-id="setup-footer">Setup footer</h2>
@@ -716,5 +797,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
