@@ -199,7 +199,7 @@ project:
 
 ### Setup github pages
 
-I have followed this [official documentatation article](hhttps://quarto.org/docs/publishing/github-pages.html#publish-command) on how to publish you content to a gh-pages branch.
+I have followed this [article](hhttps://quarto.org/docs/publishing/github-pages.html#publish-command) from the official quarto documentation on how to publish you content to a gh-pages branch.
 
 :::{.column-margin}
 My old blog was running in github-pages and I want keep using it. One benefit of this decision is not having to update DNS configuration in NameCheap.
