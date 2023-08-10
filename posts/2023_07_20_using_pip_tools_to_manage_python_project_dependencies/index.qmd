@@ -12,7 +12,7 @@ image: "https://source.unsplash.com/s8OO2-t-HmQ"
 
 ## Improve Your Python Dependency Management with pip-tools 
 
-As a engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. I ofter have to test and deploy my projects in different environments (development/testing/production machines) and on different Cloud or PaaS providers and need to be sure that all of them will use exactly the same Python packages and versions as I’ve used in development, to be sure no problems are introduced by an unexpected package upgrade. 
+As an engineer who loves to solve problems using Python and creates tens of projects by year, keeping track of different packages and their versions can be complex. I often have to test and deploy my projects in different environments (development/testing/production machines) and on different Cloud or PaaS providers and need to be sure that all of them will use exactly the same Python packages and versions as I have used in the development, to be sure no problems were introduced by an unexpected package upgrade. 
 
 A naive approach would be to install the packages you need using `pip` and at the end generate a `requirements.txt` file with
 
