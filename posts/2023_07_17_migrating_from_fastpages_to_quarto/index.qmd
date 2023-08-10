@@ -66,15 +66,6 @@ cp -r ../fastpages-blog/images/copied_from_nb/* posts
 nbdev_migrate --path posts
 ```
 
-### Create `.gitignore` file
-
-Created `.gitignore` file with the following content:
-
-```{.txt filename='.gitignore'} 
-/.quarto/
-/_site/
-/_freeze/
-```
 
 ## Setup general blog configuration
 Rename blog title, description and add `favicon`
@@ -197,19 +188,52 @@ project:
 
 ## Git/Github
 
+### Create `.gitignore` file
+
+Created `.gitignore` file with the following content:
+
+```{.txt filename='.gitignore'} 
+/.quarto/
+/_site/
+/_freeze/s
+```
+
+### Initialize Git and upload to repository in Github
+
+Initialize local repository:
+
+```bash
+git init
+git add .
+git commit -m "Migrated blog: first commit"
+```
+
+Then go to [Github](https://github.com/){target=_blank} and create a new public repository named `quarto-blog`
+and in your local repository directory type in the terminal:
+
+```bash
+git remote add origin https://github.com/xboard/quarto-blog.git
+git push -u -f origin master
+```
+
+
 ### Setup github pages
 
-I have followed this [article](hhttps://quarto.org/docs/publishing/github-pages.html#publish-command) from the official quarto documentation on how to publish you content to a gh-pages branch.
+I have followed this [article](hhttps://quarto.org/docs/publishing/github-pages.html#publish-command){target=_blank} from the official quarto documentation on how to publish you content to a gh-pages branch.
 
 :::{.column-margin}
-My old blog was running in github-pages and I want keep using it. One benefit of this decision is not having to update DNS configuration in NameCheap.
+My old blog was running in github-pages and I want to keep using it. 
 :::
 
 ### Add custom domain to github pages
 
-First remove the domain in repository [fastpages-blog](https://github.com/xboard/fastpages-blog)
+First remove the domain in repository [fastpages-blog](https://github.com/xboard/fastpages-blog){target=_blank}
 
-then add domain to [quarto-blog] repository.
+![Remove domain from old blog repository](images/remove_domain_from_old_repo.png)
+
+then add domain to [quarto-blog repository](https://github.com/xboard/quarto-blog){target=_blank} github page.
+
+
 
 ## Creating Conda's environment
 
