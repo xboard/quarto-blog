@@ -237,6 +237,35 @@ then add domain to [quarto-blog repository](https://github.com/xboard/quarto-blo
 
 ## Creating Conda's environment
 
+Quarto supports executable Python code blocks within markdown. This allows you to create fully reproducible documents and reports—the Python code required to produce your output is part of the document itself, and is automatically re-run whenever the document is rendered. 
+
+Therefore it is crucial to have a reproducible Python execution environment and for such I have chosen [Miniconda](https://docs.conda.io/en/latest/miniconda.html){target=_blank}.
+This are the steps I did to create my virtual environment and to save its configuration in github.
+
+1. Create and activate the environment
+```bash
+conda create -n 'quarto_env'
+conda activate quanto_env
+```
+
+2. Install data-science libraries
+```bash
+conda install pandas seaborn matplotlib plotly pip scrapy statsmodels jupyter jupyterlab xgboost scikit-learn seaborn lightgbm "pymc>=5" jax[cpu] tsfresh sktime prophet gradio plotly  scipy statsmodels arviz xarray pytorch fastai  streamlit lime shap interpret yellowbrick pypdf langchain accelerate bitsandbytes transformers scrapy  
+```
+
+3. Export all libraries installed in environment to `environment.yml` file
+```bash
+conda env export --name quarto_env --file environment.yml
+```
+
+4. Add and push to github
+```bash
+git add environment.yml
+git commit -m 'Add conda environment.yml'
+```
+
+You can see the generated `environment.yml` file in github [here](https://github.com/xboard/quarto-blog/blob/main/environment.yml){target=_blank}.
+
 
 ## Setup `posts/_metadata.yml`
 
