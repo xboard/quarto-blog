@@ -267,10 +267,67 @@ git commit -m 'Add conda environment.yml'
 You can see the generated `environment.yml` file in github [here](https://github.com/xboard/quarto-blog/blob/main/environment.yml){target=_blank}.
 
 
-## Setup `posts/_metadata.yml`
+## Default configuration for blog posts
 
-### Setup (giscus)[https://giscus.app/] comments
+This setup properties that will be inhereted by all posts.
 
+```{.yaml filename='posts/_metadata.yml'}
+
+# options specified here will apply to all posts in this folder
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true                                           # <1>
+
+# Enable banner style title blocks
+title-block-banner: true                               # <2>
+
+# Default for table of contents
+toc: true
+toc-title: Contents                                    # <3>
+toc-location: left
+toc-expand: 2
+
+# Default author
+author:
+  - name: Flavio Regis de Arruda
+    url: https://xboard.dev
+
+# Default fields for citation
+citation: false                                        # <4>
+```
+
+1. computational documents should never be re-rendered during a global project render
+2. create a banner style [title block](https://quarto.org/docs/authoring/title-blocks.html#title-banners){target=_blank}
+3. table of content title
+4. do not show [citation metadata](https://quarto.org/docs/reference/metadata/citation.html){target=_blank}.
+
+
+
+
+## Enabling commenting
+
+I have chosen [Giscus app](https://quarto.org/docs/reference/projects/websites.html#giscus){target=_blank} to leverage [Github Discussions](https://docs.github.com/en/discussions){target=_blank} as commenting platform in my posts. 
+
+```{.yaml filename="_quarto.yml"}
+website:
+  comments:
+    giscus:
+      repo: xboard/quarto-blog                     # <1>
+      repo-id: R_kgDOJ7r2SQ                        # <2>
+      category: Announcements                      # <3>
+      category-id: DIC_kwDOJ7r2Sc4CX95f            # <4>
+      loading: lazy
+```
+
+1. the Github repo that will be used to store comments.
+2. found using [https://giscus.app/](https://giscus.app/){target=_blank} 
+3. discussion category in Github Discussions
+4. found using [https://giscus.app/](https://giscus.app/){target=_blank} 
+
+after this at the botton of every post you will see the Giscus integration in action:
+
+![Giscus widget for commenting and reactions](images/post_comments.png)
 
 
 ## Setup footer
