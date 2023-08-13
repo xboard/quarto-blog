@@ -14,7 +14,7 @@
 <item>
   <title>Tip: set depends_on_past=True in Airflow when creating a time series model pipeline</title>
   <dc:creator>Flavio Regis de Arruda</dc:creator>
-  <link>https://www.xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html</link>
+  <link>https://www.xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html</link>
   <description><![CDATA[ 
 
 
@@ -99,7 +99,7 @@ font-style: inherit;"># ...</span></span>
  ]]></description>
   <category>airflow</category>
   <category>data engineering</category>
-  <guid>https://www.xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_time_series_model_pipeline/index.html</guid>
+  <guid>https://www.xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html</guid>
   <pubDate>Thu, 27 Jul 2023 03:00:00 GMT</pubDate>
   <media:content url="https://source.unsplash.com/Em2hPK55o8g" medium="image"/>
 </item>

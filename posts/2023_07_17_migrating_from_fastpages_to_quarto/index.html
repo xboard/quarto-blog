@@ -225,10 +225,8 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
   <li><a href="#add-custom-domain-to-github-pages" id="toc-add-custom-domain-to-github-pages" class="nav-link" data-scroll-target="#add-custom-domain-to-github-pages">Add custom domain to github pages</a></li>
   </ul></li>
   <li><a href="#creating-condas-environment" id="toc-creating-condas-environment" class="nav-link" data-scroll-target="#creating-condas-environment">Creating Conda’s environment</a></li>
-  <li><a href="#setup-posts_metadata.yml" id="toc-setup-posts_metadata.yml" class="nav-link" data-scroll-target="#setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></a>
-  <ul class="collapse">
-  <li><a href="#setup-giscushttpsgiscus.app-comments" id="toc-setup-giscushttpsgiscus.app-comments" class="nav-link" data-scroll-target="#setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</a></li>
-  </ul></li>
+  <li><a href="#default-configuration-for-blog-posts" id="toc-default-configuration-for-blog-posts" class="nav-link" data-scroll-target="#default-configuration-for-blog-posts">Default configuration for blog posts</a></li>
+  <li><a href="#enabling-commenting" id="toc-enabling-commenting" class="nav-link" data-scroll-target="#enabling-commenting">Enabling commenting</a></li>
   <li><a href="#setup-footer" id="toc-setup-footer" class="nav-link" data-scroll-target="#setup-footer">Setup footer</a></li>
   <li><a href="#vscode" id="toc-vscode" class="nav-link" data-scroll-target="#vscode">VSCode</a>
   <ul class="collapse">
@@ -452,25 +450,138 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 </section>
 <section id="setup-github-pages" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="setup-github-pages">Setup github pages</h3>
-<p>I have followed this <a href="hhttps://quarto.org/docs/publishing/github-pages.html#publish-command">article</a> from the official quarto documentation on how to publish you content to a gh-pages branch.</p>
+<p>I have followed this <a href="hhttps://quarto.org/docs/publishing/github-pages.html#publish-command" target="_blank">article</a> from the official quarto documentation on how to publish you content to a gh-pages branch.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>My old blog was running in github-pages and I want to keep using it.</p>
 </div></div></section>
 <section id="add-custom-domain-to-github-pages" class="level3">
 <h3 class="anchored" data-anchor-id="add-custom-domain-to-github-pages">Add custom domain to github pages</h3>
-<p>First remove the domain in repository <a href="https://github.com/xboard/fastpages-blog">fastpages-blog</a></p>
-<p>then add domain to [quarto-blog] repository.</p>
+<p>First remove the domain in repository <a href="https://github.com/xboard/fastpages-blog" target="_blank">fastpages-blog</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/remove_domain_from_old_repo.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Remove domain from old blog repository</figcaption>
+</figure>
+</div>
+<p>then add domain to <a href="https://github.com/xboard/quarto-blog" target="_blank">quarto-blog repository</a> github page.</p>
 </section>
 </section>
 <section id="creating-condas-environment" class="level2">
 <h2 class="anchored" data-anchor-id="creating-condas-environment">Creating Conda’s environment</h2>
+<p>Quarto supports executable Python code blocks within markdown. This allows you to create fully reproducible documents and reports—the Python code required to produce your output is part of the document itself, and is automatically re-run whenever the document is rendered.</p>
+<p>Therefore it is crucial to have a reproducible Python execution environment and for such I have chosen <a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank">Miniconda</a>. This are the steps I did to create my virtual environment and to save its configuration in github.</p>
+<ol type="1">
+<li>Create and activate the environment</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> <span class="st">'quarto_env'</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate quanto_env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Install data-science libraries</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install pandas seaborn matplotlib plotly pip scrapy statsmodels jupyter jupyterlab xgboost scikit-learn seaborn lightgbm <span class="st">"pymc&gt;=5"</span> jax<span class="pp">[</span><span class="ss">cpu</span><span class="pp">]</span> tsfresh sktime prophet gradio plotly  scipy statsmodels arviz xarray pytorch fastai  streamlit lime shap interpret yellowbrick pypdf langchain accelerate bitsandbytes transformers scrapy  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Export all libraries installed in environment to <code>environment.yml</code> file</li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--name</span> quarto_env <span class="at">--file</span> environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Add and push to github</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add environment.yml</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'Add conda environment.yml'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can see the generated <code>environment.yml</code> file in github <a href="https://github.com/xboard/quarto-blog/blob/main/environment.yml" target="_blank">here</a>.</p>
 </section>
-<section id="setup-posts_metadata.yml" class="level2">
-<h2 class="anchored" data-anchor-id="setup-posts_metadata.yml">Setup <code>posts/_metadata.yml</code></h2>
-<section id="setup-giscushttpsgiscus.app-comments" class="level3">
-<h3 class="anchored" data-anchor-id="setup-giscushttpsgiscus.app-comments">Setup (giscus)[https://giscus.app/] comments</h3>
+<section id="default-configuration-for-blog-posts" class="level2">
+<h2 class="anchored" data-anchor-id="default-configuration-for-blog-posts">Default configuration for blog posts</h2>
+<p>This setup properties that will be inhereted by all posts.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>posts/_metadata.yml</strong></pre>
+</div>
+<div class="sourceCode" id="annotated-cell-18"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-18-1"><a href="#annotated-cell-18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-18-2"><a href="#annotated-cell-18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># options specified here will apply to all posts in this folder</span></span>
+<span id="annotated-cell-18-3"><a href="#annotated-cell-18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-18-4"><a href="#annotated-cell-18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># freeze computational output</span></span>
+<span id="annotated-cell-18-5"><a href="#annotated-cell-18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (see https://quarto.org/docs/projects/code-execution.html#freeze)</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-6" class="code-annotation-target"><a href="#annotated-cell-18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">freeze</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="annotated-cell-18-7"><a href="#annotated-cell-18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-18-8"><a href="#annotated-cell-18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable banner style title blocks</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-18-9" class="code-annotation-target"><a href="#annotated-cell-18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">title-block-banner</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="annotated-cell-18-10"><a href="#annotated-cell-18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-18-11"><a href="#annotated-cell-18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Default for table of contents</span></span>
+<span id="annotated-cell-18-12"><a href="#annotated-cell-18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-18-13" class="code-annotation-target"><a href="#annotated-cell-18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-title</span><span class="kw">:</span><span class="at"> Contents</span></span>
+<span id="annotated-cell-18-14"><a href="#annotated-cell-18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-location</span><span class="kw">:</span><span class="at"> left</span></span>
+<span id="annotated-cell-18-15"><a href="#annotated-cell-18-15" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-expand</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="annotated-cell-18-16"><a href="#annotated-cell-18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-18-17"><a href="#annotated-cell-18-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Default author</span></span>
+<span id="annotated-cell-18-18"><a href="#annotated-cell-18-18" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="annotated-cell-18-19"><a href="#annotated-cell-18-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Flavio Regis de Arruda</span></span>
+<span id="annotated-cell-18-20"><a href="#annotated-cell-18-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">url</span><span class="kw">:</span><span class="at"> https://xboard.dev</span></span>
+<span id="annotated-cell-18-21"><a href="#annotated-cell-18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-18-22"><a href="#annotated-cell-18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Default fields for citation</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-18-23" class="code-annotation-target"><a href="#annotated-cell-18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-18" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-18" data-code-lines="6">computational documents should never be re-rendered during a global project render</span>
+</dd>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-18" data-code-lines="9">create a banner style <a href="https://quarto.org/docs/authoring/title-blocks.html#title-banners" target="_blank">title block</a></span>
+</dd>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-18" data-code-lines="13">table of content title</span>
+</dd>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-18" data-code-lines="23">do not show <a href="https://quarto.org/docs/reference/metadata/citation.html" target="_blank">citation metadata</a>.</span>
+</dd>
+</dl>
 </section>
+<section id="enabling-commenting" class="level2">
+<h2 class="anchored" data-anchor-id="enabling-commenting">Enabling commenting</h2>
+<p>I have chosen <a href="https://quarto.org/docs/reference/projects/websites.html#giscus" target="_blank">Giscus app</a> to leverage <a href="https://docs.github.com/en/discussions" target="_blank">Github Discussions</a> as commenting platform in my posts.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="annotated-cell-19"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-19-1"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="annotated-cell-19-2"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">comments</span><span class="kw">:</span></span>
+<span id="annotated-cell-19-3"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">giscus</span><span class="kw">:</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-4" class="code-annotation-target"><a href="#annotated-cell-19-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> xboard/quarto-blog</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-5" class="code-annotation-target"><a href="#annotated-cell-19-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">repo-id</span><span class="kw">:</span><span class="at"> R_kgDOJ7r2SQ</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-19-6" class="code-annotation-target"><a href="#annotated-cell-19-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">category</span><span class="kw">:</span><span class="at"> Announcements</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-19-7" class="code-annotation-target"><a href="#annotated-cell-19-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">category-id</span><span class="kw">:</span><span class="at"> DIC_kwDOJ7r2Sc4CX95f</span></span>
+<span id="annotated-cell-19-8"><a href="#annotated-cell-19-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">loading</span><span class="kw">:</span><span class="at"> lazy</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-19" data-code-lines="4">the Github repo that will be used to store comments.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-19" data-code-lines="5">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-19" data-code-lines="6">discussion category in Github Discussions</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-19" data-code-lines="7">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
+</dd>
+</dl>
+<p>after this at the botton of every post you will see the Giscus integration in action:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/post_comments.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Giscus widget for commenting and reactions</figcaption>
+</figure>
+</div>
 </section>
 <section id="setup-footer" class="level2">
 <h2 class="anchored" data-anchor-id="setup-footer">Setup footer</h2>
