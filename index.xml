@@ -12,7 +12,7 @@
 <generator>quarto-1.3.433</generator>
 <lastBuildDate>Thu, 27 Jul 2023 03:00:00 GMT</lastBuildDate>
 <item>
-  <title>Tip: set depends_on_past=True in Airflow when creating a time series model pipeline</title>
+  <title>Tip: set depends_on_past=True in Airflow when creating a forecasting model pipeline</title>
   <dc:creator>Flavio Regis de Arruda</dc:creator>
   <link>https://www.xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html</link>
   <description><![CDATA[ 
@@ -30,13 +30,13 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>When creating time series model pipeline in Airflow set <code>depends_on_past=True</code>.</p>
+<p>When creating forecasting model pipeline in Airflow set <code>depends_on_past=True</code>.</p>
 </div>
 </div>
 <section id="why" class="level2">
 <h2 class="anchored" data-anchor-id="why">Why?</h2>
-<p>Time series models help us predict future data based on patterns and trends observed in historical data. These models surprise, surprise… <strong>depend on past</strong> data, hence any deviation from the expected sequence can affect their accuracy.</p>
-<p>One way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the <code>depends_on_past</code> argument to ‘True’. This way each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced.</p>
+<p>Forecasting models help us predict future data based on patterns and trends observed in historical data. These models surprise, surprise… <strong>depend on past</strong> data, hence any deviation from the expected sequence can affect their accuracy.</p>
+<p>One way to ensure the integrity of the sequence of data while creating forecasting models in Apache Airflow is to set the <code>depends_on_past</code> argument to ‘True’. This way each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the forecasting model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced.</p>
 <p>If you don’t set <code>depends_on_past=True</code> and you have a problem with one of the partitions of the data used by your model, one of two things will happen in the following days:</p>
 <ul>
 <li><p>Worst case scenario: your workflow will run without any issues being reported. This is a sign that you forgot to add sensors to test the availability of historical data and, chances are, your features are using incomplete data, to say the least.</p></li>

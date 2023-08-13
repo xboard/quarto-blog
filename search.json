@@ -2,21 +2,21 @@
   {
     "objectID": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html",
     "href": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html",
-    "title": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline",
+    "title": "Tip: set depends_on_past=True in Airflow when creating a forecasting model pipeline",
     "section": "",
-    "text": "Tip\n\n\n\nWhen creating time series model pipeline in Airflow set depends_on_past=True."
+    "text": "Tip\n\n\n\nWhen creating forecasting model pipeline in Airflow set depends_on_past=True."
   },
   {
     "objectID": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html#why",
     "href": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html#why",
-    "title": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline",
+    "title": "Tip: set depends_on_past=True in Airflow when creating a forecasting model pipeline",
     "section": "Why?",
-    "text": "Why?\nTime series models help us predict future data based on patterns and trends observed in historical data. These models surprise, surprise… depend on past data, hence any deviation from the expected sequence can affect their accuracy.\nOne way to ensure the integrity of the sequence of data while creating time series models in Apache Airflow is to set the depends_on_past argument to ‘True’. This way each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the time series model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced.\nIf you don’t set depends_on_past=True and you have a problem with one of the partitions of the data used by your model, one of two things will happen in the following days:\n\nWorst case scenario: your workflow will run without any issues being reported. This is a sign that you forgot to add sensors to test the availability of historical data and, chances are, your features are using incomplete data, to say the least.\nAlternatively, subsequent executions of your workflow will also fail, bombarding your oncall colleague’s pagerduty with messages. And when the problem is finally fixed, you still have to remember to clear and restart all the previous failed executions."
+    "text": "Why?\nForecasting models help us predict future data based on patterns and trends observed in historical data. These models surprise, surprise… depend on past data, hence any deviation from the expected sequence can affect their accuracy.\nOne way to ensure the integrity of the sequence of data while creating forecasting models in Apache Airflow is to set the depends_on_past argument to ‘True’. This way each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the forecasting model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced.\nIf you don’t set depends_on_past=True and you have a problem with one of the partitions of the data used by your model, one of two things will happen in the following days:\n\nWorst case scenario: your workflow will run without any issues being reported. This is a sign that you forgot to add sensors to test the availability of historical data and, chances are, your features are using incomplete data, to say the least.\nAlternatively, subsequent executions of your workflow will also fail, bombarding your oncall colleague’s pagerduty with messages. And when the problem is finally fixed, you still have to remember to clear and restart all the previous failed executions."
   },
   {
     "objectID": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html#how",
     "href": "posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html#how",
-    "title": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline",
+    "title": "Tip: set depends_on_past=True in Airflow when creating a forecasting model pipeline",
     "section": "How?",
     "text": "How?\nFor a specific task, most probably a sensor:\ntask = SomeSensor(\n    task_id='task',\n    depends_on_past=True,\n    # ...\n)\nor in your dag default_args to enable depends_on_past for all your tasks\ndefault_args = {\n    'depends_on_past': True,\n    # ...\n}\n\ndag = DAG(\n    dag_id=\"time_series_pipeline\",\n    default_args=default_args,\n    # ...\n)"
   },
@@ -130,7 +130,7 @@
     "href": "index.html",
     "title": "xboard.dev",
     "section": "",
-    "text": "Tip: set depends_on_past=True in Airflow when creating a time series model pipeline\n\n\n\n\n\n\n\nairflow\n\n\ndata engineering\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nUsing pip-tools to manage project dependencies in Python\n\n\n\n\n\n\n\nsoftware development\n\n\ntools\n\n\npython\n\n\n\n\nHow to ensure you have a reproducible development environment.\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata science\n\n\ncausal inference\n\n\npython\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels.\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
+    "text": "Tip: set depends_on_past=True in Airflow when creating a forecasting model pipeline\n\n\n\n\n\n\n\nairflow\n\n\ndata engineering\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nUsing pip-tools to manage project dependencies in Python\n\n\n\n\n\n\n\nsoftware development\n\n\ntools\n\n\npython\n\n\n\n\nHow to ensure you have a reproducible development environment.\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata science\n\n\ncausal inference\n\n\npython\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels.\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
