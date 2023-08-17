@@ -20,7 +20,7 @@ When creating forecasting model pipeline in Airflow set `depends_on_past=True`.
 
 ## Why?
 
-Forecasting models help us predict future data based on patterns and trends observed in historical data. These models surprise, surprise... **depend on past** data, hence any deviation from the expected sequence can affect their accuracy. 
+Forecasting models help us predict future data based on patterns and trends observed in historical data. These models output inherently **depend on past** observations/data, hence any deviation from the expected sequence can affect their accuracy. 
 
 One way to ensure the integrity of the sequence of data while creating forecasting models in Apache Airflow is to set the `depends_on_past` argument to 'True'. This way each subsequent task in the DAG will only run once its preceding task has completed successfully. This approach guarantees that the forecasting model is fed with the correct inputs in the correct order and that the historical data is correctly sequenced.
 
@@ -28,7 +28,7 @@ If you don't set `depends_on_past=True` and you have a problem with one of the p
 
 - Worst case scenario: your workflow will run without any issues being reported. This is a sign that you forgot to add sensors to test the availability of historical data and, chances are, your features are using incomplete data, to say the least.
 
-- Alternatively, subsequent executions of your workflow will also fail, bombarding your oncall colleague's pagerduty with messages. And when the problem is finally fixed, you still have to remember to clear and restart all the previous failed executions.
+- Alternatively, subsequent executions of your workflow will also fail, bombarding your on call colleague's PagerDuty with messages. And when the problem is finally fixed, you still have to remember to clear and restart all the previous failed executions.
 
 ## How?
 
