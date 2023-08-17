@@ -130,7 +130,112 @@
     "href": "index.html",
     "title": "xboard.dev",
     "section": "",
-    "text": "Tip: set depends_on_past=True in Airflow when creating a forecasting model pipeline\n\n\n\n\n\n\n\nairflow\n\n\ndata engineering\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nUsing pip-tools to manage project dependencies in Python\n\n\n\n\n\n\n\nsoftware development\n\n\ntools\n\n\npython\n\n\n\n\nHow to ensure you have a reproducible development environment.\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata science\n\n\ncausal inference\n\n\npython\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels.\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
+    "text": "Tip: set depends_on_past=True in Airflow when creating a forecasting model pipeline\n\n\n\n\n\n\n\nairflow\n\n\ndata engineering\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nUsing pip-tools to manage project dependencies in Python\n\n\n\n\n\n\n\nsoftware development\n\n\ntools\n\n\npython\n\n\n\n\nHow to ensure you have a reproducible development environment.\n\n\n\n\n\n\nJul 20, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nMigrating my blog from fastpages to Quarto\n\n\n\n\n\n\n\nmeta\n\n\nquarto\n\n\n\n\n\n\n\n\n\n\n\nJul 17, 2023\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\n  \n\n\n\n\nInterrupted Time Series (ITS) in Python\n\n\n\n\n\n\n\ndata science\n\n\ncausal inference\n\n\npython\n\n\n\n\nInterrupted Time Series (ITS) analysis using Python and statsmodels.\n\n\n\n\n\n\nJan 1, 2022\n\n\nFlavio Regis de Arruda\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "",
+    "text": "In a post published on September 3, 2022, Hamel Husain announced that he has rebuilt nbdev on top of Quarto. In the blog post, he explained that there have been new pieces of technology like Jupyter Book and Quarto, which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from JJ Allaire and the rest of the Posit team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of Fastpages."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why-migrate",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#why-migrate",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "",
+    "text": "In a post published on September 3, 2022, Hamel Husain announced that he has rebuilt nbdev on top of Quarto. In the blog post, he explained that there have been new pieces of technology like Jupyter Book and Quarto, which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from JJ Allaire and the rest of the Posit team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of Fastpages."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-quarto",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#what-is-quarto",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto is an open-source, web-based platform designed to simplify the creation and publication of scientific documents, including data-driven reports, technical articles, and more, with features such as:\n\nCompatibility with a wide range of programming languages, including R, Python, and Julia;\nIntegration with popular web publishing platforms such as GitHub pages, Netlify among others;\nSupport for a broad range of document outputs, including LaTeX, PDF, and HTML;\nExtensive customizability with built-in templates and reusable components; and\nBuilt-in support for code snippets and data visualizations."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#installing-quarto",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#installing-quarto",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Installing Quarto",
+    "text": "Installing Quarto\nGo to the get started page on the quarto website to download the installer file. I’m on Ubuntu, so for me that’s a .deb file. I install it from the command line:\nsudo dpkg -i quarto-1.3.433-linux-amd64.deb\nCreate my blog project, called quarto-blog:\nquarto create-project quarto-blog --type website:blog\nthen enter the project and preview it:\ncd quarto-blog/\nquarto preview quarto-blog\n\n\n\nGenerated quarto blog preview"
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#migrating-fastpagess-posts-to-quarto",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#migrating-fastpagess-posts-to-quarto",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Migrating fastpages’s posts to Quarto",
+    "text": "Migrating fastpages’s posts to Quarto\nFollow instructions in nbdev’s Migrating from Fastpages tutorial.\nIn my case:\ncd quarto-blog\ncp -r ../fastpages-blog/_notebooks/* posts\ncp -r ../fastpages-blog/_posts/* posts\ncp ../fastpages-blog/images/* posts\ncp -r ../fastpages-blog/images/copied_from_nb/* posts\nnbdev_migrate --path posts"
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-general-blog-configuration",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-general-blog-configuration",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Setup general blog configuration",
+    "text": "Setup general blog configuration\nRename blog title, description and add favicon\nEdited section website in file _quarto.yml updating title and description and then adding site-url, favicon and google analytics configuration:\n\n\n_quarto.yml\n\nwebsite:\n  title: \"xboard.dev\"\n  favicon: favicon.ico\n  site-url: https://xboard.dev\n  description: \"Everything data and programming.\"\n  google-analytics: \"G-5FL5R0TTQ6\"\n\n\nSetup navigation menu and footer\nMaintained About page and added github, twitter and rss buttons in the right section of the navigation bar and centered content license in the footer.\n\n\n_quarto.yml\n\nwebsite:\n  navbar:\n    right:\n      - about.qmd\n      - icon: github\n        href: https://github.com/xboard\n      - icon: twitter\n        href: https://twitter.com/xboard_\n      - icon: rss\n        href: index.xml\n  page-footer:\n    center: |\n      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).\n\n\n\nSetup social metadata\nTo enables richer sharing of links to articles on the web improving the previews of my content when a link to it is pasted into applications like Twitter, Slack, Discord, Facebook, Linkedin, and more.\n\n\n_quarto.yml\n\nwebsite:\n  twitter-card:\n    creator: \"@xboard_\"\n    card-style: summary_large_image\n  open-graph: true"
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-themes-for-light-and-dark-mode",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-themes-for-light-and-dark-mode",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Setup themes for light and dark mode",
+    "text": "Setup themes for light and dark mode\nAfter playing a bit with some of the default themes available I have chosen litera and superhero for light and dark modes respectively.\n\n\n_quarto.yml\n\ntheme:\n  light: litera\n  dark: superhero\ncss: styles.css\n\n\n\n\nLight mode with litera theme\n\n\n\n\n\nDark mode with superhero theme"
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-canonical-tag-into-the-head-section",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-canonical-tag-into-the-head-section",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Adding canonical tag into the <head> section",
+    "text": "Adding canonical tag into the &lt;head&gt; section\nI have followed this post from Matt Bowers adding the following python script:\n\n\nadd-canonicals.py\n\n\"\"\"\nThis script adds canonical url tags to pages in a Quarto website.\nPlace the script in the root of the project and run it post render.\n\nauthor: Matt Bowers - https://github.com/mcb00\nfrom https://github.com/quarto-dev/quarto-cli/discussions/3976#discussioncomment-6376014\n\"\"\"\n\nfrom xml.dom.minidom import parse\nfrom urllib.parse import urlparse\nimport warnings\n\nsite_dir = '_site'\nsitemap_file = 'sitemap.xml'\n\ndocument = parse(site_dir + '/' + sitemap_file)\nlocs = document.getElementsByTagName('loc')\nurls = [l.firstChild.nodeValue for l in locs]\n\nfor url in urls:\n    \n    path = site_dir + urlparse(url).path\n    canonical_tag = f'&lt;link rel=\"canonical\" href=\"{url}\" /&gt;'\n\n    # Read in the file\n    with open(path, 'r') as file :\n      filedata = file.read()\n\n    if filedata.__contains__('&lt;link rel=\"canonical\"'):\n        warnings.warn(f'{path} already contains canonical tag. Skipping this file.')\n    else:\n        print(f'{path} adding canonical tag.')\n        # Replace the target string\n        filedata = filedata.replace('&lt;/head&gt;', canonical_tag +'\\n&lt;/head&gt;')\n\n        # Write the file out again\n        with open(path, 'w') as file:\n          file.write(filedata)\n\nand them add a post-render configuration pointing to this script in my project:\n\n\n_quarto.yml\n\nproject:\n  post-render:\n    - \"python add-canonicals.py\""
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#gitgithub",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Git/Github",
+    "text": "Git/Github\n\nCreate .gitignore file\nCreated .gitignore file with the following content:\n\n\n.gitignore\n\n/.quarto/\n/_site/\n/_freeze/s\n\n\n\nInitialize Git and upload to repository in Github\nInitialize local repository:\ngit init\ngit add .\ngit commit -m \"Migrated blog: first commit\"\nThen go to Github and create a new public repository named quarto-blog and in your local repository directory type in the terminal:\ngit remote add origin https://github.com/xboard/quarto-blog.git\ngit push -u -f origin master\n\n\nSetup github pages\nI have followed this article from the official quarto documentation on how to publish you content to a gh-pages branch.\n\n\nMy old blog was running in github-pages and I want to keep using it.\n\n\nAdd custom domain to github pages\nFirst remove the domain in repository fastpages-blog\n\n\n\nRemove domain from old blog repository\n\n\nthen add domain to quarto-blog repository github page."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#creating-condas-environment",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#creating-condas-environment",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Creating Conda’s environment",
+    "text": "Creating Conda’s environment\nQuarto supports executable Python code blocks within markdown. This allows you to create fully reproducible documents and reports—the Python code required to produce your output is part of the document itself, and is automatically re-run whenever the document is rendered.\nTherefore it is crucial to have a reproducible Python execution environment and for such I have chosen Miniconda. This are the steps I did to create my virtual environment and to save its configuration in github.\n\nCreate and activate the environment\n\nconda create -n 'quarto_env'\nconda activate quarto_env\n\nInstall data-science libraries\n\nconda install pandas seaborn matplotlib plotly pip scrapy statsmodels jupyter jupyterlab xgboost scikit-learn seaborn lightgbm \"pymc&gt;=5\" jax[cpu] tsfresh sktime prophet gradio plotly  scipy statsmodels arviz xarray pytorch fastai  streamlit lime shap interpret yellowbrick pypdf langchain accelerate bitsandbytes transformers scrapy  \n\nExport all libraries installed in environment to environment.yml file\n\nconda env export --name quarto_env --file environment.yml\n\nAdd and push to github\n\ngit add environment.yml\ngit commit -m 'Add conda environment.yml'\nYou can see the generated environment.yml file in github here."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#default-configuration-for-blog-posts",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#default-configuration-for-blog-posts",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Default configuration for blog posts",
+    "text": "Default configuration for blog posts\nThis setup properties that will be inherited by all posts.\n\n\nposts/_metadata.yml\n\n\n# options specified here will apply to all posts in this folder\n\n# freeze computational output\n# (see https://quarto.org/docs/projects/code-execution.html#freeze)\n1freeze: true\n\n# Enable banner style title blocks\n2title-block-banner: true\n\n# Default for table of contents\ntoc: true\n3toc-title: Contents\ntoc-location: left\ntoc-expand: 2\n\n# Default author\nauthor:\n  - name: Flavio Regis de Arruda\n    url: https://xboard.dev\n\n# Default fields for citation\n4citation: false\n\n\n1\n\ncomputational documents should never be re-rendered during a global project render\n\n2\n\ncreate a banner style title block\n\n3\n\ntable of content title\n\n4\n\ndo not show citation metadata."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#enabling-commenting",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#enabling-commenting",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Enabling commenting",
+    "text": "Enabling commenting\nI have chosen Giscus app to leverage Github Discussions as commenting platform in my posts.\n\n\n_quarto.yml\n\nwebsite:\n  comments:\n    giscus:\n1      repo: xboard/quarto-blog\n2      repo-id: R_kgDOJ7r2SQ\n3      category: Announcements\n4      category-id: DIC_kwDOJ7r2Sc4CX95f\n      loading: lazy\n\n\n1\n\nthe Github repo that will be used to store comments.\n\n2\n\nfound using https://giscus.app/\n\n3\n\ndiscussion category in Github Discussions\n\n4\n\nfound using https://giscus.app/\n\n\nafter this at the bottom of every post you will see the Giscus integration in action:\n\n\n\nGiscus widget for commenting and reactions"
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-footer",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#setup-footer",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Setup footer",
+    "text": "Setup footer\nFooter message to be displayed (centered) in all my pages:\n\n\n_quarto.yml\n\nwebsite:\n  page-footer:\n    center: |\n      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)."
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#vscode",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "VSCode",
+    "text": "VSCode\nI love to use Visual Studio Code to write my blogs posts and I was very pleased to discover it has an excellent Quarto extension.\n\nInstalling VS Code Quarto extension\nTo install the Quarto extension type (Ctrl+P), type:\next install quarto.quarto\nand press enter.\nSome of the features this extensions includes:\n\nIntegrated render and preview for Quarto documents.\nSyntax highlighting for markdown and embedded languages\nCompletion and diagnostics for YAML options\nCompletion for embedded languages (e.g. Python, R, Julia, etc.)\nCommands and key-bindings for running cells and selected lines.\nLive preview for LaTeX math as well as Mermaid and Graphviz diagrams\n\n\n\nAdding snippet\n\n\nEnabling inline suggestion\nSet Snippet suggestions to inline as recommended here.\n\n\nAdding spell checker\nInstalled Code Spell checker.\nand them after clicking the spell button at the button at the editor bottom right I enabled its support to Quarto on my workspace.\n\n\n\nEnabling Quarto for Code Spell Checker"
+  },
+  {
+    "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#conclusion",
+    "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#conclusion",
+    "title": "Migrating my blog from fastpages to Quarto",
+    "section": "Conclusion",
+    "text": "Conclusion\nIn summary, Quarto provides me with a powerful and versatile platform to write my technical blog posts as a Data Scientist and Python programmer. Its integration with Jupyter notebooks, support for multiple programming languages, customization options, collaboration features, and rendering capabilities make it the ideal choice for me to create high-quality, detailed, and engaging technical articles. With Quarto, I can focus on delivering content while enjoying a seamless and efficient writing experience.\nIn this post I have described in details all the steps that I did to migrated my posts from fastpages and how I configured Quarto to support the blog you are reading now.\nIf you were also using fastpages and intend to migrate, I hope it not only helps you in your decision process but also speeds up the setup of your new Quarto blog."
   },
   {
     "objectID": "about.html",
