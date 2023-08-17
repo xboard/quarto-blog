@@ -5,11 +5,10 @@ date: 2023-07-17
 toc: true
 categories: [meta, quarto]
 format: html
-draft: true
 image: "https://source.unsplash.com/npxXWgQ33ZQ"
 ---
 
-## Why
+## Why migrate?
 
 In a [post published on September 3, 2022](https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095){target=_blank}, [Hamel Husain](https://hamel.dev/){target=_blank} announced that he has rebuilt [nbdev](https://nbdev.fast.ai/){target=_blank} on top of [Quarto](https://quarto.org){target=_blank}. In the blog post, he explained that there have been new pieces of technology like [Jupyter Book](https://jupyterbook.org/){target=_blank} and [Quarto](https://quarto.org){target=_blank}, which are both fabulous. Husain explained that he ended up using Quarto for nbdev, because of its shared vision with nbdev and the fantastic ongoing support from [JJ Allaire](https://www.rstudio.com/authors/j.j.-allaire/){target=_blank} and the rest of the [Posit](https://posit.co/){target=_blank} team. He also recommended that people trying to blog with notebooks should be using Quarto, instead of [Fastpages](https://github.com/fastai/fastpages){target=_blank}. 
 
@@ -23,7 +22,6 @@ In a [post published on September 3, 2022](https://forums.fast.ai/t/fastpages-de
 - Extensive customizability with built-in templates and reusable components; and
 - Built-in support for code snippets and data visualizations.
 
-With its comprehensive range of features and user-friendly interface, IMHO Quarto is an ideal choice for Python and Data developers looking for a streamlined and customizable approach to blogging.
 
 
 ## Installing Quarto
@@ -83,7 +81,7 @@ website:
 
 ### Setup navigation menu and footer
 
-Mantained About page and added github, twitter and rss buttons in
+Maintained About page and added github, twitter and rss buttons in
 the right section of the navigation bar and centered content license in the footer.
 
 ```{.yaml filename='_quarto.yml'}
@@ -119,7 +117,7 @@ website:
 
 ## Setup themes for light and dark mode 
 
-After playing a bit with some of the default themes available I have choosen litera and superhero for light and dark modes respectively.
+After playing a bit with some of the default themes available I have chosen litera and superhero for light and dark modes respectively.
 
 ```{.yaml filename='_quarto.yml'}
 theme:
@@ -160,7 +158,7 @@ urls = [l.firstChild.nodeValue for l in locs]
 for url in urls:
     
     path = site_dir + urlparse(url).path
-    cannonical_tag = f'<link rel="canonical" href="{url}" />'
+    canonical_tag = f'<link rel="canonical" href="{url}" />'
 
     # Read in the file
     with open(path, 'r') as file :
@@ -171,14 +169,14 @@ for url in urls:
     else:
         print(f'{path} adding canonical tag.')
         # Replace the target string
-        filedata = filedata.replace('</head>', cannonical_tag +'\n</head>')
+        filedata = filedata.replace('</head>', canonical_tag +'\n</head>')
 
         # Write the file out again
         with open(path, 'w') as file:
           file.write(filedata)
 ```
 
-and them add a `post-render` configuration pointig to this script in my project:
+and them add a `post-render` configuration pointing to this script in my project:
 
 ```{.yml filename='_quarto.yml'}
 project:
@@ -245,7 +243,7 @@ This are the steps I did to create my virtual environment and to save its config
 1. Create and activate the environment
 ```bash
 conda create -n 'quarto_env'
-conda activate quanto_env
+conda activate quarto_env
 ```
 
 2. Install data-science libraries
@@ -269,7 +267,7 @@ You can see the generated `environment.yml` file in github [here](https://github
 
 ## Default configuration for blog posts
 
-This setup properties that will be inhereted by all posts.
+This setup properties that will be inherited by all posts.
 
 ```{.yaml filename='posts/_metadata.yml'}
 
@@ -325,22 +323,66 @@ website:
 3. discussion category in Github Discussions
 4. found using [https://giscus.app/](https://giscus.app/){target=_blank} 
 
-after this at the botton of every post you will see the Giscus integration in action:
+after this at the bottom of every post you will see the Giscus integration in action:
 
 ![Giscus widget for commenting and reactions](images/post_comments.png)
 
 
 ## Setup footer
 
+Footer message to be displayed (centered) in all my pages:
+
+```{.yaml filename="_quarto.yml"}
+website:
+  page-footer:
+    center: |
+      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+```
+
 ## VSCode
 
-### Adding Quarto extesion
+I love to use [Visual Studio Code](https://code.visualstudio.com/){target=_blank}
+to write my blogs posts and I was very pleased to discover it has an excellent [Quarto extension](https://quarto.org/docs/tools/vscode.html){target=_blank}.
+
+
+### Installing VS Code Quarto extension
+
+To install the [Quarto extension](https://marketplace.visualstudio.com/items?itemName=quarto.quarto){target=_blank} type (Ctrl+P), type:
+
+```txt
+ext install quarto.quarto
+```
+
+and press enter.
+
+Some of the features this extensions includes:
+
+- Integrated render and preview for Quarto documents.
+- Syntax highlighting for markdown and embedded languages
+- Completion and diagnostics for YAML options
+- Completion for embedded languages (e.g. Python, R, Julia, etc.)
+- Commands and key-bindings for running cells and selected lines.
+- Live preview for LaTeX math as well as Mermaid and Graphviz diagrams
 
 ### Adding snippet
 
 ### Enabling inline suggestion
-Set `Snippet suggestions` to `inline` as recommended [here](https://stackoverflow.com/a/74339599/483157).
+Set `Snippet suggestions` to `inline` as recommended [here](https://stackoverflow.com/a/74339599/483157){target=_blank}.
+
+
+### Adding spell checker
+
+Installed [Code Spell checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker){target=_blank}.
+
+and them after clicking the spell button at the button at the editor bottom right I enabled its support to Quarto on my workspace.
+
+![Enabling Quarto for Code Spell Checker](images/code_spell_checker_quarto.png)
+
 
 ## Conclusion
 
-If you're a Python developer looking for an efficient, cost-effective, and customizable way to publish your Python development blog, the Quarto project is an excellent choice. With integrated features such as metadata
+In summary, Quarto provides me with a powerful and versatile platform to write my technical blog posts as a Data Scientist and Python programmer. Its integration with Jupyter notebooks, support for multiple programming languages, customization options, collaboration features, and rendering capabilities make it the ideal choice for me to create high-quality, detailed, and engaging technical articles. With Quarto, I can focus on delivering content while enjoying a seamless and efficient writing experience.
+
+In this post I have described in details all the steps that I did to migrated my posts from fastpages and how I configured Quarto to support the blog you are reading now.
+
+If you were also using fastpages and intend to migrate, I hope it not only helps you in your decision process but also speeds up the setup of your new Quarto blog.
