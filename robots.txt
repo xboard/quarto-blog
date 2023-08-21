@@ -1,0 +1,9 @@
+User-Agent: *
+Allow: /
+
+
+User-agent: GPTBot
+Disallow: /
+
+
+Sitemap: https://www.xboard.dev/sitemap.xml
