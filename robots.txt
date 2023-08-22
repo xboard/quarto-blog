@@ -6,4 +6,7 @@ User-agent: GPTBot
 Disallow: /
 
 
+User-agent: ChatGPT-User
+Disallow: /
+
 Sitemap: https://www.xboard.dev/sitemap.xml
