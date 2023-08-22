@@ -1107,6 +1107,18 @@ font-style: inherit;">-f</span> origin master</span></code></pre></div>
 </div>
 <p>then add domain to <a href="https://github.com/xboard/quarto-blog" target="_blank">quarto-blog repository</a> github page.</p>
 </section>
+<section id="publish-to-github-pages" class="level3">
+<h3 class="anchored" data-anchor-id="publish-to-github-pages">Publish to github pages</h3>
+<p>Just type in project root:</p>
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> publish gh-pages <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-browser</span>  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-prompt</span></span></code></pre></div>
+<p>This will render your blog’s html in folder <code>_site</code> and publish its content into github pages. The <code>--no-browser</code> argument prevents it from opening a new browser window nor asking for confirmation.</p>
+</section>
 </section>
 <section id="creating-condas-environment" class="level2">
 <h2 class="anchored" data-anchor-id="creating-condas-environment">Creating Conda’s environment</h2>
@@ -1115,20 +1127,20 @@ font-style: inherit;">-f</span> origin master</span></code></pre></div>
 <ol type="1">
 <li>Create and activate the environment</li>
 </ol>
-<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="ex" style="color: null;
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> create <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">-n</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'quarto_env'</span></span>
-<span id="cb14-2"><span class="ex" style="color: null;
+<span id="cb15-2"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> activate quarto_env</span></code></pre></div>
 <ol start="2" type="1">
 <li>Install data-science libraries</li>
 </ol>
-<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="ex" style="color: null;
+<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> install pandas seaborn matplotlib plotly pip scrapy statsmodels jupyter jupyterlab xgboost scikit-learn seaborn lightgbm <span class="st" style="color: #20794D;
 background-color: null;
@@ -1142,7 +1154,7 @@ font-style: inherit;">]</span> tsfresh sktime prophet gradio plotly  scipy stats
 <ol start="3" type="1">
 <li>Export all libraries installed in environment to <code>environment.yml</code> file</li>
 </ol>
-<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="ex" style="color: null;
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
 background-color: null;
@@ -1152,10 +1164,10 @@ font-style: inherit;">--file</span> environment.yml</span></code></pre></div>
 <ol start="4" type="1">
 <li>Add and push to github</li>
 </ol>
-<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">git</span> add environment.yml</span>
-<span id="cb17-2"><span class="fu" style="color: #4758AB;
+<span id="cb18-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">git</span> commit <span class="at" style="color: #657422;
 background-color: null;
@@ -1171,18 +1183,18 @@ font-style: inherit;">'Add conda environment.yml'</span></span></code></pre></di
 <div class="code-with-filename-file">
 <pre><strong>posts/_metadata.yml</strong></pre>
 </div>
-<div class="sourceCode" id="annotated-cell-18" style="background: #f1f3f5;"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-18-1"></span>
-<span id="annotated-cell-18-2"><span class="co" style="color: #5E5E5E;
+<div class="sourceCode" id="annotated-cell-19" style="background: #f1f3f5;"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-19-1"></span>
+<span id="annotated-cell-19-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># options specified here will apply to all posts in this folder</span></span>
-<span id="annotated-cell-18-3"></span>
-<span id="annotated-cell-18-4"><span class="co" style="color: #5E5E5E;
+<span id="annotated-cell-19-3"></span>
+<span id="annotated-cell-19-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># freeze computational output</span></span>
-<span id="annotated-cell-18-5"><span class="co" style="color: #5E5E5E;
+<span id="annotated-cell-19-5"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># (see https://quarto.org/docs/projects/code-execution.html#freeze)</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-6" class="code-annotation-target"><span class="fu" style="color: #4758AB;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-6" class="code-annotation-target"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">freeze</span><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1191,11 +1203,11 @@ background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">true</span></span>
-<span id="annotated-cell-18-7"></span>
-<span id="annotated-cell-18-8"><span class="co" style="color: #5E5E5E;
+<span id="annotated-cell-19-7"></span>
+<span id="annotated-cell-19-8"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Enable banner style title blocks</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-18-9" class="code-annotation-target"><span class="fu" style="color: #4758AB;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-9" class="code-annotation-target"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">title-block-banner</span><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1204,11 +1216,11 @@ background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">true</span></span>
-<span id="annotated-cell-18-10"></span>
-<span id="annotated-cell-18-11"><span class="co" style="color: #5E5E5E;
+<span id="annotated-cell-19-10"></span>
+<span id="annotated-cell-19-11"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Default for table of contents</span></span>
-<span id="annotated-cell-18-12"><span class="fu" style="color: #4758AB;
+<span id="annotated-cell-19-12"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">toc</span><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1217,21 +1229,21 @@ background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">true</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-18-13" class="code-annotation-target"><span class="fu" style="color: #4758AB;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-19-13" class="code-annotation-target"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">toc-title</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Contents</span></span>
-<span id="annotated-cell-18-14"><span class="fu" style="color: #4758AB;
+<span id="annotated-cell-19-14"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">toc-location</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> left</span></span>
-<span id="annotated-cell-18-15"><span class="fu" style="color: #4758AB;
+<span id="annotated-cell-19-15"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">toc-expand</span><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1240,16 +1252,16 @@ background-color: null;
 font-style: inherit;"> </span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span></span>
-<span id="annotated-cell-18-16"></span>
-<span id="annotated-cell-18-17"><span class="co" style="color: #5E5E5E;
+<span id="annotated-cell-19-16"></span>
+<span id="annotated-cell-19-17"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Default author</span></span>
-<span id="annotated-cell-18-18"><span class="fu" style="color: #4758AB;
+<span id="annotated-cell-19-18"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">author</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span></span>
-<span id="annotated-cell-18-19"><span class="at" style="color: #657422;
+<span id="annotated-cell-19-19"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1262,7 +1274,7 @@ background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Flavio Regis de Arruda</span></span>
-<span id="annotated-cell-18-20"><span class="at" style="color: #657422;
+<span id="annotated-cell-19-20"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1271,11 +1283,11 @@ background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> https://xboard.dev</span></span>
-<span id="annotated-cell-18-21"></span>
-<span id="annotated-cell-18-22"><span class="co" style="color: #5E5E5E;
+<span id="annotated-cell-19-21"></span>
+<span id="annotated-cell-19-22"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Default fields for citation</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-18-23" class="code-annotation-target"><span class="fu" style="color: #4758AB;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-19-23" class="code-annotation-target"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">citation</span><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1286,21 +1298,21 @@ background-color: null;
 font-style: inherit;">false</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div>
 </div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-18" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="6" data-code-cell="annotated-cell-18" data-code-annotation="1">computational documents should never be re-rendered during a global project render</span>
+<span data-code-lines="6" data-code-cell="annotated-cell-19" data-code-annotation="1">computational documents should never be re-rendered during a global project render</span>
 </dd>
-<dt data-target-cell="annotated-cell-18" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="9" data-code-cell="annotated-cell-18" data-code-annotation="2">create a banner style <a href="https://quarto.org/docs/authoring/title-blocks.html#title-banners" target="_blank">title block</a></span>
+<span data-code-lines="9" data-code-cell="annotated-cell-19" data-code-annotation="2">create a banner style <a href="https://quarto.org/docs/authoring/title-blocks.html#title-banners" target="_blank">title block</a></span>
 </dd>
-<dt data-target-cell="annotated-cell-18" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="13" data-code-cell="annotated-cell-18" data-code-annotation="3">table of content title</span>
+<span data-code-lines="13" data-code-cell="annotated-cell-19" data-code-annotation="3">table of content title</span>
 </dd>
-<dt data-target-cell="annotated-cell-18" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="23" data-code-cell="annotated-cell-18" data-code-annotation="4">do not show <a href="https://quarto.org/docs/reference/metadata/citation.html" target="_blank">citation metadata</a>.</span>
+<span data-code-lines="23" data-code-cell="annotated-cell-19" data-code-annotation="4">do not show <a href="https://quarto.org/docs/reference/metadata/citation.html" target="_blank">citation metadata</a>.</span>
 </dd>
 </dl>
 </section>
@@ -1311,26 +1323,26 @@ font-style: inherit;">false</span></span><div class="code-annotation-gutter-bg">
 <div class="code-with-filename-file">
 <pre><strong>_quarto.yml</strong></pre>
 </div>
-<div class="sourceCode" id="annotated-cell-19" style="background: #f1f3f5;"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-19-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode" id="annotated-cell-20" style="background: #f1f3f5;"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-20-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">website</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span></span>
-<span id="annotated-cell-19-2"><span class="at" style="color: #657422;
+<span id="annotated-cell-20-2"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">comments</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span></span>
-<span id="annotated-cell-19-3"><span class="at" style="color: #657422;
+<span id="annotated-cell-20-3"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">giscus</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-4" class="code-annotation-target"><span class="at" style="color: #657422;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-20-4" class="code-annotation-target"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1339,7 +1351,7 @@ background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> xboard/quarto-blog</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-5" class="code-annotation-target"><span class="at" style="color: #657422;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-20-5" class="code-annotation-target"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1348,7 +1360,7 @@ background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> R_kgDOJ7r2SQ</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-19-6" class="code-annotation-target"><span class="at" style="color: #657422;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-20-6" class="code-annotation-target"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1357,7 +1369,7 @@ background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Announcements</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-19-7" class="code-annotation-target"><span class="at" style="color: #657422;
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-20-7" class="code-annotation-target"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1366,7 +1378,7 @@ background-color: null;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> DIC_kwDOJ7r2Sc4CX95f</span></span>
-<span id="annotated-cell-19-8"><span class="at" style="color: #657422;
+<span id="annotated-cell-20-8"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1377,21 +1389,21 @@ background-color: null;
 font-style: inherit;"> lazy</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div>
 </div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="4" data-code-cell="annotated-cell-19" data-code-annotation="1">the Github repo that will be used to store comments.</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-20" data-code-annotation="1">the Github repo that will be used to store comments.</span>
 </dd>
-<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="5" data-code-cell="annotated-cell-19" data-code-annotation="2">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
+<span data-code-lines="5" data-code-cell="annotated-cell-20" data-code-annotation="2">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
 </dd>
-<dt data-target-cell="annotated-cell-19" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="6" data-code-cell="annotated-cell-19" data-code-annotation="3">discussion category in Github Discussions</span>
+<span data-code-lines="6" data-code-cell="annotated-cell-20" data-code-annotation="3">discussion category in Github Discussions</span>
 </dd>
-<dt data-target-cell="annotated-cell-19" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="7" data-code-cell="annotated-cell-19" data-code-annotation="4">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
+<span data-code-lines="7" data-code-cell="annotated-cell-20" data-code-annotation="4">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
 </dd>
 </dl>
 <p>after this at the bottom of every post you will see the Giscus integration in action:</p>
@@ -1409,26 +1421,26 @@ font-style: inherit;"> lazy</span></span><div class="code-annotation-gutter-bg">
 <div class="code-with-filename-file">
 <pre><strong>_quarto.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">website</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span></span>
-<span id="cb18-2"><span class="at" style="color: #657422;
+<span id="cb19-2"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">page-footer</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">:</span></span>
-<span id="cb18-3"><span class="fu" style="color: #4758AB;
+<span id="cb19-3"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">    center</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">: </span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">|</span></span>
-<span id="cb18-4">      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).</span></code></pre></div>
+<span id="cb19-4">      Made with Data, ❤️, 🐍 and [Quarto](https://quarto.org). License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).</span></code></pre></div>
 </div>
 </section>
 <section id="vscode" class="level2">
@@ -1437,7 +1449,7 @@ font-style: inherit;">|</span></span>
 <section id="installing-vs-code-quarto-extension" class="level3">
 <h3 class="anchored" data-anchor-id="installing-vs-code-quarto-extension">Installing VS Code Quarto extension</h3>
 <p>To install the <a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto" target="_blank">Quarto extension</a> type (Ctrl+P), type:</p>
-<div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb19-1">ext install quarto.quarto</span></code></pre></div>
+<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb20-1">ext install quarto.quarto</span></code></pre></div>
 <p>and press enter.</p>
 <p>Some of the features this extensions includes:</p>
 <ul>
