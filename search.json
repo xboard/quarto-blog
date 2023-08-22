@@ -186,7 +186,7 @@
     "href": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-a-robots.txt-policy-file",
     "title": "Migrating my blog from fastpages to Quarto",
     "section": "Adding a robots.txt policy file",
-    "text": "Adding a robots.txt policy file\nMy final robots.txt file ended up as below:\n\n\nrobots.txt\n\nUser-Agent: *\nAllow: /\n\n\nUser-agent: GPTBot\nDisallow: /\n\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nSitemap: https://www.xboard.dev/sitemap.xml\n\nI advise Open AI to not copy my site into their text database product and provide a reference where my generated sitemap is located."
+    "text": "Adding a robots.txt policy file\nMy final robots.txt file ended up as below:\n\n\nrobots.txt\n\nUser-Agent: *\nAllow: /\n\n\nUser-agent: GPTBot\nDisallow: /\n\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nSitemap: https://www.xboard.dev/sitemap.xml\n\nIt advise Open AI to not copy my site into their text database product and provide a reference to where other crawlers can find my generated sitemap."
   },
   {
     "objectID": "posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html#adding-canonical-tag-into-the-head-section",
