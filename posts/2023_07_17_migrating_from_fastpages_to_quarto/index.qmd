@@ -231,6 +231,17 @@ First remove the domain in repository [fastpages-blog](https://github.com/xboard
 
 then add domain to [quarto-blog repository](https://github.com/xboard/quarto-blog){target=_blank} github page.
 
+### Publish to github pages
+
+Just type in project root:
+
+```bash
+quarto publish gh-pages --no-prompt
+```
+
+This will render your blog's html in folder `_site` and publish its content into github pages. The `--no-prompt` option prevents it from asking for confirmation.
+
+After it succeeds deploying it into gibhub-pages it opens the browser at your blog.
 
 
 ## Creating Conda's environment
