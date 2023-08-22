@@ -262,7 +262,7 @@ quarto publish gh-pages --no-prompt
 
 This will render your blog's html in folder `_site` and publish its content into github pages. The `--no-prompt` option prevents it from asking for confirmation.
 
-After it succeeds deploying it into gibhub-pages it opens the browser at your blog.
+After the publish command succeeds deploying to gibhub-pages it opens the browser to view your blog.
 
 
 ## Creating Conda's environment
