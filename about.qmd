@@ -1,6 +1,6 @@
 ---
 title: "About"
-image: EU_2022.png
+image: EU_2022.jpg
 about:
   template: jolla
   links:
