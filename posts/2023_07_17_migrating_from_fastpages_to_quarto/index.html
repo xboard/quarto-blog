@@ -123,7 +123,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <link rel="canonical" href="https://www.xboard.dev/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html" />
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -168,7 +168,7 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Migrating my blog from <code>fastpages</code> to <code>Quarto</code></h1>
@@ -202,9 +202,8 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Contents</h2>
    
   <ul>
@@ -242,6 +241,10 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
@@ -554,19 +557,19 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-20" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-20" data-code-lines="6" data-code-annotation="1">computational documents should never be re-rendered during a global project render</span>
+<span data-code-annotation="1" data-code-lines="6" data-code-cell="annotated-cell-20">computational documents should never be re-rendered during a global project render</span>
 </dd>
 <dt data-target-cell="annotated-cell-20" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-20" data-code-lines="9" data-code-annotation="2">create a banner style <a href="https://quarto.org/docs/authoring/title-blocks.html#title-banners" target="_blank">title block</a></span>
+<span data-code-annotation="2" data-code-lines="9" data-code-cell="annotated-cell-20">create a banner style <a href="https://quarto.org/docs/authoring/title-blocks.html#title-banners" target="_blank">title block</a></span>
 </dd>
 <dt data-target-cell="annotated-cell-20" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-20" data-code-lines="13" data-code-annotation="3">table of content title</span>
+<span data-code-annotation="3" data-code-lines="13" data-code-cell="annotated-cell-20">table of content title</span>
 </dd>
 <dt data-target-cell="annotated-cell-20" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-20" data-code-lines="23" data-code-annotation="4">do not show <a href="https://quarto.org/docs/reference/metadata/citation.html" target="_blank">citation metadata</a>.</span>
+<span data-code-annotation="4" data-code-lines="23" data-code-cell="annotated-cell-20">do not show <a href="https://quarto.org/docs/reference/metadata/citation.html" target="_blank">citation metadata</a>.</span>
 </dd>
 </dl>
 </section>
@@ -589,19 +592,19 @@ gtag('config', 'G-5FL5R0TTQ6', { 'anonymize_ip': true});
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-21" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-21" data-code-lines="4" data-code-annotation="1">the Github repo that will be used to store comments.</span>
+<span data-code-annotation="1" data-code-lines="4" data-code-cell="annotated-cell-21">the Github repo that will be used to store comments.</span>
 </dd>
 <dt data-target-cell="annotated-cell-21" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-21" data-code-lines="5" data-code-annotation="2">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
+<span data-code-annotation="2" data-code-lines="5" data-code-cell="annotated-cell-21">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
 </dd>
 <dt data-target-cell="annotated-cell-21" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-21" data-code-lines="6" data-code-annotation="3">discussion category in Github Discussions</span>
+<span data-code-annotation="3" data-code-lines="6" data-code-cell="annotated-cell-21">discussion category in Github Discussions</span>
 </dd>
 <dt data-target-cell="annotated-cell-21" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-21" data-code-lines="7" data-code-annotation="4">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
+<span data-code-annotation="4" data-code-lines="7" data-code-cell="annotated-cell-21">found using <a href="https://giscus.app/" target="_blank">https://giscus.app/</a></span>
 </dd>
 </dl>
 <p>after this at the bottom of every post you will see the Giscus integration in action:</p>
