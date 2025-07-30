@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html</loc>
-    <lastmod>2024-02-20T19:14:27.533Z</lastmod>
+    <loc>https://www.xboard.dev/index.html</loc>
+    <lastmod>2025-07-30T12:45:38.692Z</lastmod>
   </url>
   <url>
     <loc>https://www.xboard.dev/posts/2023_07_20_using_pip_tools_to_manage_python_project_dependencies/index.html</loc>
-    <lastmod>2024-02-20T19:14:24.445Z</lastmod>
+    <lastmod>2025-07-30T12:45:38.729Z</lastmod>
   </url>
   <url>
     <loc>https://www.xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/index.html</loc>
-    <lastmod>2024-02-20T19:14:20.744Z</lastmod>
+    <lastmod>2025-07-30T12:45:38.706Z</lastmod>
   </url>
   <url>
-    <loc>https://www.xboard.dev/index.html</loc>
-    <lastmod>2024-02-20T19:14:18.232Z</lastmod>
+    <loc>https://www.xboard.dev/posts/2023_07_27_tip_set_dependsonpast_in_airflow_when_creating_forecasting_model_pipeline/index.html</loc>
+    <lastmod>2025-07-30T12:45:38.729Z</lastmod>
   </url>
   <url>
     <loc>https://www.xboard.dev/posts/2023_07_17_migrating_from_fastpages_to_quarto/index.html</loc>
-    <lastmod>2024-02-20T19:14:26.381Z</lastmod>
+    <lastmod>2025-07-30T13:34:34.897Z</lastmod>
   </url>
   <url>
     <loc>https://www.xboard.dev/about.html</loc>
-    <lastmod>2024-02-20T19:14:30.642Z</lastmod>
+    <lastmod>2025-07-30T12:45:38.683Z</lastmod>
   </url>
 </urlset>
