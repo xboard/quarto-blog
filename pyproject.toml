@@ -6,8 +6,11 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "accelerate>=1.9.0",
+    "anywidget>=0.9.18",
     "arviz>=0.22.0",
     "bitsandbytes>=0.46.1",
+    "deepchecks>=0.19.1",
+    "evidently>=0.4.36",
     "gradio>=5.38.2",
     "interpret>=0.7.1",
     "jax[cpu]>=0.7.0",
