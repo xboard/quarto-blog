@@ -3,5 +3,6 @@
         "!scala",
         "pip-requirements",
         "quarto"
-    ]
+    ],
+    "python.defaultInterpreterPath": "./venv/bin/python"
 }
